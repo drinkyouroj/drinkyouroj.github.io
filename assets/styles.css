@@ -562,6 +562,10 @@ img {
   padding-top: 18px;
 }
 
+.mt-14 {
+  margin-top: 14px;
+}
+
 @media (min-width: 860px) {
   .nav__links {
     display: flex;

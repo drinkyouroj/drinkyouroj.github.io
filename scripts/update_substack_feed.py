@@ -24,7 +24,7 @@ def fetch(url: str) -> bytes:
     req = urllib.request.Request(
         url,
         headers={
-            "User-Agent": "justinhearn.github.io feed fetcher (+https://github.com/drinkyouroj/justinhearn.github.io)",
+            "User-Agent": "drinkyouroj.github.io feed fetcher (+https://drinkyouroj.github.io)",
             "Accept": "application/rss+xml, application/xml;q=0.9, text/xml;q=0.8, */*;q=0.1",
         },
         method="GET",
