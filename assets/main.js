@@ -31,27 +31,61 @@ async function loadSubstack() {
     const posts = Array.isArray(data?.posts) ? data.posts.slice(0, 5) : [];
 
     if (posts.length === 0) {
-      list.innerHTML = `<li class="muted">No posts found yet. Visit <a href="https://drinkyouroj.substack.com" target="_blank" rel="noreferrer">Substack</a>.</li>`;
+      list.innerHTML = "";
+      const li = document.createElement("li");
+      li.className = "muted";
+      li.append("No posts found yet. Visit ");
+      const a = document.createElement("a");
+      a.href = "https://drinkyouroj.substack.com";
+      a.target = "_blank";
+      a.rel = "noreferrer";
+      a.textContent = "Substack";
+      li.append(a);
+      li.append(".");
+      list.append(li);
       if (status) status.textContent = "";
       return;
     }
 
-    list.innerHTML = posts
-      .map((p) => {
-        const title = (p?.title || "Untitled").replaceAll('"', "&quot;");
-        const url = p?.url || "https://drinkyouroj.substack.com";
-        const date = p?.date ? formatDate(p.date) : "";
-        const meta = date ? ` <span class="muted">· ${date}</span>` : "";
-        return `<li><a href="${url}" target="_blank" rel="noreferrer">${title}</a>${meta}</li>`;
-      })
-      .join("");
+    list.innerHTML = "";
+    for (const p of posts) {
+      const li = document.createElement("li");
+
+      const a = document.createElement("a");
+      a.href = p?.url || "https://drinkyouroj.substack.com";
+      a.target = "_blank";
+      a.rel = "noreferrer";
+      a.textContent = p?.title || "Untitled";
+      li.append(a);
+
+      const date = p?.date ? formatDate(p.date) : "";
+      if (date) {
+        const meta = document.createElement("span");
+        meta.className = "muted";
+        meta.textContent = ` · ${date}`;
+        li.append(meta);
+      }
+
+      list.append(li);
+    }
 
     if (status) {
       const updated = data?.updated_at ? formatDate(data.updated_at) : "";
       status.textContent = updated ? `Updated ${updated}.` : "";
     }
   } catch (err) {
-    list.innerHTML = `<li class="muted">Couldn’t load posts right now. Visit <a href="https://drinkyouroj.substack.com" target="_blank" rel="noreferrer">Substack</a>.</li>`;
+    list.innerHTML = "";
+    const li = document.createElement("li");
+    li.className = "muted";
+    li.append("Couldn’t load posts right now. Visit ");
+    const a = document.createElement("a");
+    a.href = "https://drinkyouroj.substack.com";
+    a.target = "_blank";
+    a.rel = "noreferrer";
+    a.textContent = "Substack";
+    li.append(a);
+    li.append(".");
+    list.append(li);
     if (status) status.textContent = "";
     // eslint-disable-next-line no-console
     console.warn("Substack feed load failed:", err);
