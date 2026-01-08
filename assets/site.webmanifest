@@ -1,0 +1,16 @@
+{
+  "name": "Justin Hearn",
+  "short_name": "Justin",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#071a1d",
+  "theme_color": "#0f5f66",
+  "icons": [
+    {
+      "src": "/assets/favicon.ico",
+      "sizes": "256x256 128x128 64x64 48x48 32x32 16x16",
+      "type": "image/x-icon"
+    }
+  ]
+}
+
