@@ -679,6 +679,109 @@ function initCommandPalette() {
   renderCommands();
 }
 
+// GitHub Activity Widget
+async function loadGitHubActivity() {
+  const list = document.getElementById("github-activity");
+  if (!list) return;
+
+  const username = "drinkyouroj";
+  const maxEvents = 5;
+
+  const icons = {
+    push: '<polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>',
+    star: '<polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>',
+    fork: '<circle cx="12" cy="18" r="3"/><circle cx="6" cy="6" r="3"/><circle cx="18" cy="6" r="3"/><path d="M18 9v1a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2V9"/><path d="M12 12v3"/>',
+    pr: '<circle cx="18" cy="18" r="3"/><circle cx="6" cy="6" r="3"/><path d="M13 6h3a2 2 0 0 1 2 2v7"/><path d="M6 9v12"/>',
+  };
+
+  function getEventInfo(event) {
+    const repo = event.repo?.name || "";
+    const repoUrl = `https://github.com/${repo}`;
+
+    switch (event.type) {
+      case "PushEvent": {
+        const commits = event.payload?.commits?.length || 0;
+        return {
+          icon: "push",
+          title: `Pushed ${commits} commit${commits !== 1 ? "s" : ""} to`,
+          repo,
+          repoUrl,
+        };
+      }
+      case "WatchEvent":
+        return { icon: "star", title: "Starred", repo, repoUrl };
+      case "ForkEvent":
+        return { icon: "fork", title: "Forked", repo, repoUrl };
+      case "PullRequestEvent": {
+        const action = event.payload?.action || "opened";
+        return { icon: "pr", title: `${action.charAt(0).toUpperCase() + action.slice(1)} PR in`, repo, repoUrl };
+      }
+      case "CreateEvent": {
+        const refType = event.payload?.ref_type || "repository";
+        return { icon: "push", title: `Created ${refType} in`, repo, repoUrl };
+      }
+      case "IssuesEvent": {
+        const action = event.payload?.action || "opened";
+        return { icon: "pr", title: `${action.charAt(0).toUpperCase() + action.slice(1)} issue in`, repo, repoUrl };
+      }
+      default:
+        return { icon: "push", title: "Activity in", repo, repoUrl };
+    }
+  }
+
+  function timeAgo(dateString) {
+    const date = new Date(dateString);
+    const now = new Date();
+    const seconds = Math.floor((now - date) / 1000);
+
+    if (seconds < 60) return "just now";
+    const minutes = Math.floor(seconds / 60);
+    if (minutes < 60) return `${minutes}m ago`;
+    const hours = Math.floor(minutes / 60);
+    if (hours < 24) return `${hours}h ago`;
+    const days = Math.floor(hours / 24);
+    if (days < 30) return `${days}d ago`;
+    const months = Math.floor(days / 30);
+    return `${months}mo ago`;
+  }
+
+  try {
+    const res = await fetch(`https://api.github.com/users/${username}/events/public?per_page=${maxEvents}`);
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+
+    const events = await res.json();
+
+    if (!events.length) {
+      list.innerHTML = '<li class="github-widget__error">No recent activity</li>';
+      return;
+    }
+
+    list.innerHTML = events.map((event) => {
+      const info = getEventInfo(event);
+      return `
+        <li class="github-widget__item">
+          <div class="github-widget__icon github-widget__icon--${info.icon}">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${icons[info.icon]}</svg>
+          </div>
+          <div class="github-widget__content">
+            <div class="github-widget__title">
+              ${info.title} <a href="${info.repoUrl}" target="_blank" rel="noreferrer">${info.repo}</a>
+            </div>
+            <div class="github-widget__meta">${timeAgo(event.created_at)}</div>
+          </div>
+        </li>
+      `;
+    }).join("");
+  } catch (err) {
+    list.innerHTML = `
+      <li class="github-widget__error">
+        Couldn't load activity. <a href="https://github.com/${username}" target="_blank" rel="noreferrer">View on GitHub</a>
+      </li>
+    `;
+    console.warn("GitHub activity load failed:", err);
+  }
+}
+
 setYear();
 initTheme();
 initMobileNav();
@@ -691,4 +794,5 @@ initContactForm();
 initCopyEmail();
 initCommandPalette();
 loadSubstack();
+loadGitHubActivity();
 

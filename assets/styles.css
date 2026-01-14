@@ -1272,6 +1272,116 @@ img {
   font-size: 0.8rem;
 }
 
+/* GitHub Activity Widget */
+.github-widget {
+  max-width: 600px;
+}
+
+.github-widget__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.github-widget__head h3 {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0;
+  font-size: 1.1rem;
+}
+
+.github-widget__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.github-widget__item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.github-widget__item:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.github-widget__item:first-child {
+  padding-top: 0;
+}
+
+.github-widget__item--loading {
+  justify-content: center;
+  padding: 20px 0;
+}
+
+.github-widget__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 6px;
+  background: var(--panel);
+  color: var(--muted);
+  flex-shrink: 0;
+}
+
+.github-widget__icon--push {
+  background: rgba(34, 197, 94, 0.15);
+  color: #22c55e;
+}
+
+.github-widget__icon--star {
+  background: rgba(250, 204, 21, 0.15);
+  color: #facc15;
+}
+
+.github-widget__icon--fork {
+  background: rgba(59, 130, 246, 0.15);
+  color: #3b82f6;
+}
+
+.github-widget__icon--pr {
+  background: rgba(168, 85, 247, 0.15);
+  color: #a855f7;
+}
+
+.github-widget__content {
+  flex: 1;
+  min-width: 0;
+}
+
+.github-widget__title {
+  font-weight: 600;
+  margin-bottom: 2px;
+}
+
+.github-widget__title a {
+  color: var(--text);
+  text-decoration: none;
+}
+
+.github-widget__title a:hover {
+  color: var(--oj);
+}
+
+.github-widget__meta {
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+.github-widget__error {
+  text-align: center;
+  padding: 16px 0;
+  color: var(--muted);
+}
+
 .footer {
   padding: 34px 0 40px;
 }
