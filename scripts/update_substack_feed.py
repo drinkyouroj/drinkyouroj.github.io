@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import json
+import re
 import sys
 import time
 import urllib.request
@@ -51,6 +52,26 @@ def parse_pubdate(pubdate: str) -> str:
         return ""
 
 
+def extract_cover_image(item: ET.Element) -> str:
+    """Extract cover image from enclosure tag or content:encoded."""
+    # First try enclosure tag (most common for Substack)
+    enclosure = item.find("enclosure")
+    if enclosure is not None:
+        url = enclosure.attrib.get("url", "").strip()
+        if url:
+            return url
+    
+    # Fallback: try to extract from content:encoded HTML
+    content_encoded = item.find("{http://purl.org/rss/1.0/modules/content/}encoded")
+    if content_encoded is not None and content_encoded.text:
+        # Look for first image in content
+        img_match = re.search(r'<img[^>]+src=["\']([^"\']+)["\']', content_encoded.text)
+        if img_match:
+            return img_match.group(1)
+    
+    return ""
+
+
 def parse_rss(xml_bytes: bytes, limit: int = 5) -> dict:
     root = ET.fromstring(xml_bytes)
 
@@ -65,7 +86,14 @@ def parse_rss(xml_bytes: bytes, limit: int = 5) -> dict:
             link_el = e.find("{http://www.w3.org/2005/Atom}link")
             url = (link_el.attrib.get("href", "") if link_el is not None else "").strip()
             updated = text(e.find("{http://www.w3.org/2005/Atom}updated"))
-            posts.append({"title": title, "url": url, "date": updated})
+            summary = text(e.find("{http://www.w3.org/2005/Atom}summary"))
+            posts.append({
+                "title": title,
+                "subtitle": summary,
+                "url": url,
+                "date": updated,
+                "cover_image": "",
+            })
         return {"source": FEED_URL, "updated_at": now_iso(), "posts": posts}
 
     title = text(channel.find("title"))
@@ -74,13 +102,14 @@ def parse_rss(xml_bytes: bytes, limit: int = 5) -> dict:
     items = channel.findall("item")
     posts = []
     for it in items[:limit]:
-        posts.append(
-            {
-                "title": text(it.find("title")),
-                "url": text(it.find("link")),
-                "date": parse_pubdate(text(it.find("pubDate"))),
-            }
-        )
+        post = {
+            "title": text(it.find("title")),
+            "subtitle": text(it.find("description")),
+            "url": text(it.find("link")),
+            "date": parse_pubdate(text(it.find("pubDate"))),
+            "cover_image": extract_cover_image(it),
+        }
+        posts.append(post)
 
     return {
         "source": FEED_URL,
