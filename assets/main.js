@@ -496,6 +496,38 @@ function initContactForm() {
   });
 }
 
+// Click-to-Copy Email
+function initCopyEmail() {
+  const emailCard = document.getElementById("email-card");
+  if (!emailCard) return;
+
+  const email = emailCard.dataset.email;
+  const copyBtn = emailCard.querySelector(".copy-btn");
+
+  async function copyEmail(e) {
+    // Don't copy if clicking the mailto link
+    if (e.target.closest("a")) return;
+
+    e.preventDefault();
+
+    try {
+      await navigator.clipboard.writeText(email);
+      emailCard.classList.add("copied");
+
+      // Reset after 2 seconds
+      setTimeout(() => {
+        emailCard.classList.remove("copied");
+      }, 2000);
+    } catch (err) {
+      // Fallback: open mailto if clipboard fails
+      window.location.href = `mailto:${email}`;
+    }
+  }
+
+  emailCard.addEventListener("click", copyEmail);
+  copyBtn?.addEventListener("click", copyEmail);
+}
+
 setYear();
 initTheme();
 initMobileNav();
@@ -505,5 +537,6 @@ initScrollReveal();
 initCarousel();
 initSkillsFilter();
 initContactForm();
+initCopyEmail();
 loadSubstack();
 
