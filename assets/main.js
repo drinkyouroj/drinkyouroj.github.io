@@ -528,6 +528,157 @@ function initCopyEmail() {
   copyBtn?.addEventListener("click", copyEmail);
 }
 
+// Command Palette
+function initCommandPalette() {
+  const palette = document.getElementById("cmd-palette");
+  const input = document.getElementById("cmd-input");
+  const results = document.getElementById("cmd-results");
+
+  if (!palette || !input || !results) return;
+
+  const commands = [
+    { id: "about", title: "Go to About", desc: "Learn about me", icon: "user", action: () => navigateTo("#about") },
+    { id: "experience", title: "Go to Experience", desc: "View work history", icon: "briefcase", action: () => navigateTo("#experience") },
+    { id: "skills", title: "Go to Skills", desc: "See technical skills", icon: "code", action: () => navigateTo("#skills") },
+    { id: "writing", title: "Go to Writing", desc: "Read blog posts", icon: "edit", action: () => navigateTo("#writing") },
+    { id: "testimonials", title: "Go to Testimonials", desc: "See what others say", icon: "quote", action: () => navigateTo("#testimonials") },
+    { id: "contact", title: "Go to Contact", desc: "Get in touch", icon: "mail", action: () => navigateTo("#contact") },
+    { id: "theme", title: "Toggle Theme", desc: "Switch dark/light mode", icon: "sun", action: () => { document.getElementById("theme-toggle")?.click(); } },
+    { id: "copy-email", title: "Copy Email", desc: "Copy email to clipboard", icon: "clipboard", action: () => { document.getElementById("email-card")?.click(); } },
+    { id: "linkedin", title: "Open LinkedIn", desc: "View LinkedIn profile", icon: "external", action: () => window.open("https://www.linkedin.com/in/jhearn/", "_blank") },
+    { id: "github", title: "Open GitHub", desc: "View GitHub profile", icon: "external", action: () => window.open("https://github.com/drinkyouroj", "_blank") },
+    { id: "substack", title: "Open Substack", desc: "Read the newsletter", icon: "external", action: () => window.open("https://drinkyouroj.substack.com", "_blank") },
+    { id: "resume", title: "Download Resume", desc: "Get PDF resume", icon: "download", action: () => window.open("/assets/resume.pdf", "_blank") },
+  ];
+
+  const icons = {
+    user: '<circle cx="12" cy="7" r="4"/><path d="M5.5 21a7.5 7.5 0 0 1 13 0"/>',
+    briefcase: '<rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/>',
+    code: '<polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/>',
+    edit: '<path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"/>',
+    quote: '<path d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V21z"/><path d="M15 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h.75c0 2.25.25 4-2.75 4v3z"/>',
+    mail: '<rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>',
+    sun: '<circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/>',
+    clipboard: '<rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>',
+    external: '<path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/>',
+    download: '<path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/>',
+  };
+
+  let selectedIndex = 0;
+  let filteredCommands = [...commands];
+
+  function navigateTo(hash) {
+    window.location.hash = hash;
+    closePalette();
+  }
+
+  function renderCommands() {
+    if (filteredCommands.length === 0) {
+      results.innerHTML = '<div class="cmd-palette__empty">No commands found</div>';
+      return;
+    }
+
+    results.innerHTML = filteredCommands.map((cmd, i) => `
+      <div class="cmd-palette__item${i === selectedIndex ? " selected" : ""}" data-index="${i}" role="option">
+        <div class="cmd-palette__item-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${icons[cmd.icon]}</svg>
+        </div>
+        <div class="cmd-palette__item-text">
+          <div class="cmd-palette__item-title">${cmd.title}</div>
+          <div class="cmd-palette__item-desc">${cmd.desc}</div>
+        </div>
+      </div>
+    `).join("");
+
+    // Add click handlers
+    results.querySelectorAll(".cmd-palette__item").forEach((item) => {
+      item.addEventListener("click", () => {
+        const idx = parseInt(item.dataset.index, 10);
+        executeCommand(idx);
+      });
+    });
+  }
+
+  function filterCommands(query) {
+    const q = query.toLowerCase().trim();
+    if (!q) {
+      filteredCommands = [...commands];
+    } else {
+      filteredCommands = commands.filter((cmd) =>
+        cmd.title.toLowerCase().includes(q) || cmd.desc.toLowerCase().includes(q)
+      );
+    }
+    selectedIndex = 0;
+    renderCommands();
+  }
+
+  function executeCommand(index) {
+    const cmd = filteredCommands[index];
+    if (cmd) {
+      closePalette();
+      cmd.action();
+    }
+  }
+
+  function openPalette() {
+    palette.classList.add("open");
+    palette.setAttribute("aria-hidden", "false");
+    document.body.style.overflow = "hidden";
+    input.value = "";
+    filterCommands("");
+    input.focus();
+  }
+
+  function closePalette() {
+    palette.classList.remove("open");
+    palette.setAttribute("aria-hidden", "true");
+    document.body.style.overflow = "";
+  }
+
+  // Keyboard shortcuts
+  document.addEventListener("keydown", (e) => {
+    // Open with Ctrl+K or Cmd+K
+    if ((e.ctrlKey || e.metaKey) && e.key === "k") {
+      e.preventDefault();
+      if (palette.classList.contains("open")) {
+        closePalette();
+      } else {
+        openPalette();
+      }
+    }
+
+    // Only handle these if palette is open
+    if (!palette.classList.contains("open")) return;
+
+    if (e.key === "Escape") {
+      e.preventDefault();
+      closePalette();
+    } else if (e.key === "ArrowDown") {
+      e.preventDefault();
+      selectedIndex = (selectedIndex + 1) % filteredCommands.length;
+      renderCommands();
+    } else if (e.key === "ArrowUp") {
+      e.preventDefault();
+      selectedIndex = (selectedIndex - 1 + filteredCommands.length) % filteredCommands.length;
+      renderCommands();
+    } else if (e.key === "Enter") {
+      e.preventDefault();
+      executeCommand(selectedIndex);
+    }
+  });
+
+  // Filter on input
+  input.addEventListener("input", () => {
+    filterCommands(input.value);
+  });
+
+  // Close on backdrop click
+  palette.querySelector(".cmd-palette__backdrop").addEventListener("click", closePalette);
+
+  // Initial render
+  renderCommands();
+}
+
 setYear();
 initTheme();
 initMobileNav();
@@ -538,5 +689,6 @@ initCarousel();
 initSkillsFilter();
 initContactForm();
 initCopyEmail();
+initCommandPalette();
 loadSubstack();
 
