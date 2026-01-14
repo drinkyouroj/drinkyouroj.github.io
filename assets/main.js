@@ -80,14 +80,18 @@ function initScrollSpy() {
   const navLinks = document.querySelectorAll(".nav__links a");
   if (!sections.length || !navLinks.length) return;
 
+  function setActive(id) {
+    navLinks.forEach((link) => {
+      link.classList.toggle("active", link.getAttribute("href") === `#${id}`);
+    });
+  }
+
   const observer = new IntersectionObserver(
     (entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
           const id = entry.target.getAttribute("id");
-          navLinks.forEach((link) => {
-            link.classList.toggle("active", link.getAttribute("href") === `#${id}`);
-          });
+          setActive(id);
         }
       });
     },
@@ -98,6 +102,23 @@ function initScrollSpy() {
   );
 
   sections.forEach((section) => observer.observe(section));
+
+  // Handle bottom of page - when scrolled to bottom, activate last section
+  function checkBottom() {
+    const scrollBottom = window.innerHeight + window.scrollY;
+    const docHeight = document.documentElement.scrollHeight;
+    // If within 100px of bottom, activate last section
+    if (docHeight - scrollBottom < 100) {
+      const lastSection = sections[sections.length - 1];
+      if (lastSection) {
+        setActive(lastSection.getAttribute("id"));
+      }
+    }
+  }
+
+  window.addEventListener("scroll", checkBottom, { passive: true });
+  // Check on load in case page loads at bottom
+  checkBottom();
 }
 
 function setYear() {
