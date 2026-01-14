@@ -4,6 +4,47 @@ function $(id) {
   return document.getElementById(id);
 }
 
+// Mobile Navigation
+function initMobileNav() {
+  const hamburger = $("hamburger");
+  const menu = $("mobile-menu");
+  if (!hamburger || !menu) return;
+
+  function openMenu() {
+    hamburger.setAttribute("aria-expanded", "true");
+    menu.setAttribute("aria-hidden", "false");
+    document.body.style.overflow = "hidden";
+  }
+
+  function closeMenu() {
+    hamburger.setAttribute("aria-expanded", "false");
+    menu.setAttribute("aria-hidden", "true");
+    document.body.style.overflow = "";
+  }
+
+  hamburger.addEventListener("click", () => {
+    const isOpen = hamburger.getAttribute("aria-expanded") === "true";
+    isOpen ? closeMenu() : openMenu();
+  });
+
+  // Close on link click
+  menu.querySelectorAll("a").forEach((link) => {
+    link.addEventListener("click", closeMenu);
+  });
+
+  // Close on escape
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && hamburger.getAttribute("aria-expanded") === "true") {
+      closeMenu();
+    }
+  });
+
+  // Close on resize to desktop
+  window.addEventListener("resize", () => {
+    if (window.innerWidth >= 860) closeMenu();
+  });
+}
+
 function setYear() {
   const el = $("year");
   if (el) el.textContent = String(new Date().getFullYear());
@@ -93,5 +134,6 @@ async function loadSubstack() {
 }
 
 setYear();
+initMobileNav();
 loadSubstack();
 

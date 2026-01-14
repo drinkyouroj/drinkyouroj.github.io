@@ -139,6 +139,107 @@ img {
   color: var(--text);
 }
 
+.nav__actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.nav__hire-btn {
+  display: none;
+}
+
+/* Hamburger Menu Button */
+.hamburger {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+  gap: 5px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--panel);
+  cursor: pointer;
+  transition: background 150ms ease, border-color 150ms ease;
+}
+
+.hamburger:hover {
+  background: var(--panel-strong);
+  border-color: var(--oj);
+}
+
+.hamburger__line {
+  width: 18px;
+  height: 2px;
+  background: var(--text);
+  border-radius: 2px;
+  transition: transform 200ms ease, opacity 200ms ease;
+}
+
+.hamburger[aria-expanded="true"] .hamburger__line:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+
+.hamburger[aria-expanded="true"] .hamburger__line:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburger[aria-expanded="true"] .hamburger__line:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+/* Mobile Menu Overlay */
+.mobile-menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 40;
+  background: rgba(7, 26, 29, 0.98);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 200ms ease, visibility 200ms ease;
+  padding-top: 80px;
+}
+
+.mobile-menu[aria-hidden="false"] {
+  opacity: 1;
+  visibility: visible;
+}
+
+.mobile-menu__content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 24px;
+}
+
+.mobile-menu__link {
+  display: block;
+  width: 100%;
+  text-align: center;
+  padding: 16px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  text-decoration: none;
+  border-radius: var(--radius);
+  transition: background 150ms ease;
+}
+
+.mobile-menu__link:hover {
+  background: var(--panel);
+}
+
+.mobile-menu__cta {
+  margin-top: 16px;
+  width: 100%;
+  text-align: center;
+}
+
 .btn {
   display: inline-flex;
   align-items: center;
@@ -569,6 +670,12 @@ img {
 @media (min-width: 860px) {
   .nav__links {
     display: flex;
+  }
+  .nav__hire-btn {
+    display: inline-flex;
+  }
+  .hamburger {
+    display: none;
   }
   .hero__grid {
     grid-template-columns: 1.2fr 0.8fr;

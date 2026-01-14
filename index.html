@@ -35,11 +35,33 @@
           <a href="#testimonials">Testimonials</a>
           <a href="#contact">Contact</a>
         </div>
-        <a class="btn btn--primary btn--sm" href="https://www.linkedin.com/in/jhearn/" target="_blank" rel="noreferrer">
-          Hire me
-        </a>
+        <div class="nav__actions">
+          <a class="btn btn--primary btn--sm nav__hire-btn" href="https://www.linkedin.com/in/jhearn/" target="_blank" rel="noreferrer">
+            Hire me
+          </a>
+          <button class="hamburger" id="hamburger" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">
+            <span class="hamburger__line"></span>
+            <span class="hamburger__line"></span>
+            <span class="hamburger__line"></span>
+          </button>
+        </div>
       </nav>
     </header>
+
+    <!-- Mobile Menu Overlay -->
+    <div class="mobile-menu" id="mobile-menu" aria-hidden="true">
+      <div class="mobile-menu__content">
+        <a href="#about" class="mobile-menu__link">About</a>
+        <a href="#experience" class="mobile-menu__link">Experience</a>
+        <a href="#skills" class="mobile-menu__link">Skills</a>
+        <a href="#writing" class="mobile-menu__link">Writing</a>
+        <a href="#testimonials" class="mobile-menu__link">Testimonials</a>
+        <a href="#contact" class="mobile-menu__link">Contact</a>
+        <a class="btn btn--primary mobile-menu__cta" href="https://www.linkedin.com/in/jhearn/" target="_blank" rel="noreferrer">
+          Hire me on LinkedIn
+        </a>
+      </div>
+    </div>
 
     <main id="main">
       <section id="top" class="hero" aria-label="Intro">
