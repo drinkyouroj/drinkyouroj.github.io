@@ -440,6 +440,60 @@ function initSkillsFilter() {
   chips.forEach((chip) => chip.classList.add("visible"));
 }
 
+// Contact Form
+function initContactForm() {
+  const form = document.getElementById("contact-form");
+  const status = document.getElementById("contact-form-status");
+
+  if (!form || !status) return;
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    // Check if form has a real Formspree ID
+    const action = form.getAttribute("action");
+    if (action.includes("YOUR_FORM_ID")) {
+      status.textContent = "Please configure your Formspree ID in index.html to enable form submissions.";
+      status.className = "contact-form__status error";
+      return;
+    }
+
+    form.classList.add("submitting");
+    status.className = "contact-form__status";
+    status.textContent = "";
+
+    try {
+      const formData = new FormData(form);
+      const response = await fetch(action, {
+        method: "POST",
+        body: formData,
+        headers: {
+          Accept: "application/json",
+        },
+      });
+
+      if (response.ok) {
+        status.textContent = "Thanks! Your message has been sent. I'll get back to you soon.";
+        status.className = "contact-form__status success";
+        form.reset();
+      } else {
+        const data = await response.json();
+        if (data.errors) {
+          status.textContent = data.errors.map((err) => err.message).join(", ");
+        } else {
+          status.textContent = "Something went wrong. Please try again or email me directly.";
+        }
+        status.className = "contact-form__status error";
+      }
+    } catch (err) {
+      status.textContent = "Network error. Please check your connection or email me directly.";
+      status.className = "contact-form__status error";
+    } finally {
+      form.classList.remove("submitting");
+    }
+  });
+}
+
 setYear();
 initTheme();
 initMobileNav();
@@ -448,5 +502,6 @@ initScrollSpy();
 initScrollReveal();
 initCarousel();
 initSkillsFilter();
+initContactForm();
 loadSubstack();
 
