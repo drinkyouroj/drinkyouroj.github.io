@@ -18,6 +18,7 @@ from pathlib import Path
 
 FEED_URL = "https://drinkyouroj.substack.com/feed"
 ARCHIVE_URL_TEMPLATE = "https://drinkyouroj.substack.com/api/v1/archive?limit={limit}"
+JINA_PROXY_TEMPLATE = "https://r.jina.ai/http://{url}"
 OUT_PATH = Path(__file__).resolve().parents[1] / "assets" / "substack.json"
 
 
@@ -262,12 +263,31 @@ def main() -> int:
         limit = 6
         # Prefer the JSON archive API (less likely to be blocked).
         archive_url = ARCHIVE_URL_TEMPLATE.format(limit=limit)
-        archive_bytes = fetch(archive_url)
-        if archive_bytes.lstrip().startswith((b"[", b"{")):
-            data = parse_archive(archive_bytes, limit=limit)
-        else:
-            xml_bytes = fetch(FEED_URL)
-            data = parse_rss(xml_bytes, limit=limit)
+        candidates = [
+            archive_url,
+            JINA_PROXY_TEMPLATE.format(url=archive_url.replace("https://", "")),
+            FEED_URL,
+            JINA_PROXY_TEMPLATE.format(url=FEED_URL.replace("https://", "")),
+        ]
+
+        data = None
+        last_error = None
+        for url in candidates:
+            try:
+                payload = fetch(url)
+                stripped = payload.lstrip()
+                if stripped.startswith((b"[", b"{")):
+                    data = parse_archive(payload, limit=limit)
+                    break
+                if stripped.startswith((b"<?xml", b"<rss", b"<feed")):
+                    data = parse_rss(payload, limit=limit)
+                    break
+            except Exception as e:
+                last_error = e
+                continue
+
+        if data is None:
+            raise last_error if last_error else RuntimeError("All fetch attempts failed")
         write_json(OUT_PATH, data)
         return 0
     except Exception as e:
