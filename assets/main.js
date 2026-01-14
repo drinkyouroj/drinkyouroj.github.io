@@ -451,12 +451,14 @@ function initContactForm() {
     e.preventDefault();
 
     // Check if form has a real Formspree ID
-    const action = form.getAttribute("action");
-    if (action.includes("YOUR_FORM_ID")) {
+    const formspreeId = form.dataset.formspree;
+    if (!formspreeId || formspreeId === "YOUR_FORM_ID") {
       status.textContent = "Please configure your Formspree ID in index.html to enable form submissions.";
       status.className = "contact-form__status error";
       return;
     }
+
+    const endpoint = `https://formspree.io/f/${formspreeId}`;
 
     form.classList.add("submitting");
     status.className = "contact-form__status";
@@ -464,7 +466,7 @@ function initContactForm() {
 
     try {
       const formData = new FormData(form);
-      const response = await fetch(action, {
+      const response = await fetch(endpoint, {
         method: "POST",
         body: formData,
         headers: {
