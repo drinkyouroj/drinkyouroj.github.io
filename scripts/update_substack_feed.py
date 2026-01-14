@@ -17,6 +17,7 @@ from pathlib import Path
 
 
 FEED_URL = "https://drinkyouroj.substack.com/feed"
+ARCHIVE_URL_TEMPLATE = "https://drinkyouroj.substack.com/api/v1/archive?limit={limit}"
 OUT_PATH = Path(__file__).resolve().parents[1] / "assets" / "substack.json"
 
 
@@ -91,14 +92,24 @@ def fetch(url: str, max_retries: int = 3) -> bytes:
                     None, None
                 )
             
-            # Verify it's XML
-            if not data.strip().startswith(b"<?xml") and not data.strip().startswith(b"<rss") and not data.strip().startswith(b"<feed"):
+            # Verify it's XML or JSON
+            stripped = data.lstrip()
+            if not (
+                stripped.startswith(b"<?xml")
+                or stripped.startswith(b"<rss")
+                or stripped.startswith(b"<feed")
+                or stripped.startswith(b"{")
+                or stripped.startswith(b"[")
+            ):
                 if attempt < max_retries - 1:
                     wait_time = (2 ** attempt) + (random.random() * 2)
-                    print(f"Received non-XML response, retrying in {wait_time:.1f}s (attempt {attempt + 1}/{max_retries})...", file=sys.stderr)
+                    print(
+                        f"Received non-XML/JSON response, retrying in {wait_time:.1f}s (attempt {attempt + 1}/{max_retries})...",
+                        file=sys.stderr,
+                    )
                     time.sleep(wait_time)
                     continue
-                raise ValueError(f"Response is not XML: {data[:200].decode('utf-8', errors='ignore')}")
+                raise ValueError(f"Response is not XML/JSON: {data[:200].decode('utf-8', errors='ignore')}")
             
             return data
             
@@ -209,6 +220,36 @@ def parse_rss(xml_bytes: bytes, limit: int = 6) -> dict:
     }
 
 
+def parse_archive(json_bytes: bytes, limit: int = 6) -> dict:
+    items = json.loads(json_bytes.decode("utf-8"))
+    posts = []
+    for it in items[:limit]:
+        title = it.get("title") or "Untitled"
+        subtitle = it.get("subtitle") or it.get("description") or ""
+        url = it.get("canonical_url") or ""
+        if not url and it.get("slug"):
+            url = f"https://drinkyouroj.substack.com/p/{it['slug']}"
+        date = it.get("post_date") or ""
+        cover_image = it.get("cover_image") or ""
+        posts.append(
+            {
+                "title": title,
+                "subtitle": subtitle,
+                "url": url,
+                "date": date,
+                "cover_image": cover_image,
+            }
+        )
+
+    return {
+        "source": ARCHIVE_URL_TEMPLATE.format(limit=limit),
+        "feed_title": "The Civic Node",
+        "feed_url": "https://drinkyouroj.substack.com",
+        "updated_at": now_iso(),
+        "posts": posts,
+    }
+
+
 def write_json(path: Path, data: dict) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     tmp = path.with_suffix(".tmp")
@@ -218,8 +259,15 @@ def write_json(path: Path, data: dict) -> None:
 
 def main() -> int:
     try:
-        xml_bytes = fetch(FEED_URL)
-        data = parse_rss(xml_bytes, limit=6)
+        limit = 6
+        # Prefer the JSON archive API (less likely to be blocked).
+        archive_url = ARCHIVE_URL_TEMPLATE.format(limit=limit)
+        archive_bytes = fetch(archive_url)
+        if archive_bytes.lstrip().startswith((b"[", b"{")):
+            data = parse_archive(archive_bytes, limit=limit)
+        else:
+            xml_bytes = fetch(FEED_URL)
+            data = parse_rss(xml_bytes, limit=limit)
         write_json(OUT_PATH, data)
         return 0
     except Exception as e:
