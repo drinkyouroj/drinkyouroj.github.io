@@ -666,6 +666,42 @@ img {
   gap: 6px;
 }
 
+/* Skills Filter */
+.skills-filter {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+
+.skills-filter__btn {
+  padding: 8px 14px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--muted);
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.skills-filter__btn:hover {
+  border-color: var(--oj);
+  color: var(--text);
+}
+
+.skills-filter__btn.active {
+  background: var(--oj);
+  border-color: var(--oj);
+  color: #000;
+}
+
+.skills-filter__btn:focus-visible {
+  outline: 2px solid var(--oj);
+  outline-offset: 2px;
+}
+
 .chips {
   display: flex;
   flex-wrap: wrap;
@@ -683,6 +719,21 @@ img {
   color: rgba(255, 255, 255, 0.82);
   font-weight: 650;
   font-size: 0.95rem;
+  transition: all 0.3s ease;
+  transform-origin: center;
+}
+
+.chip.hidden {
+  opacity: 0;
+  transform: scale(0.8);
+  pointer-events: none;
+  position: absolute;
+  visibility: hidden;
+}
+
+.chip.visible {
+  opacity: 1;
+  transform: scale(1);
 }
 
 .writing__head {

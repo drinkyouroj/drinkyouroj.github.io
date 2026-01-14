@@ -399,6 +399,47 @@ function initCarousel() {
   }
 }
 
+// Skills Filter
+function initSkillsFilter() {
+  const filterBtns = document.querySelectorAll(".skills-filter__btn");
+  const chips = document.querySelectorAll("#skills-chips .chip");
+
+  if (!filterBtns.length || !chips.length) return;
+
+  function filterSkills(category) {
+    chips.forEach((chip) => {
+      const chipCategory = chip.dataset.category;
+      const shouldShow = category === "all" || chipCategory === category;
+
+      if (shouldShow) {
+        chip.classList.remove("hidden");
+        chip.classList.add("visible");
+      } else {
+        chip.classList.add("hidden");
+        chip.classList.remove("visible");
+      }
+    });
+  }
+
+  filterBtns.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      // Update active button
+      filterBtns.forEach((b) => {
+        b.classList.remove("active");
+        b.setAttribute("aria-selected", "false");
+      });
+      btn.classList.add("active");
+      btn.setAttribute("aria-selected", "true");
+
+      // Filter chips
+      filterSkills(btn.dataset.filter);
+    });
+  });
+
+  // Initialize all as visible
+  chips.forEach((chip) => chip.classList.add("visible"));
+}
+
 setYear();
 initTheme();
 initMobileNav();
@@ -406,5 +447,6 @@ initScrollProgress();
 initScrollSpy();
 initScrollReveal();
 initCarousel();
+initSkillsFilter();
 loadSubstack();
 

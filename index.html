@@ -275,33 +275,45 @@
             <p>Support + sysadmin fundamentals, plus the automation glue to make it all smoother.</p>
           </div>
 
-          <div class="chips scroll-reveal">
-            <span class="chip">Linux (Debian/Red Hat)</span>
-            <span class="chip">Windows</span>
-            <span class="chip">macOS</span>
-            <span class="chip">AWS</span>
-            <span class="chip">Infrastructure-as-Code</span>
-            <span class="chip">nginx</span>
-            <span class="chip">Apache</span>
-            <span class="chip">TCP/IP</span>
-            <span class="chip">VPN</span>
-            <span class="chip">VLANs</span>
-            <span class="chip">Bash</span>
-            <span class="chip">Python</span>
-            <span class="chip">JavaScript</span>
-            <span class="chip">Ansible</span>
-            <span class="chip">Chef</span>
-            <span class="chip">Puppet</span>
-            <span class="chip">Grafana</span>
-            <span class="chip">Datadog</span>
-            <span class="chip">Logstash</span>
-            <span class="chip">PostgreSQL</span>
-            <span class="chip">MySQL/MariaDB</span>
-            <span class="chip">Redis</span>
-            <span class="chip">JIRA</span>
-            <span class="chip">Zendesk</span>
-            <span class="chip">Markdown/Docs</span>
-            <span class="chip">Discord</span>
+          <div class="skills-filter scroll-reveal" role="tablist" aria-label="Filter skills by category">
+            <button class="skills-filter__btn active" type="button" role="tab" aria-selected="true" data-filter="all">All</button>
+            <button class="skills-filter__btn" type="button" role="tab" aria-selected="false" data-filter="os">OS</button>
+            <button class="skills-filter__btn" type="button" role="tab" aria-selected="false" data-filter="cloud">Cloud</button>
+            <button class="skills-filter__btn" type="button" role="tab" aria-selected="false" data-filter="network">Network</button>
+            <button class="skills-filter__btn" type="button" role="tab" aria-selected="false" data-filter="scripting">Scripting</button>
+            <button class="skills-filter__btn" type="button" role="tab" aria-selected="false" data-filter="config">Config Mgmt</button>
+            <button class="skills-filter__btn" type="button" role="tab" aria-selected="false" data-filter="monitoring">Monitoring</button>
+            <button class="skills-filter__btn" type="button" role="tab" aria-selected="false" data-filter="database">Databases</button>
+            <button class="skills-filter__btn" type="button" role="tab" aria-selected="false" data-filter="tools">Tools</button>
+          </div>
+
+          <div class="chips scroll-reveal" id="skills-chips">
+            <span class="chip" data-category="os">Linux (Debian/Red Hat)</span>
+            <span class="chip" data-category="os">Windows</span>
+            <span class="chip" data-category="os">macOS</span>
+            <span class="chip" data-category="cloud">AWS</span>
+            <span class="chip" data-category="cloud">Infrastructure-as-Code</span>
+            <span class="chip" data-category="cloud">nginx</span>
+            <span class="chip" data-category="cloud">Apache</span>
+            <span class="chip" data-category="network">TCP/IP</span>
+            <span class="chip" data-category="network">VPN</span>
+            <span class="chip" data-category="network">VLANs</span>
+            <span class="chip" data-category="scripting">Bash</span>
+            <span class="chip" data-category="scripting">Python</span>
+            <span class="chip" data-category="scripting">JavaScript</span>
+            <span class="chip" data-category="config">Ansible</span>
+            <span class="chip" data-category="config">Chef</span>
+            <span class="chip" data-category="config">Puppet</span>
+            <span class="chip" data-category="monitoring">Grafana</span>
+            <span class="chip" data-category="monitoring">Datadog</span>
+            <span class="chip" data-category="monitoring">Logstash</span>
+            <span class="chip" data-category="database">PostgreSQL</span>
+            <span class="chip" data-category="database">MySQL/MariaDB</span>
+            <span class="chip" data-category="database">Redis</span>
+            <span class="chip" data-category="tools">JIRA</span>
+            <span class="chip" data-category="tools">Zendesk</span>
+            <span class="chip" data-category="tools">Markdown/Docs</span>
+            <span class="chip" data-category="tools">Discord</span>
           </div>
         </div>
       </section>
