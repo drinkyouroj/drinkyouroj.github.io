@@ -72,7 +72,7 @@ def extract_cover_image(item: ET.Element) -> str:
     return ""
 
 
-def parse_rss(xml_bytes: bytes, limit: int = 5) -> dict:
+def parse_rss(xml_bytes: bytes, limit: int = 6) -> dict:
     root = ET.fromstring(xml_bytes)
 
     # Handle both RSS 2.0 and Atom-ish feeds. Substack typically uses RSS 2.0.
@@ -130,7 +130,7 @@ def write_json(path: Path, data: dict) -> None:
 def main() -> int:
     try:
         xml_bytes = fetch(FEED_URL)
-        data = parse_rss(xml_bytes, limit=5)
+        data = parse_rss(xml_bytes, limit=6)
         write_json(OUT_PATH, data)
         return 0
     except Exception as e:
