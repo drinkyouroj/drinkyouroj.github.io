@@ -200,74 +200,61 @@ function formatDate(iso) {
 }
 
 async function loadSubstack() {
-  const list = $("substack-posts");
+  const grid = $("substack-posts");
   const status = $("substack-status");
-  if (!list) return;
+  if (!grid) return;
+
+  const arrowIcon = '<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>';
 
   try {
     const res = await fetch("/assets/substack.json", { cache: "no-store" });
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
     const data = await res.json();
-    const posts = Array.isArray(data?.posts) ? data.posts.slice(0, 5) : [];
+    const posts = Array.isArray(data?.posts) ? data.posts.slice(0, 6) : [];
 
     if (posts.length === 0) {
-      list.innerHTML = "";
-      const li = document.createElement("li");
-      li.className = "muted";
-      li.append("No posts found yet. Visit ");
-      const a = document.createElement("a");
-      a.href = "https://drinkyouroj.substack.com";
-      a.target = "_blank";
-      a.rel = "noreferrer";
-      a.textContent = "Substack";
-      li.append(a);
-      li.append(".");
-      list.append(li);
+      grid.innerHTML = `
+        <div class="post-card post-card--error">
+          No posts found yet. Visit <a href="https://drinkyouroj.substack.com" target="_blank" rel="noreferrer">Substack</a>.
+        </div>
+      `;
       if (status) status.textContent = "";
       return;
     }
 
-    list.innerHTML = "";
-    for (const p of posts) {
-      const li = document.createElement("li");
-
-      const a = document.createElement("a");
-      a.href = p?.url || "https://drinkyouroj.substack.com";
-      a.target = "_blank";
-      a.rel = "noreferrer";
-      a.textContent = p?.title || "Untitled";
-      li.append(a);
-
+    grid.innerHTML = posts.map((p, i) => {
       const date = p?.date ? formatDate(p.date) : "";
-      if (date) {
-        const meta = document.createElement("span");
-        meta.className = "muted";
-        meta.textContent = ` · ${date}`;
-        li.append(meta);
-      }
+      const url = p?.url || "https://drinkyouroj.substack.com";
+      const title = p?.title || "Untitled";
+      const delay = i < 3 ? `scroll-reveal scroll-reveal--delay-${i}` : "scroll-reveal";
+      
+      return `
+        <a class="post-card ${delay}" href="${url}" target="_blank" rel="noreferrer">
+          <h4 class="post-card__title">${title}</h4>
+          <div class="post-card__footer">
+            <span class="post-card__date">${date}</span>
+            <span class="post-card__read">Read ${arrowIcon}</span>
+          </div>
+        </a>
+      `;
+    }).join("");
 
-      list.append(li);
+    // Initialize scroll reveal for new cards
+    if (typeof initScrollReveal === "function") {
+      initScrollReveal();
     }
 
     if (status) {
       const updated = data?.updated_at ? formatDate(data.updated_at) : "";
-      status.textContent = updated ? `Updated ${updated}.` : "";
+      status.textContent = updated ? `Last updated ${updated}` : "";
     }
   } catch (err) {
-    list.innerHTML = "";
-    const li = document.createElement("li");
-    li.className = "muted";
-    li.append("Couldn’t load posts right now. Visit ");
-    const a = document.createElement("a");
-    a.href = "https://drinkyouroj.substack.com";
-    a.target = "_blank";
-    a.rel = "noreferrer";
-    a.textContent = "Substack";
-    li.append(a);
-    li.append(".");
-    list.append(li);
+    grid.innerHTML = `
+      <div class="post-card post-card--error">
+        Couldn't load posts right now. Visit <a href="https://drinkyouroj.substack.com" target="_blank" rel="noreferrer">Substack</a>.
+      </div>
+    `;
     if (status) status.textContent = "";
-    // eslint-disable-next-line no-console
     console.warn("Substack feed load failed:", err);
   }
 }

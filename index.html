@@ -368,16 +368,16 @@
             </p>
           </div>
 
-          <div class="panel scroll-reveal">
-            <div class="writing__head">
-              <h3>Recent posts</h3>
-              <a class="btn btn--sm btn--ghost" href="https://drinkyouroj.substack.com" target="_blank" rel="noreferrer">View all</a>
-            </div>
-            <ol id="substack-posts" class="postlist" aria-live="polite">
-              <li class="muted">Loading…</li>
-            </ol>
-            <p id="substack-status" class="muted" role="status"></p>
+          <div class="writing__head scroll-reveal">
+            <h3>Recent posts</h3>
+            <a class="btn btn--sm btn--ghost" href="https://drinkyouroj.substack.com" target="_blank" rel="noreferrer">View all on Substack</a>
           </div>
+          <div id="substack-posts" class="post-grid" aria-live="polite">
+            <div class="post-card post-card--loading">
+              <span class="muted">Loading posts...</span>
+            </div>
+          </div>
+          <p id="substack-status" class="muted scroll-reveal" role="status"></p>
         </div>
       </section>
 
