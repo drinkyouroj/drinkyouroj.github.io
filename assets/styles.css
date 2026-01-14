@@ -698,6 +698,16 @@ img {
   justify-items: stretch;
 }
 
+.hero__photo {
+  width: 100%;
+  height: auto;
+  border-radius: var(--radius);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: var(--shadow);
+  object-fit: cover;
+  aspect-ratio: 4 / 5;
+}
+
 .card {
   border-radius: var(--radius);
   border: 1px solid rgba(255, 255, 255, 0.12);
