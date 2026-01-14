@@ -80,7 +80,11 @@ function initScrollSpy() {
   const navLinks = document.querySelectorAll(".nav__links a");
   if (!sections.length || !navLinks.length) return;
 
+  let activeId = null;
+
   function setActive(id) {
+    if (activeId === id) return; // Already active
+    activeId = id;
     navLinks.forEach((link) => {
       link.classList.toggle("active", link.getAttribute("href") === `#${id}`);
     });
@@ -88,30 +92,41 @@ function initScrollSpy() {
 
   const observer = new IntersectionObserver(
     (entries) => {
+      // Find the section that's most visible in the viewport
+      let maxRatio = 0;
+      let mostVisible = null;
+
       entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          const id = entry.target.getAttribute("id");
-          setActive(id);
+        if (entry.isIntersecting && entry.intersectionRatio > maxRatio) {
+          maxRatio = entry.intersectionRatio;
+          mostVisible = entry.target;
         }
       });
+
+      // Only update if we found an intersecting section
+      if (mostVisible) {
+        const id = mostVisible.getAttribute("id");
+        setActive(id);
+      }
     },
     {
       rootMargin: "-20% 0px -60% 0px",
-      threshold: 0,
+      threshold: [0, 0.1, 0.5, 1],
     }
   );
 
   sections.forEach((section) => observer.observe(section));
 
-  // Handle bottom of page - when scrolled to bottom, activate last section
+  // Handle bottom of page - only when truly at the very bottom
   function checkBottom() {
     const scrollBottom = window.innerHeight + window.scrollY;
     const docHeight = document.documentElement.scrollHeight;
-    // If within 100px of bottom, activate last section
-    if (docHeight - scrollBottom < 100) {
+    // Only activate if within 20px of absolute bottom
+    if (docHeight - scrollBottom <= 20) {
       const lastSection = sections[sections.length - 1];
       if (lastSection) {
-        setActive(lastSection.getAttribute("id"));
+        const lastId = lastSection.getAttribute("id");
+        setActive(lastId);
       }
     }
   }
