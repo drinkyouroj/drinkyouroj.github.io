@@ -3,9 +3,11 @@
 from __future__ import annotations
 
 import json
+import random
 import re
 import sys
 import time
+import urllib.error
 import urllib.request
 import xml.etree.ElementTree as ET
 from datetime import datetime, timezone
@@ -21,17 +23,60 @@ def now_iso() -> str:
     return datetime.now(timezone.utc).isoformat()
 
 
-def fetch(url: str) -> bytes:
-    req = urllib.request.Request(
-        url,
-        headers={
-            "User-Agent": "drinkyouroj.github.io feed fetcher (+https://drinkyouroj.github.io)",
-            "Accept": "application/rss+xml, application/xml;q=0.9, text/xml;q=0.8, */*;q=0.1",
-        },
-        method="GET",
-    )
-    with urllib.request.urlopen(req, timeout=30) as resp:
-        return resp.read()
+def fetch(url: str, max_retries: int = 3) -> bytes:
+    """Fetch URL with retry logic and browser-like headers."""
+    # Use a browser-like User-Agent to avoid 403 errors
+    headers = {
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
+        "Accept": "application/rss+xml, application/xml;q=0.9, text/xml;q=0.8, */*;q=0.1",
+        "Accept-Language": "en-US,en;q=0.9",
+        "Referer": "https://drinkyouroj.substack.com/",
+        "DNT": "1",
+        "Connection": "keep-alive",
+        "Upgrade-Insecure-Requests": "1",
+    }
+    
+    last_error = None
+    for attempt in range(max_retries):
+        try:
+            req = urllib.request.Request(url, headers=headers, method="GET")
+            with urllib.request.urlopen(req, timeout=30) as resp:
+                data = resp.read()
+                # Check if we got HTML instead of XML (common with 403 pages)
+                if data.startswith(b"<!DOCTYPE") or data.startswith(b"<html"):
+                    raise urllib.error.HTTPError(
+                        url, 403, "Received HTML instead of XML (likely blocked)",
+                        resp.headers, None
+                    )
+                return data
+        except urllib.error.HTTPError as e:
+            last_error = e
+            if e.code == 403:
+                # Wait before retrying, with exponential backoff
+                if attempt < max_retries - 1:
+                    wait_time = (2 ** attempt) + (random.random() * 2)  # 1-3s, 2-5s, 4-9s
+                    print(f"Got 403 Forbidden, retrying in {wait_time:.1f}s (attempt {attempt + 1}/{max_retries})...", file=sys.stderr)
+                    time.sleep(wait_time)
+                    continue
+            # For other HTTP errors, try to read the response body for debugging
+            if hasattr(e, 'read'):
+                try:
+                    error_body = e.read().decode('utf-8', errors='ignore')[:500]
+                    print(f"HTTP {e.code} response: {error_body}", file=sys.stderr)
+                except:
+                    pass
+            raise
+        except Exception as e:
+            last_error = e
+            if attempt < max_retries - 1:
+                wait_time = (2 ** attempt) + (random.random() * 2)
+                print(f"Request failed, retrying in {wait_time:.1f}s (attempt {attempt + 1}/{max_retries})...", file=sys.stderr)
+                time.sleep(wait_time)
+                continue
+            raise
+    
+    # If we get here, all retries failed
+    raise last_error
 
 
 def text(el: ET.Element | None) -> str:
