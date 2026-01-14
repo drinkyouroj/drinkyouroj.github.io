@@ -1765,3 +1765,259 @@ img {
   }
 }
 
+/* Print Styles */
+@media print {
+  * {
+    background: transparent !important;
+    color: #000 !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+  }
+
+  body {
+    font-size: 12pt;
+    line-height: 1.5;
+    color: #000;
+    background: #fff;
+  }
+
+  /* Hide non-essential elements */
+  .header,
+  .footer,
+  .nav,
+  .mobile-menu,
+  .theme-toggle,
+  .scroll-progress,
+  .cmd-palette,
+  .availability-badge,
+  .carousel__nav,
+  .skills-filter,
+  .contact-form-wrapper,
+  .github-widget,
+  .btn,
+  .post-card__read,
+  .contact-card__desc a,
+  .writing__head .btn {
+    display: none !important;
+  }
+
+  /* Page setup */
+  @page {
+    margin: 1.5cm;
+  }
+
+  /* Typography */
+  h1, h2, h3, h4, h5, h6 {
+    page-break-after: avoid;
+    color: #000;
+    font-weight: 700;
+  }
+
+  h1 {
+    font-size: 24pt;
+    margin-top: 0;
+  }
+
+  h2 {
+    font-size: 18pt;
+    margin-top: 20pt;
+  }
+
+  h3 {
+    font-size: 14pt;
+  }
+
+  /* Links */
+  a {
+    color: #000;
+    text-decoration: underline;
+  }
+
+  a[href^="http"]:after {
+    content: " (" attr(href) ")";
+    font-size: 10pt;
+    color: #666;
+  }
+
+  a[href^="#"]:after,
+  a[href^="/"]:after {
+    content: "";
+  }
+
+  /* Sections */
+  .section {
+    page-break-inside: avoid;
+    margin-bottom: 20pt;
+  }
+
+  .section__head {
+    border-bottom: 2pt solid #000;
+    padding-bottom: 8pt;
+    margin-bottom: 12pt;
+  }
+
+  /* Containers */
+  .container {
+    max-width: 100%;
+    padding: 0;
+  }
+
+  /* Panels and cards */
+  .panel,
+  .contact-card,
+  .post-card,
+  .quote {
+    border: 1pt solid #ccc;
+    padding: 12pt;
+    margin-bottom: 12pt;
+    page-break-inside: avoid;
+    background: #fff;
+  }
+
+  /* Lists */
+  ul, ol {
+    margin-left: 20pt;
+  }
+
+  li {
+    margin-bottom: 4pt;
+  }
+
+  /* Skills chips */
+  .chips {
+    display: block;
+  }
+
+  .chip {
+    display: inline-block;
+    border: 1pt solid #ccc;
+    padding: 4pt 8pt;
+    margin: 2pt;
+    background: #fff;
+    page-break-inside: avoid;
+  }
+
+  /* Timeline */
+  .timeline__item {
+    page-break-inside: avoid;
+    margin-bottom: 16pt;
+  }
+
+  /* Tables */
+  table {
+    border-collapse: collapse;
+    width: 100%;
+  }
+
+  th, td {
+    border: 1pt solid #000;
+    padding: 6pt;
+  }
+
+  /* Images */
+  img {
+    max-width: 100% !important;
+    height: auto !important;
+    page-break-inside: avoid;
+  }
+
+  /* Code blocks */
+  pre, code {
+    border: 1pt solid #ccc;
+    background: #f5f5f5;
+    padding: 4pt;
+    font-size: 10pt;
+    page-break-inside: avoid;
+  }
+
+  pre {
+    white-space: pre-wrap;
+    word-wrap: break-word;
+  }
+
+  /* Page breaks */
+  .page-break {
+    page-break-before: always;
+  }
+
+  /* Avoid breaking */
+  p, blockquote, ul, ol, dl {
+    orphans: 3;
+    widows: 3;
+  }
+
+  blockquote {
+    border-left: 3pt solid #ccc;
+    padding-left: 12pt;
+    margin-left: 0;
+    font-style: italic;
+  }
+
+  /* Hero section */
+  .hero {
+    page-break-after: always;
+  }
+
+  .hero__title {
+    font-size: 28pt;
+    margin-bottom: 12pt;
+  }
+
+  .hero__lede {
+    font-size: 12pt;
+    margin-bottom: 16pt;
+  }
+
+  /* Contact section */
+  .contact-grid {
+    display: block;
+  }
+
+  /* Post grid */
+  .post-grid {
+    display: block;
+  }
+
+  .post-card {
+    margin-bottom: 16pt;
+  }
+
+  .post-card__image {
+    display: none;
+  }
+
+  /* Testimonials carousel */
+  .carousel__track {
+    display: block;
+  }
+
+  .carousel__slide {
+    display: block !important;
+    opacity: 1 !important;
+    transform: none !important;
+    page-break-inside: avoid;
+    margin-bottom: 12pt;
+  }
+
+  /* GitHub activity */
+  .github-widget__list {
+    display: block;
+  }
+
+  .github-widget__item {
+    page-break-inside: avoid;
+    margin-bottom: 8pt;
+  }
+
+  .github-widget__icon {
+    display: none;
+  }
+
+  /* Footer content */
+  .footer__inner {
+    border-top: 1pt solid #ccc;
+    padding-top: 12pt;
+    margin-top: 20pt;
+    font-size: 10pt;
+  }
+}
