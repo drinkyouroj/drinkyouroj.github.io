@@ -1,50 +1,50 @@
 {
-  "source": "https://drinkyouroj.substack.com/api/v1/archive?limit=6",
+  "source": "https://api.rss2json.com/v1/api.json?rss_url=https%3A%2F%2Fdrinkyouroj.substack.com%2Ffeed",
   "feed_title": "The Civic Node",
-  "feed_url": "https://drinkyouroj.substack.com",
-  "updated_at": "2026-01-14T18:45:59.665425+00:00",
+  "feed_url": "https://drinkyouroj.substack.com/",
+  "updated_at": "2026-01-14T18:52:19.254167+00:00",
   "posts": [
     {
       "title": "The Other One Who Became That Guy",
       "subtitle": "Bob Weir’s Journey from Sidekick to Icon",
       "url": "https://drinkyouroj.substack.com/p/the-other-one-who-became-that-guy",
-      "date": "2026-01-14T14:09:32.558Z",
-      "cover_image": "https://substackcdn.com/image/fetch/$s_!dwUu!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F79af63fe-cb42-4f98-8631-81f180453e9d_2688x1536.png"
+      "date": "2026-01-14T14:09:32+00:00",
+      "cover_image": "https://substackcdn.com/image/fetch/$s_!dwUu!,f_auto,q_auto:good,fl_progressive:steep/https://substack-post-media.s3.amazonaws.com/public/images/79af63fe-cb42-4f98-8631-81f180453e9d_2688x1536.png"
     },
     {
       "title": "Trump Is Covering Up the Minneapolis ICE Shooting (Just Like He's Covering Up Epstein)",
       "subtitle": "What Happens When the Government Films Itself Killing Someone and Then Lies About the Video",
       "url": "https://drinkyouroj.substack.com/p/trump-is-covering-up-the-minneapolis-ice-shooting-just-like-hes-covering-up-epstein",
-      "date": "2026-01-12T15:58:56.731Z",
-      "cover_image": "https://substackcdn.com/image/fetch/$s_!eQ4u!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F5cbd165d-e703-4917-b6e6-f154b75bc9f2_2688x1536.png"
+      "date": "2026-01-12T15:58:56+00:00",
+      "cover_image": "https://substackcdn.com/image/fetch/$s_!eQ4u!,f_auto,q_auto:good,fl_progressive:steep/https://substack-post-media.s3.amazonaws.com/public/images/5cbd165d-e703-4917-b6e6-f154b75bc9f2_2688x1536.png"
     },
     {
       "title": "The False Balance Trap",
       "subtitle": "How “Investigating Trump” Became As Bad As “Attempting a Coup”",
       "url": "https://drinkyouroj.substack.com/p/the-false-balance-trap",
-      "date": "2026-01-07T05:20:46.110Z",
-      "cover_image": ""
+      "date": "2026-01-07T05:20:46+00:00",
+      "cover_image": "https://substackcdn.com/image/fetch/$s_!3wAD!,w_256,c_limit,f_auto,q_auto:good,fl_progressive:steep/https://substack-post-media.s3.amazonaws.com/public/images/afe5a728-0418-4808-a297-ae15e9fed33b_1280x1280.png"
     },
     {
       "title": "13-3: The Box Score That Ended the “Can Seattle’s Defense Travel?” Debate",
       "subtitle": "The 49ers scored 42.3 PPG in December. Then they met a defense that thinks faster than offenses can adapt.",
       "url": "https://drinkyouroj.substack.com/p/13-3-the-box-score-that-ended-the-can-seattles-defense-travel-debate",
-      "date": "2026-01-04T20:14:24.039Z",
-      "cover_image": ""
+      "date": "2026-01-04T20:14:24+00:00",
+      "cover_image": "https://substackcdn.com/image/fetch/$s_!3wAD!,w_256,c_limit,f_auto,q_auto:good,fl_progressive:steep/https://substack-post-media.s3.amazonaws.com/public/images/afe5a728-0418-4808-a297-ae15e9fed33b_1280x1280.png"
     },
     {
       "title": "Disguise and Destroy: The Macdonald Method That Broke NFL Offenses",
       "subtitle": "How Seattle went from 25th to 2nd by making quarterbacks guess wrong every snap",
       "url": "https://drinkyouroj.substack.com/p/disguise-and-destroy-the-macdonald-method-that-broke-nfl-offenses",
-      "date": "2026-01-03T15:03:16.527Z",
-      "cover_image": "https://substackcdn.com/image/fetch/$s_!9i81!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F7e8f7712-c985-40fa-8778-d5e069c4a0ee_2752x1536.png"
+      "date": "2026-01-03T15:03:16+00:00",
+      "cover_image": "https://substackcdn.com/image/fetch/$s_!9i81!,f_auto,q_auto:good,fl_progressive:steep/https://substack-post-media.s3.amazonaws.com/public/images/7e8f7712-c985-40fa-8778-d5e069c4a0ee_2752x1536.png"
     },
     {
       "title": "The Receipts on Impossibility",
-      "subtitle": "Breaking Down the Comeback That Broke 172 Games of Precedent",
+      "subtitle": "Teams trailing by 15 or more points in the fourth quarter are 0-172 in NFL history.",
       "url": "https://drinkyouroj.substack.com/p/the-receipts-on-impossibility",
-      "date": "2025-12-30T21:17:34.397Z",
-      "cover_image": "https://substackcdn.com/image/fetch/$s_!AGUl!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F3655e11a-be6f-453e-8b90-859a18505bd8_2688x1536.png"
+      "date": "2025-12-30T21:17:34+00:00",
+      "cover_image": "https://substackcdn.com/image/fetch/$s_!AGUl!,f_auto,q_auto:good,fl_progressive:steep/https://substack-post-media.s3.amazonaws.com/public/images/3655e11a-be6f-453e-8b90-859a18505bd8_2688x1536.png"
     }
   ]
 }

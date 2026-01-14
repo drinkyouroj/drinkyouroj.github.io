@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import html
 import json
 import random
 import re
@@ -9,6 +10,7 @@ import subprocess
 import sys
 import time
 import urllib.error
+import urllib.parse
 import urllib.request
 import xml.etree.ElementTree as ET
 from datetime import datetime, timezone
@@ -19,6 +21,7 @@ from pathlib import Path
 FEED_URL = "https://drinkyouroj.substack.com/feed"
 ARCHIVE_URL_TEMPLATE = "https://drinkyouroj.substack.com/api/v1/archive?limit={limit}"
 JINA_PROXY_TEMPLATE = "https://r.jina.ai/http://{url}"
+RSS2JSON_URL_TEMPLATE = "https://api.rss2json.com/v1/api.json?rss_url={rss_url}"
 OUT_PATH = Path(__file__).resolve().parents[1] / "assets" / "substack.json"
 
 
@@ -251,6 +254,52 @@ def parse_archive(json_bytes: bytes, limit: int = 6) -> dict:
     }
 
 
+def parse_rss2json(json_bytes: bytes, limit: int = 6) -> dict:
+    payload = json.loads(json_bytes.decode("utf-8"))
+    if payload.get("status") != "ok":
+        raise ValueError(f"rss2json error: {payload.get('message', 'unknown error')}")
+
+    feed = payload.get("feed", {}) or {}
+    items = payload.get("items", []) or []
+    posts = []
+
+    for it in items[:limit]:
+        title = it.get("title") or "Untitled"
+        description = it.get("description") or ""
+        # Strip basic HTML tags and unescape entities
+        description = re.sub(r"<[^>]+>", "", description)
+        description = html.unescape(description).strip()
+        url = it.get("link") or ""
+        pub_date = it.get("pubDate") or ""
+        date = ""
+        if pub_date:
+            try:
+                dt = datetime.strptime(pub_date, "%Y-%m-%d %H:%M:%S")
+                date = dt.replace(tzinfo=timezone.utc).isoformat()
+            except Exception:
+                date = pub_date
+        enclosure = it.get("enclosure") or {}
+        cover_image = enclosure.get("link") or it.get("thumbnail") or ""
+
+        posts.append(
+            {
+                "title": title,
+                "subtitle": description,
+                "url": url,
+                "date": date,
+                "cover_image": cover_image,
+            }
+        )
+
+    return {
+        "source": RSS2JSON_URL_TEMPLATE.format(rss_url=urllib.parse.quote_plus(FEED_URL)),
+        "feed_title": feed.get("title", "The Civic Node"),
+        "feed_url": feed.get("link", "https://drinkyouroj.substack.com"),
+        "updated_at": now_iso(),
+        "posts": posts,
+    }
+
+
 def write_json(path: Path, data: dict) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     tmp = path.with_suffix(".tmp")
@@ -263,7 +312,9 @@ def main() -> int:
         limit = 6
         # Prefer the JSON archive API (less likely to be blocked).
         archive_url = ARCHIVE_URL_TEMPLATE.format(limit=limit)
+        rss2json_url = RSS2JSON_URL_TEMPLATE.format(rss_url=urllib.parse.quote_plus(FEED_URL))
         candidates = [
+            rss2json_url,
             archive_url,
             JINA_PROXY_TEMPLATE.format(url=archive_url.replace("https://", "")),
             FEED_URL,
@@ -276,8 +327,11 @@ def main() -> int:
             try:
                 payload = fetch(url)
                 stripped = payload.lstrip()
-                if stripped.startswith((b"[", b"{")):
+                if stripped.startswith(b"["):
                     data = parse_archive(payload, limit=limit)
+                    break
+                if stripped.startswith(b"{"):
+                    data = parse_rss2json(payload, limit=limit)
                     break
                 if stripped.startswith((b"<?xml", b"<rss", b"<feed")):
                     data = parse_rss(payload, limit=limit)
