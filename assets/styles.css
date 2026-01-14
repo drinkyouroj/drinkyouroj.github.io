@@ -751,6 +751,30 @@ img {
   margin-top: 14px;
 }
 
+/* Scroll Reveal Animations */
+.scroll-reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 600ms ease-out, transform 600ms ease-out;
+}
+
+.scroll-reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.scroll-reveal--delay-1 {
+  transition-delay: 100ms;
+}
+
+.scroll-reveal--delay-2 {
+  transition-delay: 200ms;
+}
+
+.scroll-reveal--delay-3 {
+  transition-delay: 300ms;
+}
+
 @media (min-width: 860px) {
   .nav__links {
     display: flex;
@@ -790,6 +814,10 @@ img {
   .btn,
   .contact-card {
     transition: none;
+  }
+  .scroll-reveal {
+    opacity: 1;
+    transform: none;
   }
 }
 

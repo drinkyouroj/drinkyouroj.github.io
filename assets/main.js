@@ -136,6 +136,38 @@ function initScrollSpy() {
   checkBottom();
 }
 
+// Scroll Reveal Animations
+function initScrollReveal() {
+  const elements = document.querySelectorAll(".scroll-reveal");
+  if (!elements.length) return;
+
+  // Respect reduced motion preference
+  const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (prefersReducedMotion) {
+    // Just make everything visible immediately
+    elements.forEach((el) => el.classList.add("visible"));
+    return;
+  }
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("visible");
+          // Unobserve after animation to improve performance
+          observer.unobserve(entry.target);
+        }
+      });
+    },
+    {
+      rootMargin: "0px 0px -50px 0px",
+      threshold: 0.1,
+    }
+  );
+
+  elements.forEach((el) => observer.observe(el));
+}
+
 function setYear() {
   const el = $("year");
   if (el) el.textContent = String(new Date().getFullYear());
@@ -228,5 +260,6 @@ setYear();
 initTheme();
 initMobileNav();
 initScrollSpy();
+initScrollReveal();
 loadSubstack();
 
