@@ -707,13 +707,22 @@ async function loadGitHubActivity() {
 
     switch (event.type) {
       case "PushEvent": {
-        const commits = event.payload?.commits?.length || 0;
-        return {
-          icon: "push",
-          title: `Pushed ${commits} commit${commits !== 1 ? "s" : ""} to`,
-          repo,
-          repoUrl,
-        };
+        const commits = event.payload?.commits?.length;
+        if (commits && commits > 0) {
+          return {
+            icon: "push",
+            title: `Pushed ${commits} commit${commits !== 1 ? "s" : ""} to`,
+            repo,
+            repoUrl,
+          };
+        } else {
+          return {
+            icon: "push",
+            title: "Pushed to",
+            repo,
+            repoUrl,
+          };
+        }
       }
       case "WatchEvent":
         return { icon: "star", title: "Starred", repo, repoUrl };
