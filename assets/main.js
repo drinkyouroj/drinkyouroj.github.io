@@ -4,6 +4,12 @@ function $(id) {
   return document.getElementById(id);
 }
 
+function escapeHtml(text) {
+  const div = document.createElement("div");
+  div.textContent = text;
+  return div.innerHTML;
+}
+
 // Theme Toggle
 function initTheme() {
   const toggle = $("theme-toggle");
@@ -226,14 +232,28 @@ async function loadSubstack() {
       const date = p?.date ? formatDate(p.date) : "";
       const url = p?.url || "https://drinkyouroj.substack.com";
       const title = p?.title || "Untitled";
+      const subtitle = p?.subtitle || "";
+      const coverImage = p?.cover_image || "";
       const delay = i < 3 ? `scroll-reveal scroll-reveal--delay-${i}` : "scroll-reveal";
       
+      // Decode HTML entities in subtitle using a temporary element
+      let subtitleText = "";
+      if (subtitle) {
+        const temp = document.createElement("div");
+        temp.innerHTML = subtitle;
+        subtitleText = temp.textContent || temp.innerText || "";
+      }
+      
       return `
-        <a class="post-card ${delay}" href="${url}" target="_blank" rel="noreferrer">
-          <h4 class="post-card__title">${title}</h4>
-          <div class="post-card__footer">
-            <span class="post-card__date">${date}</span>
-            <span class="post-card__read">Read ${arrowIcon}</span>
+        <a class="post-card ${delay}" href="${escapeHtml(url)}" target="_blank" rel="noreferrer">
+          ${coverImage ? `<img class="post-card__image" src="${escapeHtml(coverImage)}" alt="${escapeHtml(title)}" loading="lazy">` : ''}
+          <div class="post-card__content">
+            <h4 class="post-card__title">${escapeHtml(title)}</h4>
+            ${subtitleText ? `<p class="post-card__subtitle">${escapeHtml(subtitleText)}</p>` : ''}
+            <div class="post-card__footer">
+              <span class="post-card__date">${escapeHtml(date)}</span>
+              <span class="post-card__read">Read ${arrowIcon}</span>
+            </div>
           </div>
         </a>
       `;
