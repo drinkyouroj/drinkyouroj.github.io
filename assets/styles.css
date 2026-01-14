@@ -872,7 +872,7 @@ img {
 
 .timeline__when {
   font-family: var(--mono);
-  color: rgba(255, 255, 255, 0.70);
+  color: var(--muted);
   font-size: 0.95rem;
 }
 
