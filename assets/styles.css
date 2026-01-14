@@ -1,4 +1,5 @@
-:root {
+:root,
+[data-theme="dark"] {
   --bg: #071a1d;
   --panel: rgba(255, 255, 255, 0.06);
   --panel-strong: rgba(255, 255, 255, 0.09);
@@ -20,6 +21,23 @@
     "Segoe UI Emoji";
 }
 
+[data-theme="light"] {
+  --bg: #f5f7f8;
+  --panel: rgba(0, 0, 0, 0.04);
+  --panel-strong: rgba(0, 0, 0, 0.07);
+  --text: rgba(0, 0, 0, 0.88);
+  --muted: rgba(0, 0, 0, 0.60);
+  --muted-2: rgba(0, 0, 0, 0.45);
+
+  --teal: #0a4a50;
+  --teal-2: #147a7b;
+  --oj: #e07800;
+  --oj-2: #c06800;
+
+  --border: rgba(0, 0, 0, 0.10);
+  --shadow: 0 22px 70px rgba(0, 0, 0, 0.08);
+}
+
 *,
 *::before,
 *::after {
@@ -34,12 +52,24 @@ body {
   margin: 0;
   font-family: var(--sans);
   color: var(--text);
+  background: var(--bg);
+  line-height: 1.55;
+}
+
+[data-theme="dark"] body {
   background:
     radial-gradient(1200px 900px at 18% 10%, rgba(28, 138, 139, 0.33), transparent 55%),
     radial-gradient(800px 700px at 84% 22%, rgba(255, 154, 26, 0.25), transparent 55%),
     radial-gradient(900px 700px at 70% 90%, rgba(15, 95, 102, 0.25), transparent 55%),
     var(--bg);
-  line-height: 1.55;
+}
+
+[data-theme="light"] body {
+  background:
+    radial-gradient(1200px 900px at 18% 10%, rgba(28, 138, 139, 0.12), transparent 55%),
+    radial-gradient(800px 700px at 84% 22%, rgba(255, 154, 26, 0.10), transparent 55%),
+    radial-gradient(900px 700px at 70% 90%, rgba(15, 95, 102, 0.08), transparent 55%),
+    var(--bg);
 }
 
 a {
@@ -91,7 +121,11 @@ img {
   z-index: 50;
   backdrop-filter: blur(16px);
   background: rgba(7, 26, 29, 0.58);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  border-bottom: 1px solid var(--border);
+}
+
+[data-theme="light"] .header {
+  background: rgba(245, 247, 248, 0.85);
 }
 
 .nav {
@@ -149,6 +183,47 @@ img {
   display: none;
 }
 
+/* Theme Toggle */
+.theme-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--panel);
+  cursor: pointer;
+  color: var(--text);
+  transition: background 150ms ease, border-color 150ms ease;
+}
+
+.theme-toggle:hover {
+  background: var(--panel-strong);
+  border-color: var(--oj);
+}
+
+.theme-toggle__icon {
+  width: 20px;
+  height: 20px;
+}
+
+.theme-toggle__icon--sun {
+  display: none;
+}
+
+.theme-toggle__icon--moon {
+  display: block;
+}
+
+[data-theme="light"] .theme-toggle__icon--sun {
+  display: block;
+}
+
+[data-theme="light"] .theme-toggle__icon--moon {
+  display: none;
+}
+
 /* Hamburger Menu Button */
 .hamburger {
   display: flex;
@@ -203,6 +278,10 @@ img {
   visibility: hidden;
   transition: opacity 200ms ease, visibility 200ms ease;
   padding-top: 80px;
+}
+
+[data-theme="light"] .mobile-menu {
+  background: rgba(245, 247, 248, 0.98);
 }
 
 .mobile-menu[aria-hidden="false"] {

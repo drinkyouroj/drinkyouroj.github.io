@@ -4,6 +4,35 @@ function $(id) {
   return document.getElementById(id);
 }
 
+// Theme Toggle
+function initTheme() {
+  const toggle = $("theme-toggle");
+  if (!toggle) return;
+
+  function setTheme(theme) {
+    document.documentElement.setAttribute("data-theme", theme);
+    localStorage.setItem("theme", theme);
+    // Update theme-color meta tag
+    const meta = $("theme-color-meta");
+    if (meta) {
+      meta.content = theme === "dark" ? "#0f5f66" : "#f5f7f8";
+    }
+  }
+
+  toggle.addEventListener("click", () => {
+    const current = document.documentElement.getAttribute("data-theme") || "dark";
+    const next = current === "dark" ? "light" : "dark";
+    setTheme(next);
+  });
+
+  // Listen for system preference changes
+  window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", (e) => {
+    if (!localStorage.getItem("theme")) {
+      setTheme(e.matches ? "dark" : "light");
+    }
+  });
+}
+
 // Mobile Navigation
 function initMobileNav() {
   const hamburger = $("hamburger");
@@ -134,6 +163,7 @@ async function loadSubstack() {
 }
 
 setYear();
+initTheme();
 initMobileNav();
 loadSubstack();
 
