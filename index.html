@@ -335,19 +335,34 @@
             <p>Placeholder testimonials for layout — you'll replace these with real quotes.</p>
           </div>
 
-          <div class="grid grid--3">
-            <article class="quote scroll-reveal">
-              <p class="quote__text">"Justin is the person you want on an escalation: calm, fast, and relentlessly practical."</p>
-              <p class="quote__by muted">— Placeholder name · Support Lead (replace later)</p>
-            </article>
-            <article class="quote scroll-reveal scroll-reveal--delay-1">
-              <p class="quote__text">"He doesn't just fix the issue — he fixes the process, documents it, and makes it repeatable."</p>
-              <p class="quote__by muted">— Placeholder name · Sysadmin teammate (replace later)</p>
-            </article>
-            <article class="quote scroll-reveal scroll-reveal--delay-2">
-              <p class="quote__text">"Justin bridges support and engineering without drama: crisp reproduction steps, smart triage, solid follow-through."</p>
-              <p class="quote__by muted">— Placeholder name · Engineering partner (replace later)</p>
-            </article>
+          <div class="carousel scroll-reveal" id="testimonials-carousel" aria-label="Testimonials carousel">
+            <div class="carousel__track">
+              <article class="carousel__slide quote" aria-label="Testimonial 1 of 3">
+                <p class="quote__text">"Justin is the person you want on an escalation: calm, fast, and relentlessly practical."</p>
+                <p class="quote__by muted">— Placeholder name · Support Lead (replace later)</p>
+              </article>
+              <article class="carousel__slide quote" aria-label="Testimonial 2 of 3">
+                <p class="quote__text">"He doesn't just fix the issue — he fixes the process, documents it, and makes it repeatable."</p>
+                <p class="quote__by muted">— Placeholder name · Sysadmin teammate (replace later)</p>
+              </article>
+              <article class="carousel__slide quote" aria-label="Testimonial 3 of 3">
+                <p class="quote__text">"Justin bridges support and engineering without drama: crisp reproduction steps, smart triage, solid follow-through."</p>
+                <p class="quote__by muted">— Placeholder name · Engineering partner (replace later)</p>
+              </article>
+            </div>
+            <div class="carousel__nav">
+              <button class="carousel__btn carousel__btn--prev" type="button" aria-label="Previous testimonial">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+              </button>
+              <div class="carousel__dots" role="tablist" aria-label="Testimonial slides">
+                <button class="carousel__dot active" type="button" role="tab" aria-selected="true" aria-label="Go to slide 1"></button>
+                <button class="carousel__dot" type="button" role="tab" aria-selected="false" aria-label="Go to slide 2"></button>
+                <button class="carousel__dot" type="button" role="tab" aria-selected="false" aria-label="Go to slide 3"></button>
+              </div>
+              <button class="carousel__btn carousel__btn--next" type="button" aria-label="Next testimonial">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+              </button>
+            </div>
           </div>
           <p class="muted">
             If you’ve worked with me and want to add a quote, email me and I’ll happily include it (with your approval).

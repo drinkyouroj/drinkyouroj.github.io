@@ -272,11 +272,139 @@ async function loadSubstack() {
   }
 }
 
+// Testimonials Carousel
+function initCarousel() {
+  const carousel = document.getElementById("testimonials-carousel");
+  if (!carousel) return;
+
+  const track = carousel.querySelector(".carousel__track");
+  const slides = carousel.querySelectorAll(".carousel__slide");
+  const dots = carousel.querySelectorAll(".carousel__dot");
+  const prevBtn = carousel.querySelector(".carousel__btn--prev");
+  const nextBtn = carousel.querySelector(".carousel__btn--next");
+
+  if (!track || !slides.length) return;
+
+  let currentIndex = 0;
+  let autoPlayInterval = null;
+  const autoPlayDelay = 5000; // 5 seconds
+
+  function goToSlide(index) {
+    // Handle wrapping
+    if (index < 0) index = slides.length - 1;
+    if (index >= slides.length) index = 0;
+
+    currentIndex = index;
+
+    // Move track
+    track.style.transform = `translateX(-${currentIndex * 100}%)`;
+
+    // Update slide active states
+    slides.forEach((slide, i) => {
+      slide.classList.toggle("active", i === currentIndex);
+    });
+
+    // Update dots
+    dots.forEach((dot, i) => {
+      dot.classList.toggle("active", i === currentIndex);
+      dot.setAttribute("aria-selected", i === currentIndex);
+    });
+  }
+
+  function nextSlide() {
+    goToSlide(currentIndex + 1);
+  }
+
+  function prevSlide() {
+    goToSlide(currentIndex - 1);
+  }
+
+  function startAutoPlay() {
+    stopAutoPlay();
+    autoPlayInterval = setInterval(nextSlide, autoPlayDelay);
+  }
+
+  function stopAutoPlay() {
+    if (autoPlayInterval) {
+      clearInterval(autoPlayInterval);
+      autoPlayInterval = null;
+    }
+  }
+
+  // Event listeners
+  prevBtn?.addEventListener("click", () => {
+    prevSlide();
+    startAutoPlay(); // Reset timer after manual navigation
+  });
+
+  nextBtn?.addEventListener("click", () => {
+    nextSlide();
+    startAutoPlay();
+  });
+
+  dots.forEach((dot, index) => {
+    dot.addEventListener("click", () => {
+      goToSlide(index);
+      startAutoPlay();
+    });
+  });
+
+  // Pause on hover
+  carousel.addEventListener("mouseenter", stopAutoPlay);
+  carousel.addEventListener("mouseleave", startAutoPlay);
+
+  // Keyboard navigation
+  carousel.addEventListener("keydown", (e) => {
+    if (e.key === "ArrowLeft") {
+      prevSlide();
+      startAutoPlay();
+    } else if (e.key === "ArrowRight") {
+      nextSlide();
+      startAutoPlay();
+    }
+  });
+
+  // Touch/swipe support
+  let touchStartX = 0;
+  let touchEndX = 0;
+
+  carousel.addEventListener("touchstart", (e) => {
+    touchStartX = e.changedTouches[0].screenX;
+    stopAutoPlay();
+  }, { passive: true });
+
+  carousel.addEventListener("touchend", (e) => {
+    touchEndX = e.changedTouches[0].screenX;
+    const diff = touchStartX - touchEndX;
+    
+    if (Math.abs(diff) > 50) { // Minimum swipe distance
+      if (diff > 0) {
+        nextSlide();
+      } else {
+        prevSlide();
+      }
+    }
+    startAutoPlay();
+  }, { passive: true });
+
+  // Respect reduced motion
+  const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  
+  // Initialize first slide as active
+  goToSlide(0);
+
+  // Start autoplay only if user doesn't prefer reduced motion
+  if (!prefersReducedMotion) {
+    startAutoPlay();
+  }
+}
+
 setYear();
 initTheme();
 initMobileNav();
 initScrollProgress();
 initScrollSpy();
 initScrollReveal();
+initCarousel();
 loadSubstack();
 
