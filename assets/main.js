@@ -136,6 +136,22 @@ function initScrollSpy() {
   checkBottom();
 }
 
+// Scroll Progress Bar
+function initScrollProgress() {
+  const bar = $("scroll-progress-bar");
+  if (!bar) return;
+
+  function updateProgress() {
+    const scrollTop = window.scrollY;
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+    bar.style.width = `${progress}%`;
+  }
+
+  window.addEventListener("scroll", updateProgress, { passive: true });
+  updateProgress(); // Set initial state
+}
+
 // Scroll Reveal Animations
 function initScrollReveal() {
   const elements = document.querySelectorAll(".scroll-reveal");
@@ -259,6 +275,7 @@ async function loadSubstack() {
 setYear();
 initTheme();
 initMobileNav();
+initScrollProgress();
 initScrollSpy();
 initScrollReveal();
 loadSubstack();
