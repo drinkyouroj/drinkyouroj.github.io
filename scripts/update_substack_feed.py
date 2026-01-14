@@ -5,6 +5,7 @@ from __future__ import annotations
 import json
 import random
 import re
+import subprocess
 import sys
 import time
 import urllib.error
@@ -24,59 +25,102 @@ def now_iso() -> str:
 
 
 def fetch(url: str, max_retries: int = 3) -> bytes:
-    """Fetch URL with retry logic and browser-like headers."""
-    # Use a browser-like User-Agent to avoid 403 errors
-    headers = {
-        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
-        "Accept": "application/rss+xml, application/xml;q=0.9, text/xml;q=0.8, */*;q=0.1",
-        "Accept-Language": "en-US,en;q=0.9",
-        "Referer": "https://drinkyouroj.substack.com/",
-        "DNT": "1",
-        "Connection": "keep-alive",
-        "Upgrade-Insecure-Requests": "1",
-    }
-    
+    """Fetch URL using curl (better Cloudflare handling) with retry logic."""
     last_error = None
+    
     for attempt in range(max_retries):
         try:
-            req = urllib.request.Request(url, headers=headers, method="GET")
-            with urllib.request.urlopen(req, timeout=30) as resp:
-                data = resp.read()
-                # Check if we got HTML instead of XML (common with 403 pages)
-                if data.startswith(b"<!DOCTYPE") or data.startswith(b"<html"):
-                    raise urllib.error.HTTPError(
-                        url, 403, "Received HTML instead of XML (likely blocked)",
-                        resp.headers, None
-                    )
-                return data
-        except urllib.error.HTTPError as e:
-            last_error = e
-            if e.code == 403:
-                # Wait before retrying, with exponential backoff
+            # Use curl which handles Cloudflare better than urllib
+            # -L: follow redirects
+            # -s: silent mode (no progress)
+            # -S: show errors even in silent mode
+            # -f: fail on HTTP errors
+            # --max-time: timeout
+            # --retry: automatic retries for transient errors
+            # --retry-delay: delay between retries
+            # --user-agent: browser-like user agent
+            # --header: additional headers
+            cmd = [
+                "curl",
+                "-L",  # Follow redirects
+                "-s",  # Silent
+                "-S",  # Show errors
+                "-f",  # Fail on HTTP errors
+                "--max-time", "30",
+                "--retry", "2",
+                "--retry-delay", "1",
+                "--user-agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
+                "--header", "Accept: application/rss+xml, application/xml;q=0.9, text/xml;q=0.8, */*;q=0.1",
+                "--header", "Accept-Language: en-US,en;q=0.9",
+                "--header", "Referer: https://drinkyouroj.substack.com/",
+                "--header", "DNT: 1",
+                "--header", "Connection: keep-alive",
+                "--header", "Upgrade-Insecure-Requests: 1",
+                url,
+            ]
+            
+            result = subprocess.run(
+                cmd,
+                capture_output=True,
+                timeout=35,
+                check=False
+            )
+            
+            if result.returncode != 0:
+                error_msg = result.stderr.decode('utf-8', errors='ignore')
+                if "403" in error_msg or result.returncode == 22:  # curl exit code 22 = HTTP error
+                    if attempt < max_retries - 1:
+                        wait_time = (2 ** attempt) + (random.random() * 2)
+                        print(f"Got 403 Forbidden, retrying in {wait_time:.1f}s (attempt {attempt + 1}/{max_retries})...", file=sys.stderr)
+                        time.sleep(wait_time)
+                        continue
+                    raise urllib.error.HTTPError(url, 403, f"curl failed: {error_msg}", None, None)
+                raise RuntimeError(f"curl failed with code {result.returncode}: {error_msg}")
+            
+            data = result.stdout
+            
+            # Check if we got HTML instead of XML (Cloudflare challenge page)
+            if data.startswith(b"<!DOCTYPE") or data.startswith(b"<html") or b"Just a moment" in data:
                 if attempt < max_retries - 1:
-                    wait_time = (2 ** attempt) + (random.random() * 2)  # 1-3s, 2-5s, 4-9s
-                    print(f"Got 403 Forbidden, retrying in {wait_time:.1f}s (attempt {attempt + 1}/{max_retries})...", file=sys.stderr)
+                    wait_time = (2 ** attempt) + (random.random() * 2)
+                    print(f"Received Cloudflare challenge page, retrying in {wait_time:.1f}s (attempt {attempt + 1}/{max_retries})...", file=sys.stderr)
                     time.sleep(wait_time)
                     continue
-            # For other HTTP errors, try to read the response body for debugging
-            if hasattr(e, 'read'):
-                try:
-                    error_body = e.read().decode('utf-8', errors='ignore')[:500]
-                    print(f"HTTP {e.code} response: {error_body}", file=sys.stderr)
-                except:
-                    pass
+                raise urllib.error.HTTPError(
+                    url, 403, "Received Cloudflare challenge page instead of XML",
+                    None, None
+                )
+            
+            # Verify it's XML
+            if not data.strip().startswith(b"<?xml") and not data.strip().startswith(b"<rss") and not data.strip().startswith(b"<feed"):
+                if attempt < max_retries - 1:
+                    wait_time = (2 ** attempt) + (random.random() * 2)
+                    print(f"Received non-XML response, retrying in {wait_time:.1f}s (attempt {attempt + 1}/{max_retries})...", file=sys.stderr)
+                    time.sleep(wait_time)
+                    continue
+                raise ValueError(f"Response is not XML: {data[:200].decode('utf-8', errors='ignore')}")
+            
+            return data
+            
+        except subprocess.TimeoutExpired:
+            last_error = TimeoutError("Request timed out")
+            if attempt < max_retries - 1:
+                wait_time = (2 ** attempt) + (random.random() * 2)
+                print(f"Request timed out, retrying in {wait_time:.1f}s (attempt {attempt + 1}/{max_retries})...", file=sys.stderr)
+                time.sleep(wait_time)
+                continue
             raise
         except Exception as e:
             last_error = e
             if attempt < max_retries - 1:
                 wait_time = (2 ** attempt) + (random.random() * 2)
-                print(f"Request failed, retrying in {wait_time:.1f}s (attempt {attempt + 1}/{max_retries})...", file=sys.stderr)
+                print(f"Request failed: {e}, retrying in {wait_time:.1f}s (attempt {attempt + 1}/{max_retries})...", file=sys.stderr)
                 time.sleep(wait_time)
                 continue
             raise
     
     # If we get here, all retries failed
-    raise last_error
+    raise last_error if last_error else RuntimeError("All retry attempts failed")
 
 
 def text(el: ET.Element | None) -> str:
