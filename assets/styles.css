@@ -173,6 +173,11 @@ img {
   color: var(--text);
 }
 
+.nav__links a.active {
+  color: var(--oj);
+  background: rgba(255, 154, 26, 0.08);
+}
+
 .nav__actions {
   display: flex;
   align-items: center;
