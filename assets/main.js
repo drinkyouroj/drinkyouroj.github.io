@@ -789,6 +789,36 @@ async function loadGitHubActivity() {
   }
 }
 
+// Availability Badge
+function initAvailabilityBadge() {
+  const badge = document.getElementById("availability-badge");
+  if (!badge) return;
+
+  // Configuration: Set your availability status here
+  // Options: "available", "busy", "unavailable"
+  const availabilityStatus = "available"; // Change this to update your status
+
+  const statusConfig = {
+    available: {
+      text: "Available for opportunities",
+      class: "",
+    },
+    busy: {
+      text: "Busy, but open to interesting roles",
+      class: "availability-badge--busy",
+    },
+    unavailable: {
+      text: "Not currently available",
+      class: "availability-badge--unavailable",
+    },
+  };
+
+  const config = statusConfig[availabilityStatus] || statusConfig.available;
+  
+  badge.className = `availability-badge ${config.class}`.trim();
+  badge.querySelector(".availability-badge__text").textContent = config.text;
+}
+
 setYear();
 initTheme();
 initMobileNav();
@@ -800,6 +830,7 @@ initSkillsFilter();
 initContactForm();
 initCopyEmail();
 initCommandPalette();
+initAvailabilityBadge();
 loadSubstack();
 loadGitHubActivity();
 
