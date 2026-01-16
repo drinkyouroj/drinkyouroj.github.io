@@ -1,0 +1,17 @@
+{
+  "updated_at": "2026-01-16T00:00:00Z",
+  "testimonials": [
+    {
+      "slug": "aetrna",
+      "name_irl": "Zidan Mutaqin",
+      "name_online": "@aetrna1405",
+      "role_company": "Datagram",
+      "date": "2026-01-15",
+      "headshot_image_url": "",
+      "testimonial_clip": "One of Justin’s standout strengths is his versatility. He is equally effective in tackling technical challenges and addressing community-related concerns. … [H]e approaches every situation with a high level of professionalism and consistency.",
+      "referral_link_url": "https://www.linkedin.com/in/zidan-mutaqin/",
+      "referral_link_text": "Connect with Zidan",
+      "carousel_display_name": "irl"
+    }
+  ]
+}

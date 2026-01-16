@@ -279,6 +279,136 @@ async function loadSubstack() {
   }
 }
 
+function getCarouselDisplayName(testimonial) {
+  if (!testimonial) return "";
+  const mode = String(testimonial.carousel_display_name || "irl").toLowerCase();
+  if (mode === "online") return testimonial.name_online || testimonial.name_irl || "";
+  return testimonial.name_irl || testimonial.name_online || "";
+}
+
+async function loadTestimonials() {
+  const carousel = document.getElementById("testimonials-carousel");
+  if (!carousel) return;
+
+  const track = carousel.querySelector(".carousel__track");
+  const dotsContainer = carousel.querySelector(".carousel__dots");
+  const status = document.getElementById("testimonials-status");
+  if (!track || !dotsContainer) return;
+
+  try {
+    const res = await fetch("/assets/testimonials/index.json", { cache: "no-store" });
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    const data = await res.json();
+    const testimonials = Array.isArray(data?.testimonials) ? data.testimonials : [];
+
+    if (!testimonials.length) {
+      track.innerHTML = `
+        <article class="carousel__slide quote" aria-label="No testimonials yet">
+          <p class="quote__text">No testimonials yet.</p>
+          <p class="quote__by muted">Check back soon.</p>
+        </article>
+      `;
+      dotsContainer.innerHTML = "";
+      if (status) status.textContent = "";
+      initCarousel();
+      return;
+    }
+
+    track.innerHTML = testimonials.map((t, i) => {
+      const displayName = getCarouselDisplayName(t);
+      const byline = [displayName, t.role_company].filter(Boolean).join(" · ");
+      const clip = t.testimonial_clip || "Testimonial coming soon.";
+      const slug = t.slug || "";
+      const href = slug ? `/testimonials/${slug}/` : "#testimonials";
+      const bylineText = byline ? `— ${escapeHtml(byline)}` : "";
+      return `
+        <article class="carousel__slide quote" aria-label="Testimonial ${i + 1} of ${testimonials.length}">
+          <a class="quote__link" href="${escapeHtml(href)}">
+            <p class="quote__text">"${escapeHtml(clip)}"</p>
+            ${bylineText ? `<p class="quote__by muted">${bylineText}</p>` : ""}
+            <span class="quote__cta">Read full testimonial →</span>
+          </a>
+        </article>
+      `;
+    }).join("");
+
+    dotsContainer.innerHTML = testimonials.map((_, i) => `
+      <button class="carousel__dot${i === 0 ? " active" : ""}" type="button" role="tab" aria-selected="${i === 0}" aria-label="Go to slide ${i + 1}"></button>
+    `).join("");
+
+    if (status) {
+      const updated = data?.updated_at ? formatDate(data.updated_at) : "";
+      status.textContent = updated ? `Last updated ${updated}` : "";
+    }
+  } catch (err) {
+    track.innerHTML = `
+      <article class="carousel__slide quote" aria-label="Testimonials unavailable">
+        <p class="quote__text">Couldn't load testimonials right now.</p>
+        <p class="quote__by muted">Please try again later.</p>
+      </article>
+    `;
+    dotsContainer.innerHTML = "";
+    if (status) status.textContent = "";
+    console.warn("Testimonials load failed:", err);
+  }
+
+  initCarousel();
+}
+
+async function loadTestimonialDetail() {
+  const container = document.getElementById("testimonial-detail");
+  if (!container) return;
+
+  const slug = container.dataset.slug;
+  if (!slug) return;
+
+  const status = document.getElementById("testimonial-status");
+  const nameIrl = document.getElementById("testimonial-name-irl");
+  const nameOnline = document.getElementById("testimonial-name-online");
+  const roleCompany = document.getElementById("testimonial-role");
+  const dateEl = document.getElementById("testimonial-date");
+  const textEl = document.getElementById("testimonial-text");
+  const referralWrap = document.getElementById("testimonial-referral");
+  const referralLink = document.getElementById("testimonial-referral-link");
+  const headshotWrap = document.getElementById("testimonial-headshot-wrap");
+  const headshotImg = document.getElementById("testimonial-headshot");
+
+  try {
+    const res = await fetch(`/assets/testimonials/${encodeURIComponent(slug)}.json`, { cache: "no-store" });
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    const t = await res.json();
+
+    if (nameIrl) nameIrl.textContent = t.name_irl || "";
+    if (nameOnline) {
+      nameOnline.textContent = t.name_online ? `(${t.name_online})` : "";
+    }
+    if (roleCompany) roleCompany.textContent = t.role_company || "";
+    if (dateEl) dateEl.textContent = t.date ? formatDate(t.date) : "";
+    if (textEl) textEl.textContent = t.testimonial_full || "";
+
+    if (referralWrap && referralLink && t.referral_link_url) {
+      referralLink.href = t.referral_link_url;
+      referralLink.textContent = t.referral_link_text || t.referral_link_url;
+      referralWrap.style.display = "";
+    } else if (referralWrap) {
+      referralWrap.style.display = "none";
+    }
+
+    if (headshotWrap && headshotImg && t.headshot_image_url) {
+      headshotImg.src = t.headshot_image_url;
+      headshotImg.alt = t.name_irl ? `${t.name_irl} headshot` : "Testimonial headshot";
+      headshotWrap.style.display = "";
+    } else if (headshotWrap) {
+      headshotWrap.style.display = "none";
+    }
+
+    if (status) status.textContent = "";
+  } catch (err) {
+    if (status) status.textContent = "Couldn't load this testimonial.";
+    console.warn("Testimonial detail load failed:", err);
+  }
+}
+
 // Testimonials Carousel
 function initCarousel() {
   const carousel = document.getElementById("testimonials-carousel");
@@ -834,7 +964,7 @@ initMobileNav();
 initScrollProgress();
 initScrollSpy();
 initScrollReveal();
-initCarousel();
+loadTestimonials();
 initSkillsFilter();
 initContactForm();
 initCopyEmail();
@@ -842,4 +972,5 @@ initCommandPalette();
 initAvailabilityBadge();
 loadSubstack();
 loadGitHubActivity();
+loadTestimonialDetail();
 
