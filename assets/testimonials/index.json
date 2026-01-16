@@ -7,10 +7,22 @@
       "name_online": "@aetrna1405",
       "role_company": "Datagram",
       "date": "2026-01-15",
-      "headshot_image_url": "",
+      "headshot_image_url": "/assets/testimonials/aetrna.jpg",
       "testimonial_clip": "One of Justin’s standout strengths is his versatility. He is equally effective in tackling technical challenges and addressing community-related concerns. … [H]e approaches every situation with a high level of professionalism and consistency.",
       "referral_link_url": "https://www.linkedin.com/in/zidan-mutaqin/",
       "referral_link_text": "Connect with Zidan",
+      "carousel_display_name": "irl"
+    },
+    {
+      "slug": "NephHoss",
+      "name_irl": "Dillon Overton",
+      "name_online": "NephilimHoss",
+      "role_company": "Datagram",
+      "date": "2025-01-16",
+      "headshot_image_url": "/assets/testimonials/NephHoss.jpeg",
+      "testimonial_clip": "Justin consistently went above and beyond, completing both technically advanced and simple tasks. From troubleshooting Linux issues online, to interfacing with customers in person — Justin shines in both high level and get-your-hands-dirty work.",
+      "referral_link_url": "https://www.linkedin.com/in/dillon-overton-24516910b/",
+      "referral_link_text": "Connect with Dillon",
       "carousel_display_name": "irl"
     }
   ]

@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Testimonial for Justin Hearn from Dillon Overton." />
+    <meta name="author" content="Justin Douglas Hearn" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://drinkyouroj.github.io/testimonials/NephHoss/" />
+    <meta name="theme-color" content="#0f5f66" id="theme-color-meta" />
+
+    <link rel="icon" href="/assets/favicon.ico" />
+    <link rel="manifest" href="/assets/site.webmanifest" />
+    <link rel="stylesheet" href="/assets/styles.css" />
+
+    <title>Testimonial — Dillon Overton</title>
+    <script>
+      // Prevent flash of wrong theme
+      (function() {
+        var saved = localStorage.getItem('theme');
+        var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        var theme = saved || (prefersDark ? 'dark' : 'light');
+        document.documentElement.setAttribute('data-theme', theme);
+      })();
+    </script>
+  </head>
+  <body class="testimonial-page">
+    <header class="header">
+      <nav class="nav" aria-label="Primary">
+        <a class="brand" href="/" aria-label="Home">
+          <img class="brand__mark" src="/assets/logo.webp" alt="" width="36" height="36" loading="eager" />
+          <span class="brand__text">Justin Hearn</span>
+        </a>
+        <div class="nav__actions">
+          <a class="btn btn--ghost btn--sm" href="/#testimonials">Back to testimonials</a>
+          <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Toggle theme">
+            <svg class="theme-toggle__icon theme-toggle__icon--sun" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+            <svg class="theme-toggle__icon theme-toggle__icon--moon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+          </button>
+        </div>
+      </nav>
+    </header>
+
+    <main id="main">
+      <section class="section">
+        <div class="container">
+          <div id="testimonial-detail" data-slug="NephHoss">
+            <div class="testimonial-header">
+              <div id="testimonial-headshot-wrap">
+                <img id="testimonial-headshot" class="testimonial-headshot" src="" alt="" loading="lazy" />
+              </div>
+              <div>
+                <p class="kicker">Testimonial</p>
+                <h1>
+                  <span id="testimonial-name-irl">Loading…</span>
+                  <span id="testimonial-name-online" class="muted"></span>
+                </h1>
+                <div class="testimonial-meta">
+                  <span id="testimonial-role"></span>
+                  <span id="testimonial-date"></span>
+                </div>
+              </div>
+            </div>
+
+            <div class="testimonial-card mt-14">
+              <p id="testimonial-text" class="testimonial-text">Loading testimonial…</p>
+              <p id="testimonial-referral" class="testimonial-referral">
+                Referral link: <a id="testimonial-referral-link" href="#" target="_blank" rel="noreferrer"></a>
+              </p>
+            </div>
+            <p id="testimonial-status" class="muted" role="status" aria-live="polite"></p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="container footer__inner">
+        <p class="muted">© <span id="year"></span> Justin Hearn. Built for GitHub Pages.</p>
+        <p class="muted">
+          <a href="/#testimonials">Back to testimonials</a>
+          <span aria-hidden="true">·</span>
+          <a href="/">Home</a>
+        </p>
+      </div>
+    </footer>
+
+    <script src="/assets/main.js" defer></script>
+  </body>
+</html>
