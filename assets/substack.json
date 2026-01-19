@@ -2,8 +2,15 @@
   "source": "https://api.rss2json.com/v1/api.json?rss_url=https%3A%2F%2Fdrinkyouroj.substack.com%2Ffeed",
   "feed_title": "The Civic Node",
   "feed_url": "https://drinkyouroj.substack.com/",
-  "updated_at": "2026-01-18T05:28:27.328449+00:00",
+  "updated_at": "2026-01-19T05:29:43.699848+00:00",
   "posts": [
+    {
+      "title": "How to Solve a Rival in Three Games",
+      "subtitle": "What the NFL's most lopsided playoff game reveals about learning under pressure",
+      "url": "https://drinkyouroj.substack.com/p/how-to-solve-a-rival-in-three-games",
+      "date": "2026-01-18T15:33:37+00:00",
+      "cover_image": "https://substackcdn.com/image/fetch/$s_!MLoS!,f_auto,q_auto:good,fl_progressive:steep/https://substack-post-media.s3.amazonaws.com/public/images/29013560-63ee-4d6a-88c3-217d4d621c8a_2048x1168.png"
+    },
     {
       "title": "The Other One Who Became That Guy",
       "subtitle": "Bob Weir’s Journey from Sidekick to Icon",
@@ -38,13 +45,6 @@
       "url": "https://drinkyouroj.substack.com/p/disguise-and-destroy-the-macdonald-method-that-broke-nfl-offenses",
       "date": "2026-01-03T15:03:16+00:00",
       "cover_image": "https://substackcdn.com/image/fetch/$s_!9i81!,f_auto,q_auto:good,fl_progressive:steep/https://substack-post-media.s3.amazonaws.com/public/images/7e8f7712-c985-40fa-8778-d5e069c4a0ee_2752x1536.png"
-    },
-    {
-      "title": "The Receipts on Impossibility",
-      "subtitle": "Teams trailing by 15 or more points in the fourth quarter are 0-172 in NFL history.",
-      "url": "https://drinkyouroj.substack.com/p/the-receipts-on-impossibility",
-      "date": "2025-12-30T21:17:34+00:00",
-      "cover_image": "https://substackcdn.com/image/fetch/$s_!AGUl!,f_auto,q_auto:good,fl_progressive:steep/https://substack-post-media.s3.amazonaws.com/public/images/3655e11a-be6f-453e-8b90-859a18505bd8_2688x1536.png"
     }
   ]
 }
