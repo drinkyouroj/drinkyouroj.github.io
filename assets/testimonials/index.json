@@ -24,6 +24,18 @@
       "referral_link_url": "https://www.linkedin.com/in/dillon-overton-24516910b/",
       "referral_link_text": "Connect with Dillon",
       "carousel_display_name": "irl"
+    },
+    {
+      "slug": "kyle",
+      "name_irl": "Kyle Kristoffersen",
+      "name_online": "kyleczech",
+      "role_company": "Moderation Team Lead, Datagram",
+      "date": "2026-01-19",
+      "headshot_image_url": "/assets/testimonials/kyle.jpeg",
+      "testimonial_clip": "What distinguishes Justin most is his intrinsic drive to create value. He is not someone who waits for tasks to be assigned. He seeks out opportunities to contribute meaningfully.",
+      "referral_link_url": "https://www.linkedin.com/in/kylekristoffersen/",
+      "referral_link_text": "Connect with Kyle",
+      "carousel_display_name": "irl"
     }
   ]
 }
