@@ -1394,6 +1394,21 @@ img {
   background: rgba(34, 197, 94, 0.08);
 }
 
+/* Resume Card - Full Width, Half Height */
+.contact-card--resume {
+  width: 100%;
+  display: block;
+  padding: 12px 18px;
+}
+
+.contact-card--resume .contact-card__title {
+  margin-bottom: 4px;
+}
+
+.contact-card--resume .contact-card__desc {
+  margin: 0;
+}
+
 /* Contact Grid */
 .contact-grid {
   align-items: stretch;
