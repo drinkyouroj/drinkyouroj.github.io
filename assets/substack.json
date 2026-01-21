@@ -2,8 +2,15 @@
   "source": "https://api.rss2json.com/v1/api.json?rss_url=https%3A%2F%2Fdrinkyouroj.substack.com%2Ffeed",
   "feed_title": "The Civic Node",
   "feed_url": "https://drinkyouroj.substack.com/",
-  "updated_at": "2026-01-20T05:29:27.511474+00:00",
+  "updated_at": "2026-01-21T05:29:10.867639+00:00",
   "posts": [
+    {
+      "title": "The Algorithm Ate My Amygdala",
+      "subtitle": "7 Ways Algorithms Killed Your Ability to Care About NATO Collapsing",
+      "url": "https://drinkyouroj.substack.com/p/the-algorithm-ate-my-amygdala",
+      "date": "2026-01-21T01:17:16+00:00",
+      "cover_image": "https://substackcdn.com/image/fetch/$s_!tTdI!,f_auto,q_auto:good,fl_progressive:steep/https://substack-post-media.s3.amazonaws.com/public/images/1ada2b8e-0441-4941-99ed-b49270fa4628_2048x1168.png"
+    },
     {
       "title": "How to Solve a Rival in Three Games",
       "subtitle": "What the NFL's most lopsided playoff game reveals about learning under pressure",
@@ -38,13 +45,6 @@
       "url": "https://drinkyouroj.substack.com/p/13-3-the-box-score-that-ended-the-can-seattles-defense-travel-debate",
       "date": "2026-01-04T20:14:24+00:00",
       "cover_image": "https://substackcdn.com/image/fetch/$s_!3wAD!,w_256,c_limit,f_auto,q_auto:good,fl_progressive:steep/https://substack-post-media.s3.amazonaws.com/public/images/afe5a728-0418-4808-a297-ae15e9fed33b_1280x1280.png"
-    },
-    {
-      "title": "Disguise and Destroy: The Macdonald Method That Broke NFL Offenses",
-      "subtitle": "How Seattle went from 25th to 2nd by making quarterbacks guess wrong every snap",
-      "url": "https://drinkyouroj.substack.com/p/disguise-and-destroy-the-macdonald-method-that-broke-nfl-offenses",
-      "date": "2026-01-03T15:03:16+00:00",
-      "cover_image": "https://substackcdn.com/image/fetch/$s_!9i81!,f_auto,q_auto:good,fl_progressive:steep/https://substack-post-media.s3.amazonaws.com/public/images/7e8f7712-c985-40fa-8778-d5e069c4a0ee_2752x1536.png"
     }
   ]
 }
