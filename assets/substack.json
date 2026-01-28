@@ -2,8 +2,15 @@
   "source": "https://api.rss2json.com/v1/api.json?rss_url=https%3A%2F%2Fdrinkyouroj.substack.com%2Ffeed",
   "feed_title": "The Civic Node",
   "feed_url": "https://drinkyouroj.substack.com/",
-  "updated_at": "2026-01-27T05:29:06.938320+00:00",
+  "updated_at": "2026-01-28T05:29:03.119457+00:00",
   "posts": [
+    {
+      "title": "Nodes Over Numbers",
+      "subtitle": "The Rams dominated every yardage metric and lost by four. Here's how Seattle eliminated failure at the moments that mattered.",
+      "url": "https://drinkyouroj.substack.com/p/nodes-over-numbers",
+      "date": "2026-01-27T16:28:59+00:00",
+      "cover_image": "https://substackcdn.com/image/fetch/$s_!hoPy!,f_auto,q_auto:good,fl_progressive:steep/https://substack-post-media.s3.amazonaws.com/public/images/cd317179-c55e-4976-864b-cfbd0b770a87_2048x1168.png"
+    },
     {
       "title": "The Algorithm Ate My Amygdala",
       "subtitle": "7 Ways Algorithms Killed Your Ability to Care About NATO Collapsing",
@@ -37,13 +44,6 @@
       "subtitle": "How “Investigating Trump” Became As Bad As “Attempting a Coup”",
       "url": "https://drinkyouroj.substack.com/p/the-false-balance-trap",
       "date": "2026-01-07T05:20:46+00:00",
-      "cover_image": "https://substackcdn.com/image/fetch/$s_!3wAD!,w_256,c_limit,f_auto,q_auto:good,fl_progressive:steep/https://substack-post-media.s3.amazonaws.com/public/images/afe5a728-0418-4808-a297-ae15e9fed33b_1280x1280.png"
-    },
-    {
-      "title": "13-3: The Box Score That Ended the “Can Seattle’s Defense Travel?” Debate",
-      "subtitle": "The 49ers scored 42.3 PPG in December. Then they met a defense that thinks faster than offenses can adapt.",
-      "url": "https://drinkyouroj.substack.com/p/13-3-the-box-score-that-ended-the-can-seattles-defense-travel-debate",
-      "date": "2026-01-04T20:14:24+00:00",
       "cover_image": "https://substackcdn.com/image/fetch/$s_!3wAD!,w_256,c_limit,f_auto,q_auto:good,fl_progressive:steep/https://substack-post-media.s3.amazonaws.com/public/images/afe5a728-0418-4808-a297-ae15e9fed33b_1280x1280.png"
     }
   ]
