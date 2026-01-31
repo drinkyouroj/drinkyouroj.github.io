@@ -2,8 +2,15 @@
   "source": "https://api.rss2json.com/v1/api.json?rss_url=https%3A%2F%2Fdrinkyouroj.substack.com%2Ffeed",
   "feed_title": "The Civic Node",
   "feed_url": "https://drinkyouroj.substack.com/",
-  "updated_at": "2026-01-30T05:35:55.518756+00:00",
+  "updated_at": "2026-01-31T05:31:33.946065+00:00",
   "posts": [
+    {
+      "title": "The Pastor Runs the Gestapo",
+      "subtitle": "How arresting Don Lemon exposed MAGA's constitutional cosplay",
+      "url": "https://drinkyouroj.substack.com/p/the-pastor-runs-the-gestapo",
+      "date": "2026-01-31T01:20:20+00:00",
+      "cover_image": "https://substackcdn.com/image/fetch/$s_!EjxE!,f_auto,q_auto:good,fl_progressive:steep/https://substack-post-media.s3.amazonaws.com/public/images/8f7f3b23-293e-48fe-9eda-48bebb95a9ec_2688x1536.png"
+    },
     {
       "title": "Nodes Over Numbers",
       "subtitle": "The Rams dominated every yardage metric and lost by four. Here's how Seattle eliminated failure at the moments that mattered.",
@@ -38,13 +45,6 @@
       "url": "https://drinkyouroj.substack.com/p/trump-is-covering-up-the-minneapolis-ice-shooting-just-like-hes-covering-up-epstein",
       "date": "2026-01-12T15:58:56+00:00",
       "cover_image": "https://substackcdn.com/image/fetch/$s_!eQ4u!,f_auto,q_auto:good,fl_progressive:steep/https://substack-post-media.s3.amazonaws.com/public/images/5cbd165d-e703-4917-b6e6-f154b75bc9f2_2688x1536.png"
-    },
-    {
-      "title": "The False Balance Trap",
-      "subtitle": "How “Investigating Trump” Became As Bad As “Attempting a Coup”",
-      "url": "https://drinkyouroj.substack.com/p/the-false-balance-trap",
-      "date": "2026-01-07T05:20:46+00:00",
-      "cover_image": "https://substackcdn.com/image/fetch/$s_!3wAD!,w_256,c_limit,f_auto,q_auto:good,fl_progressive:steep/https://substack-post-media.s3.amazonaws.com/public/images/afe5a728-0418-4808-a297-ae15e9fed33b_1280x1280.png"
     }
   ]
 }
