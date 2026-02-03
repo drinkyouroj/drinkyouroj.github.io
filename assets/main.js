@@ -685,7 +685,7 @@ function initCommandPalette() {
     { id: "linkedin", title: "Open LinkedIn", desc: "View LinkedIn profile", icon: "external", action: () => window.open("https://www.linkedin.com/in/jhearn/", "_blank") },
     { id: "github", title: "Open GitHub", desc: "View GitHub profile", icon: "external", action: () => window.open("https://github.com/drinkyouroj", "_blank") },
     { id: "substack", title: "Open Substack", desc: "Read the newsletter", icon: "external", action: () => window.open("https://drinkyouroj.substack.com", "_blank") },
-    { id: "resume", title: "Download Resume", desc: "Get PDF resume", icon: "download", action: () => window.open("/assets/resume.pdf", "_blank") },
+    { id: "resume", title: "Open Resume", desc: "View/download my resume", icon: "external", action: () => window.open("https://standardresume.co/r/justinhearn", "_blank") },
   ];
 
   const icons = {
