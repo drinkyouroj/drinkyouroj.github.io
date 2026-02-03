@@ -147,6 +147,29 @@ img {
   background: rgba(245, 247, 248, 0.85);
 }
 
+.nav-hint {
+  margin: 0;
+  padding: 6px 16px;
+  font-size: 0.8rem;
+  color: var(--muted-2);
+  text-align: center;
+  background: var(--panel);
+  border-bottom: 1px solid var(--border);
+}
+
+.nav-hint kbd {
+  font-family: var(--mono);
+  font-size: 0.75em;
+  padding: 2px 6px;
+  border-radius: 6px;
+  background: var(--panel-strong);
+  border: 1px solid var(--border);
+}
+
+.nav-hint__mac {
+  color: var(--muted-2);
+}
+
 .nav {
   width: min(1100px, calc(100% - 24px));
   margin: 0 auto;
