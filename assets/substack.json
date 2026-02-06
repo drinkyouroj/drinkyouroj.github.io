@@ -2,8 +2,15 @@
   "source": "https://api.rss2json.com/v1/api.json?rss_url=https%3A%2F%2Fdrinkyouroj.substack.com%2Ffeed",
   "feed_title": "The Civic Node",
   "feed_url": "https://drinkyouroj.substack.com/",
-  "updated_at": "2026-02-05T05:41:43.517682+00:00",
+  "updated_at": "2026-02-06T05:40:23.500660+00:00",
   "posts": [
+    {
+      "title": "Game Theory Assumes You're a Sociopath. You're Not.",
+      "subtitle": "What happens when you give players a choice between shooting strangers and shooting fascist mechs? They pick the mechs. Every time.",
+      "url": "https://drinkyouroj.substack.com/p/game-theory-assumes-youre-a-sociopath",
+      "date": "2026-02-05T22:17:24+00:00",
+      "cover_image": "https://substackcdn.com/image/fetch/$s_!HiSo!,f_auto,q_auto:good,fl_progressive:steep/https://substack-post-media.s3.amazonaws.com/public/images/3b85998e-4afa-4170-9aac-d97d99e9bcd0_2048x1168.png"
+    },
     {
       "title": "When Robots Leave the Lab",
       "subtitle": "Physical AI just crossed the line from research project to your everyday reality. The labor market will never be the same.",
@@ -38,13 +45,6 @@
       "url": "https://drinkyouroj.substack.com/p/how-to-solve-a-rival-in-three-games",
       "date": "2026-01-18T15:33:37+00:00",
       "cover_image": "https://substackcdn.com/image/fetch/$s_!MLoS!,f_auto,q_auto:good,fl_progressive:steep/https://substack-post-media.s3.amazonaws.com/public/images/29013560-63ee-4d6a-88c3-217d4d621c8a_2048x1168.png"
-    },
-    {
-      "title": "The Other One Who Became That Guy",
-      "subtitle": "Bob Weir’s Journey from Sidekick to Icon",
-      "url": "https://drinkyouroj.substack.com/p/the-other-one-who-became-that-guy",
-      "date": "2026-01-14T14:09:32+00:00",
-      "cover_image": "https://substackcdn.com/image/fetch/$s_!dwUu!,f_auto,q_auto:good,fl_progressive:steep/https://substack-post-media.s3.amazonaws.com/public/images/79af63fe-cb42-4f98-8631-81f180453e9d_2688x1536.png"
     }
   ]
 }
