@@ -2,8 +2,15 @@
   "source": "https://api.rss2json.com/v1/api.json?rss_url=https%3A%2F%2Fdrinkyouroj.substack.com%2Ffeed",
   "feed_title": "The Civic Node",
   "feed_url": "https://drinkyouroj.substack.com/",
-  "updated_at": "2026-02-08T05:45:00.645665+00:00",
+  "updated_at": "2026-02-09T05:48:53.691371+00:00",
   "posts": [
+    {
+      "title": "Schneider Solved the Salary Cap While Everyone Else Complained",
+      "subtitle": "The Seahawks play today with a roster that will get younger, cheaper, and better through 2029. That’s not luck — it’s engineering.",
+      "url": "https://drinkyouroj.substack.com/p/schneider-solved-the-salary-cap-while-everyone-else-complained",
+      "date": "2026-02-08T14:49:28+00:00",
+      "cover_image": "https://substackcdn.com/image/fetch/$s_!9d_k!,f_auto,q_auto:good,fl_progressive:steep/https://substack-post-media.s3.amazonaws.com/public/images/71227753-841d-4362-a7c9-76cb06706e99_2048x1168.png"
+    },
     {
       "title": "Bad Bunny Just Showed You Where Real Power Lives",
       "subtitle": "Trump called it ridiculous, ICE will be at the game tomorrow, and the NFL isn't blinking — because the fortress walls turned around",
@@ -38,13 +45,6 @@
       "url": "https://drinkyouroj.substack.com/p/nodes-over-numbers",
       "date": "2026-01-27T16:28:59+00:00",
       "cover_image": "https://substackcdn.com/image/fetch/$s_!hoPy!,f_auto,q_auto:good,fl_progressive:steep/https://substack-post-media.s3.amazonaws.com/public/images/cd317179-c55e-4976-864b-cfbd0b770a87_2048x1168.png"
-    },
-    {
-      "title": "The Algorithm Ate My Amygdala",
-      "subtitle": "7 Ways Algorithms Killed Your Ability to Care About NATO Collapsing",
-      "url": "https://drinkyouroj.substack.com/p/the-algorithm-ate-my-amygdala",
-      "date": "2026-01-21T01:17:16+00:00",
-      "cover_image": "https://substackcdn.com/image/fetch/$s_!tTdI!,f_auto,q_auto:good,fl_progressive:steep/https://substack-post-media.s3.amazonaws.com/public/images/1ada2b8e-0441-4941-99ed-b49270fa4628_2048x1168.png"
     }
   ]
 }
