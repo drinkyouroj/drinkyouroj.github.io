@@ -2,8 +2,15 @@
   "source": "https://api.rss2json.com/v1/api.json?rss_url=https%3A%2F%2Fdrinkyouroj.substack.com%2Ffeed",
   "feed_title": "The Civic Node",
   "feed_url": "https://drinkyouroj.substack.com/",
-  "updated_at": "2026-03-23T05:49:31.132327+00:00",
+  "updated_at": "2026-03-24T05:43:23.063846+00:00",
   "posts": [
+    {
+      "title": "Help Desk for the Singularity",
+      "subtitle": "Episode 01: Ticket Zero",
+      "url": "https://drinkyouroj.substack.com/p/help-desk-for-the-singularity-episode-01-ticket-zero",
+      "date": "2026-03-23T12:21:27+00:00",
+      "cover_image": "https://substackcdn.com/image/fetch/$s_!g2Uy!,f_auto,q_auto:good,fl_progressive:steep/https://substack-post-media.s3.amazonaws.com/public/images/658af087-3b3b-416f-92fe-f81f6ef3a948_2848x1600.png"
+    },
     {
       "title": "Schneider Solved the Salary Cap While Everyone Else Complained",
       "subtitle": "The Seahawks play today with a roster that will get younger, cheaper, and better through 2029. That’s not luck — it’s engineering.",
@@ -38,13 +45,6 @@
       "url": "https://drinkyouroj.substack.com/p/the-pastor-runs-the-gestapo",
       "date": "2026-01-31T01:20:20+00:00",
       "cover_image": "https://substackcdn.com/image/fetch/$s_!EjxE!,f_auto,q_auto:good,fl_progressive:steep/https://substack-post-media.s3.amazonaws.com/public/images/8f7f3b23-293e-48fe-9eda-48bebb95a9ec_2688x1536.png"
-    },
-    {
-      "title": "Nodes Over Numbers",
-      "subtitle": "The Rams dominated every yardage metric and lost by four. Here's how Seattle eliminated failure at the moments that mattered.",
-      "url": "https://drinkyouroj.substack.com/p/nodes-over-numbers",
-      "date": "2026-01-27T16:28:59+00:00",
-      "cover_image": "https://substackcdn.com/image/fetch/$s_!hoPy!,f_auto,q_auto:good,fl_progressive:steep/https://substack-post-media.s3.amazonaws.com/public/images/cd317179-c55e-4976-864b-cfbd0b770a87_2048x1168.png"
     }
   ]
 }
