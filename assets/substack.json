@@ -2,8 +2,15 @@
   "source": "https://api.rss2json.com/v1/api.json?rss_url=https%3A%2F%2Fdrinkyouroj.substack.com%2Ffeed",
   "feed_title": "The Civic Node",
   "feed_url": "https://drinkyouroj.substack.com/",
-  "updated_at": "2026-03-26T05:50:39.383199+00:00",
+  "updated_at": "2026-03-27T05:51:07.770032+00:00",
   "posts": [
+    {
+      "title": "Hydration Notice",
+      "subtitle": "Help Desk for the Singularity - Episode 02",
+      "url": "https://drinkyouroj.substack.com/p/hdfts-hydration-notice",
+      "date": "2026-03-26T23:06:38+00:00",
+      "cover_image": "https://substackcdn.com/image/fetch/$s_!1fGL!,f_auto,q_auto:good,fl_progressive:steep/https://substack-post-media.s3.amazonaws.com/public/images/3ecac87a-468c-41d5-bc83-ecfbc32fb214_2752x1536.png"
+    },
     {
       "title": "Help Desk for the Singularity",
       "subtitle": "Episode 01: Ticket Zero",
@@ -38,13 +45,6 @@
       "url": "https://drinkyouroj.substack.com/p/when-robots-leave-the-lab",
       "date": "2026-02-03T22:17:24+00:00",
       "cover_image": "https://substackcdn.com/image/fetch/$s_!Vrhw!,f_auto,q_auto:good,fl_progressive:steep/https://substack-post-media.s3.amazonaws.com/public/images/4d4c4dd8-36d1-45f4-8a35-13cf2eeca58e_2048x1168.png"
-    },
-    {
-      "title": "The Pastor Runs the Gestapo",
-      "subtitle": "How arresting Don Lemon exposed MAGA's constitutional cosplay",
-      "url": "https://drinkyouroj.substack.com/p/the-pastor-runs-the-gestapo",
-      "date": "2026-01-31T01:20:20+00:00",
-      "cover_image": "https://substackcdn.com/image/fetch/$s_!EjxE!,f_auto,q_auto:good,fl_progressive:steep/https://substack-post-media.s3.amazonaws.com/public/images/8f7f3b23-293e-48fe-9eda-48bebb95a9ec_2688x1536.png"
     }
   ]
 }
