@@ -16,6 +16,9 @@
   --shadow: 0 22px 70px rgba(0, 0, 0, 0.45);
   --radius: 18px;
 
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-snappy: cubic-bezier(0.32, 0.72, 0, 1);
+
   --mono: "Geist Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
   --sans: "Geist", ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji",
     "Segoe UI Emoji";
@@ -551,14 +554,19 @@ img {
   font-weight: 650;
   letter-spacing: 0.2px;
   background: rgba(255, 255, 255, 0.04);
-  transition: transform 120ms ease, background 120ms ease, border-color 120ms ease;
+  transition: transform 200ms var(--ease-snappy), background 200ms var(--ease-snappy), border-color 200ms var(--ease-snappy), box-shadow 200ms var(--ease-snappy);
   box-shadow: 0 8px 26px rgba(0, 0, 0, 0.25);
 }
 
 .btn:hover {
-  transform: translateY(-1px);
+  transform: translateY(-2px);
   background: rgba(255, 255, 255, 0.07);
   border-color: rgba(255, 255, 255, 0.18);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.3);
+}
+
+.btn:active {
+  transform: translateY(0) scale(0.98);
 }
 
 .btn--primary {
@@ -1058,14 +1066,15 @@ img {
   border: 1px solid var(--border);
   background: var(--panel);
   text-decoration: none;
-  transition: all 0.2s ease;
+  transition: transform 200ms var(--ease-snappy), background 200ms var(--ease-snappy), border-color 200ms var(--ease-snappy), box-shadow 200ms var(--ease-snappy);
   overflow: hidden;
 }
 
 .post-card:hover {
   border-color: var(--oj);
   background: var(--panel-strong);
-  transform: translateY(-2px);
+  transform: translateY(-3px);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.25);
 }
 
 .post-card--loading {
@@ -1200,7 +1209,7 @@ img {
 
 .carousel__track {
   display: flex;
-  transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transition: transform 600ms var(--ease-out);
 }
 
 .carousel__slide {
@@ -1348,13 +1357,19 @@ img {
   border: 1px solid rgba(255, 255, 255, 0.12);
   background: rgba(255, 255, 255, 0.04);
   padding: 18px;
-  transition: transform 120ms ease, background 120ms ease, border-color 120ms ease;
+  transition: transform 200ms var(--ease-snappy), background 200ms var(--ease-snappy), border-color 200ms var(--ease-snappy), box-shadow 200ms var(--ease-snappy);
 }
 
 .contact-card:hover {
-  transform: translateY(-1px);
-  background: rgba(255, 255, 255, 0.06);
+  transform: translateY(-2px);
+  background: var(--panel-strong);
   border-color: rgba(255, 154, 26, 0.26);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+}
+
+[data-theme="light"] .contact-card:hover {
+  border-color: rgba(224, 120, 0, 0.3);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
 }
 
 .contact-card__kicker {
@@ -1818,8 +1833,8 @@ img {
 /* Scroll Reveal Animations */
 .scroll-reveal {
   opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 600ms ease-out, transform 600ms ease-out;
+  transform: translateY(32px);
+  transition: opacity 800ms var(--ease-out), transform 800ms var(--ease-out);
 }
 
 .scroll-reveal.visible {
@@ -1879,8 +1894,12 @@ img {
     scroll-behavior: auto;
   }
   .btn,
-  .contact-card {
+  .contact-card,
+  .post-card {
     transition: none;
+  }
+  .btn:active {
+    transform: none;
   }
   .scroll-reveal {
     opacity: 1;
