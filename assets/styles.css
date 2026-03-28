@@ -583,7 +583,13 @@ img {
 
 .hero {
   position: relative;
-  padding: 56px 0 26px;
+  padding: 64px 0 36px;
+}
+
+@media (min-width: 860px) {
+  .hero {
+    padding: 80px 0 48px;
+  }
 }
 
 .hero__grid {
@@ -818,7 +824,13 @@ img {
 }
 
 .section {
-  padding: 54px 0;
+  padding: 72px 0;
+}
+
+@media (min-width: 860px) {
+  .section {
+    padding: 104px 0;
+  }
 }
 
 .section--alt {
@@ -829,8 +841,8 @@ img {
 
 .section__head {
   display: grid;
-  gap: 8px;
-  margin-bottom: 20px;
+  gap: 10px;
+  margin-bottom: 36px;
   max-width: 76ch;
 }
 
@@ -848,7 +860,7 @@ img {
 
 .grid {
   display: grid;
-  gap: 14px;
+  gap: 20px;
 }
 
 .grid--2 {
@@ -883,7 +895,7 @@ img {
 
 .timeline {
   display: grid;
-  gap: 12px;
+  gap: 18px;
 }
 
 .timeline__item {
