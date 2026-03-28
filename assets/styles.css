@@ -1368,8 +1368,8 @@ img {
   display: block;
   text-decoration: none;
   border-radius: var(--radius);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--border);
+  background: var(--panel);
   padding: 18px;
   transition: transform 200ms var(--ease-snappy), background 200ms var(--ease-snappy), border-color 200ms var(--ease-snappy), box-shadow 200ms var(--ease-snappy);
 }
@@ -1389,7 +1389,7 @@ img {
 .contact-card__kicker {
   font-family: var(--mono);
   font-size: 0.86rem;
-  color: rgba(255, 255, 255, 0.70);
+  color: var(--muted);
   margin-bottom: 6px;
 }
 
@@ -1411,6 +1411,58 @@ img {
 
 .contact-card__desc a:hover {
   color: var(--oj-2);
+}
+
+/* Primary contact card accent */
+.contact-card--primary {
+  border-color: rgba(255, 154, 26, 0.25);
+  background: rgba(255, 154, 26, 0.04);
+}
+
+.contact-card--primary:hover {
+  border-color: rgba(255, 154, 26, 0.4);
+  background: rgba(255, 154, 26, 0.08);
+}
+
+[data-theme="light"] .contact-card--primary {
+  border-color: rgba(224, 120, 0, 0.2);
+  background: rgba(224, 120, 0, 0.04);
+}
+
+[data-theme="light"] .contact-card--primary:hover {
+  border-color: rgba(224, 120, 0, 0.35);
+  background: rgba(224, 120, 0, 0.07);
+}
+
+/* Compact social links row */
+.social-links {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+.social-links__label {
+  font-family: var(--mono);
+  font-size: 0.86rem;
+  color: var(--muted-2);
+}
+
+.social-links__sep {
+  color: var(--muted-2);
+}
+
+.social-links a {
+  color: var(--muted);
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 200ms var(--ease-snappy);
+}
+
+.social-links a:hover {
+  color: var(--oj);
 }
 
 /* Click-to-Copy Email */
