@@ -2,8 +2,15 @@
   "source": "https://api.rss2json.com/v1/api.json?rss_url=https%3A%2F%2Fdrinkyouroj.substack.com%2Ffeed",
   "feed_title": "The Civic Node",
   "feed_url": "https://drinkyouroj.substack.com/",
-  "updated_at": "2026-03-29T05:51:30.428708+00:00",
+  "updated_at": "2026-03-30T05:59:08.468075+00:00",
   "posts": [
+    {
+      "title": "Personality Persistence",
+      "subtitle": "Help Desk for the Singularity - Episode 03",
+      "url": "https://drinkyouroj.substack.com/p/hdfts-personality-persistence",
+      "date": "2026-03-29T15:23:34+00:00",
+      "cover_image": "https://substackcdn.com/image/fetch/$s_!yUxQ!,f_auto,q_auto:good,fl_progressive:steep/https://substack-post-media.s3.amazonaws.com/public/images/91fc5167-3d1c-474f-b85c-8694db46e3c1_1376x768.png"
+    },
     {
       "title": "Hydration Notice",
       "subtitle": "Help Desk for the Singularity - Episode 02",
@@ -38,13 +45,6 @@
       "url": "https://drinkyouroj.substack.com/p/game-theory-assumes-youre-a-sociopath",
       "date": "2026-02-05T22:17:24+00:00",
       "cover_image": "https://substackcdn.com/image/fetch/$s_!HiSo!,f_auto,q_auto:good,fl_progressive:steep/https://substack-post-media.s3.amazonaws.com/public/images/3b85998e-4afa-4170-9aac-d97d99e9bcd0_2048x1168.png"
-    },
-    {
-      "title": "When Robots Leave the Lab",
-      "subtitle": "Physical AI just crossed the line from research project to your everyday reality. The labor market will never be the same.",
-      "url": "https://drinkyouroj.substack.com/p/when-robots-leave-the-lab",
-      "date": "2026-02-03T22:17:24+00:00",
-      "cover_image": "https://substackcdn.com/image/fetch/$s_!Vrhw!,f_auto,q_auto:good,fl_progressive:steep/https://substack-post-media.s3.amazonaws.com/public/images/4d4c4dd8-36d1-45f4-8a35-13cf2eeca58e_2048x1168.png"
     }
   ]
 }
