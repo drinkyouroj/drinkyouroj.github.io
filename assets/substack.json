@@ -2,8 +2,15 @@
   "source": "https://api.rss2json.com/v1/api.json?rss_url=https%3A%2F%2Fdrinkyouroj.substack.com%2Ffeed",
   "feed_title": "The Civic Node",
   "feed_url": "https://drinkyouroj.substack.com/",
-  "updated_at": "2026-04-01T05:58:14.681941+00:00",
+  "updated_at": "2026-04-02T05:50:05.131881+00:00",
   "posts": [
+    {
+      "title": "This April Fools Article Has 2 Lies and 9 Ugly Truths",
+      "subtitle": "A listicle about \"AI features\" that were secretly just underpaid humans the whole time",
+      "url": "https://drinkyouroj.substack.com/p/this-april-fools-article-has-2-lies-and-9-ugly-truths",
+      "date": "2026-04-01T23:16:16+00:00",
+      "cover_image": "https://substackcdn.com/image/fetch/$s_!wIMQ!,f_auto,q_auto:good,fl_progressive:steep/https://substack-post-media.s3.amazonaws.com/public/images/0b424352-ce6c-4806-b521-f70edaf4ae03_1376x768.png"
+    },
     {
       "title": "Personality Persistence",
       "subtitle": "Help Desk for the Singularity - Episode 03",
@@ -38,13 +45,6 @@
       "url": "https://drinkyouroj.substack.com/p/bad-bunny-just-showed-you-where-real-power-lives",
       "date": "2026-02-07T17:42:28+00:00",
       "cover_image": "https://substackcdn.com/image/fetch/$s_!CuUw!,f_auto,q_auto:good,fl_progressive:steep/https://substack-post-media.s3.amazonaws.com/public/images/155bda56-7e29-4c70-872a-d21fc5ff6397_2048x1168.png"
-    },
-    {
-      "title": "Game Theory Assumes You're a Sociopath. You're Not.",
-      "subtitle": "What happens when you give players a choice between shooting strangers and shooting fascist mechs? They pick the mechs. Every time.",
-      "url": "https://drinkyouroj.substack.com/p/game-theory-assumes-youre-a-sociopath",
-      "date": "2026-02-05T22:17:24+00:00",
-      "cover_image": "https://substackcdn.com/image/fetch/$s_!HiSo!,f_auto,q_auto:good,fl_progressive:steep/https://substack-post-media.s3.amazonaws.com/public/images/3b85998e-4afa-4170-9aac-d97d99e9bcd0_2048x1168.png"
     }
   ]
 }
