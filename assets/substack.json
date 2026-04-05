@@ -2,8 +2,15 @@
   "source": "https://api.rss2json.com/v1/api.json?rss_url=https%3A%2F%2Fdrinkyouroj.substack.com%2Ffeed",
   "feed_title": "The Civic Node",
   "feed_url": "https://drinkyouroj.substack.com/",
-  "updated_at": "2026-04-04T05:41:48.320005+00:00",
+  "updated_at": "2026-04-05T05:52:32.143375+00:00",
   "posts": [
+    {
+      "title": "The Form Spiral",
+      "subtitle": "Help Desk for the Singularity, Episode 04: Dex requests three days off. OWEN generates 340 forms. Only Leti knows the one form that can stop the cascade.",
+      "url": "https://drinkyouroj.substack.com/p/hdfts-the-form-spiral",
+      "date": "2026-04-04T20:04:43+00:00",
+      "cover_image": "https://substackcdn.com/image/fetch/$s_!umIb!,f_auto,q_auto:good,fl_progressive:steep/https://substack-post-media.s3.amazonaws.com/public/images/9dff5ba2-8b33-443b-910f-33b39cc474fd_2048x1168.png"
+    },
     {
       "title": "This April Fools Article Has 2 Lies and 9 Ugly Truths",
       "subtitle": "A listicle about \"AI features\" that were secretly just underpaid humans the whole time",
@@ -38,13 +45,6 @@
       "url": "https://drinkyouroj.substack.com/p/schneider-solved-the-salary-cap-while-everyone-else-complained",
       "date": "2026-02-08T14:49:28+00:00",
       "cover_image": "https://substackcdn.com/image/fetch/$s_!9d_k!,f_auto,q_auto:good,fl_progressive:steep/https://substack-post-media.s3.amazonaws.com/public/images/71227753-841d-4362-a7c9-76cb06706e99_2048x1168.png"
-    },
-    {
-      "title": "Bad Bunny Just Showed You Where Real Power Lives",
-      "subtitle": "Trump called it ridiculous, ICE will be at the game tomorrow, and the NFL isn't blinking — because the fortress walls turned around",
-      "url": "https://drinkyouroj.substack.com/p/bad-bunny-just-showed-you-where-real-power-lives",
-      "date": "2026-02-07T17:42:28+00:00",
-      "cover_image": "https://substackcdn.com/image/fetch/$s_!CuUw!,f_auto,q_auto:good,fl_progressive:steep/https://substack-post-media.s3.amazonaws.com/public/images/155bda56-7e29-4c70-872a-d21fc5ff6397_2048x1168.png"
     }
   ]
 }
