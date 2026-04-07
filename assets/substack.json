@@ -2,8 +2,15 @@
   "source": "https://api.rss2json.com/v1/api.json?rss_url=https%3A%2F%2Fdrinkyouroj.substack.com%2Ffeed",
   "feed_title": "The Civic Node",
   "feed_url": "https://drinkyouroj.substack.com/",
-  "updated_at": "2026-04-06T05:59:02.721402+00:00",
+  "updated_at": "2026-04-07T05:53:49.493125+00:00",
   "posts": [
+    {
+      "title": "Obsidian Was Never the Problem",
+      "subtitle": "Every PKM tool fails for the same reason: you’re the maintenance worker. Karpathy’s LLM wiki fixes that.",
+      "url": "https://drinkyouroj.substack.com/p/obsidian-was-never-the-problem",
+      "date": "2026-04-06T20:49:44+00:00",
+      "cover_image": "https://substackcdn.com/image/fetch/$s_!OYwP!,f_auto,q_auto:good,fl_progressive:steep/https://substack-post-media.s3.amazonaws.com/public/images/53591b55-5b9d-4cc0-a7a3-5a0ee07bf6fc_1344x768.png"
+    },
     {
       "title": "The Form Spiral",
       "subtitle": "Help Desk for the Singularity, Episode 04: Dex requests three days off. OWEN generates 340 forms. Only Leti knows the one form that can stop the cascade.",
@@ -38,13 +45,6 @@
       "url": "https://drinkyouroj.substack.com/p/help-desk-for-the-singularity-episode-01-ticket-zero",
       "date": "2026-03-23T12:21:27+00:00",
       "cover_image": "https://substackcdn.com/image/fetch/$s_!g2Uy!,f_auto,q_auto:good,fl_progressive:steep/https://substack-post-media.s3.amazonaws.com/public/images/658af087-3b3b-416f-92fe-f81f6ef3a948_2848x1600.png"
-    },
-    {
-      "title": "Schneider Solved the Salary Cap While Everyone Else Complained",
-      "subtitle": "The Seahawks play today with a roster that will get younger, cheaper, and better through 2029. That’s not luck — it’s engineering.",
-      "url": "https://drinkyouroj.substack.com/p/schneider-solved-the-salary-cap-while-everyone-else-complained",
-      "date": "2026-02-08T14:49:28+00:00",
-      "cover_image": "https://substackcdn.com/image/fetch/$s_!9d_k!,f_auto,q_auto:good,fl_progressive:steep/https://substack-post-media.s3.amazonaws.com/public/images/71227753-841d-4362-a7c9-76cb06706e99_2048x1168.png"
     }
   ]
 }
