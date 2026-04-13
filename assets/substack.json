@@ -2,8 +2,15 @@
   "source": "https://api.rss2json.com/v1/api.json?rss_url=https%3A%2F%2Fdrinkyouroj.substack.com%2Ffeed",
   "feed_title": "The Civic Node",
   "feed_url": "https://drinkyouroj.substack.com/",
-  "updated_at": "2026-04-12T05:58:14.200582+00:00",
+  "updated_at": "2026-04-13T06:05:03.697986+00:00",
   "posts": [
+    {
+      "title": "The $71 Billion Bluff",
+      "subtitle": "OpenAI's letter of intent was non-binding. The market panic it triggered wasn't. Inside the deal that broke DRAM pricing for three years.",
+      "url": "https://drinkyouroj.substack.com/p/the-71-billion-bluff",
+      "date": "2026-04-12T19:17:37+00:00",
+      "cover_image": "https://substackcdn.com/image/fetch/$s_!XCwm!,f_auto,q_auto:good,fl_progressive:steep/https://substack-post-media.s3.amazonaws.com/public/images/da31492e-6c81-48f3-ad5b-29f57fe49be5_2048x1168.png"
+    },
     {
       "title": "Green Means Go",
       "subtitle": "Help Desk for the Singularity, Episode 05",
@@ -38,13 +45,6 @@
       "url": "https://drinkyouroj.substack.com/p/hdfts-personality-persistence",
       "date": "2026-03-29T15:23:34+00:00",
       "cover_image": "https://substackcdn.com/image/fetch/$s_!yUxQ!,f_auto,q_auto:good,fl_progressive:steep/https://substack-post-media.s3.amazonaws.com/public/images/91fc5167-3d1c-474f-b85c-8694db46e3c1_1376x768.png"
-    },
-    {
-      "title": "Hydration Notice",
-      "subtitle": "Help Desk for the Singularity - Episode 02",
-      "url": "https://drinkyouroj.substack.com/p/hdfts-hydration-notice",
-      "date": "2026-03-26T23:06:38+00:00",
-      "cover_image": "https://substackcdn.com/image/fetch/$s_!1fGL!,f_auto,q_auto:good,fl_progressive:steep/https://substack-post-media.s3.amazonaws.com/public/images/3ecac87a-468c-41d5-bc83-ecfbc32fb214_2752x1536.png"
     }
   ]
 }
