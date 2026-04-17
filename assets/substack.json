@@ -2,8 +2,15 @@
   "source": "https://api.rss2json.com/v1/api.json?rss_url=https%3A%2F%2Fdrinkyouroj.substack.com%2Ffeed",
   "feed_title": "The Civic Node",
   "feed_url": "https://drinkyouroj.substack.com/",
-  "updated_at": "2026-04-16T05:59:45.246835+00:00",
+  "updated_at": "2026-04-17T06:00:12.391698+00:00",
   "posts": [
+    {
+      "title": "The Cypherpunk Who Filed an S-1",
+      "subtitle": "Adam Back is taking a Bitcoin company public. If he's Satoshi, the SEC's disclosure rules are about to answer the question seventeen years of speculation couldn't.",
+      "url": "https://drinkyouroj.substack.com/p/the-cypherpunk-who-filed-an-s-1",
+      "date": "2026-04-16T23:03:47+00:00",
+      "cover_image": "https://substackcdn.com/image/fetch/$s_!kVri!,f_auto,q_auto:good,fl_progressive:steep/https://substack-post-media.s3.amazonaws.com/public/images/15bd6046-aef7-4f1e-bc24-5f5fb794f60b_2048x1168.png"
+    },
     {
       "title": "The Bluff Is Over. The Price Isn't.",
       "subtitle": "Five independent forces are holding DDR5 at $400 — and not one of them is the demand that drove it there in the first place.",
@@ -38,13 +45,6 @@
       "url": "https://drinkyouroj.substack.com/p/hdfts-the-form-spiral",
       "date": "2026-04-04T20:04:43+00:00",
       "cover_image": "https://substackcdn.com/image/fetch/$s_!umIb!,f_auto,q_auto:good,fl_progressive:steep/https://substack-post-media.s3.amazonaws.com/public/images/9dff5ba2-8b33-443b-910f-33b39cc474fd_2048x1168.png"
-    },
-    {
-      "title": "This April Fools Article Has 2 Lies and 9 Ugly Truths",
-      "subtitle": "A listicle about \"AI features\" that were secretly just underpaid humans the whole time",
-      "url": "https://drinkyouroj.substack.com/p/this-april-fools-article-has-2-lies-and-9-ugly-truths",
-      "date": "2026-04-01T23:16:16+00:00",
-      "cover_image": "https://substackcdn.com/image/fetch/$s_!wIMQ!,f_auto,q_auto:good,fl_progressive:steep/https://substack-post-media.s3.amazonaws.com/public/images/0b424352-ce6c-4806-b521-f70edaf4ae03_1376x768.png"
     }
   ]
 }
