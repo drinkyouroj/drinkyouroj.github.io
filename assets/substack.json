@@ -2,8 +2,15 @@
   "source": "https://api.rss2json.com/v1/api.json?rss_url=https%3A%2F%2Fdrinkyouroj.substack.com%2Ffeed",
   "feed_title": "The Civic Node",
   "feed_url": "https://drinkyouroj.substack.com/",
-  "updated_at": "2026-04-18T05:50:39.858469+00:00",
+  "updated_at": "2026-04-19T05:58:59.873398+00:00",
   "posts": [
+    {
+      "title": "The Defendant Is in Miami. The Harm Came From Oxford.",
+      "subtitle": "Civil liability in Doe v. Bonnell will land on Destiny. The catfisher who dropped the videos is in the UK on a burner account. The system is working.",
+      "url": "https://drinkyouroj.substack.com/p/the-defendant-is-in-miami-the-harm",
+      "date": "2026-04-18T14:03:12+00:00",
+      "cover_image": "https://substackcdn.com/image/fetch/$s_!VPGS!,f_auto,q_auto:good,fl_progressive:steep/https://substack-post-media.s3.amazonaws.com/public/images/977e8afb-49b9-4b5d-a789-c57ed3783c05_2048x1168.png"
+    },
     {
       "title": "The Cypherpunk Who Filed an S-1",
       "subtitle": "Adam Back is taking a Bitcoin company public. If he's Satoshi, the SEC's disclosure rules are about to answer the question seventeen years of speculation couldn't.",
@@ -38,13 +45,6 @@
       "url": "https://drinkyouroj.substack.com/p/obsidian-was-never-the-problem",
       "date": "2026-04-06T20:49:44+00:00",
       "cover_image": "https://substackcdn.com/image/fetch/$s_!OYwP!,f_auto,q_auto:good,fl_progressive:steep/https://substack-post-media.s3.amazonaws.com/public/images/53591b55-5b9d-4cc0-a7a3-5a0ee07bf6fc_1344x768.png"
-    },
-    {
-      "title": "The Form Spiral",
-      "subtitle": "Help Desk for the Singularity, Episode 04: Dex requests three days off. OWEN generates 340 forms. Only Leti knows the one form that can stop the cascade.",
-      "url": "https://drinkyouroj.substack.com/p/hdfts-the-form-spiral",
-      "date": "2026-04-04T20:04:43+00:00",
-      "cover_image": "https://substackcdn.com/image/fetch/$s_!umIb!,f_auto,q_auto:good,fl_progressive:steep/https://substack-post-media.s3.amazonaws.com/public/images/9dff5ba2-8b33-443b-910f-33b39cc474fd_2048x1168.png"
     }
   ]
 }
