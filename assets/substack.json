@@ -2,8 +2,15 @@
   "source": "https://api.rss2json.com/v1/api.json?rss_url=https%3A%2F%2Fdrinkyouroj.substack.com%2Ffeed",
   "feed_title": "The Civic Node",
   "feed_url": "https://drinkyouroj.substack.com/",
-  "updated_at": "2026-04-21T05:59:49.481920+00:00",
+  "updated_at": "2026-04-22T05:59:20.958462+00:00",
   "posts": [
+    {
+      "title": "The Process Is the Punishment",
+      "subtitle": "Pxie filed fourteen months ago. The plaintiff now wants more time. In a civil case like this one, the trial is the least important thing that happens.",
+      "url": "https://drinkyouroj.substack.com/p/the-process-is-the-punishment",
+      "date": "2026-04-21T13:15:45+00:00",
+      "cover_image": "https://substackcdn.com/image/fetch/$s_!zLXV!,f_auto,q_auto:good,fl_progressive:steep/https://substack-post-media.s3.amazonaws.com/public/images/828307d7-db47-47c8-bff7-9dc90335cfbb_1376x768.png"
+    },
     {
       "title": "The Defendant Is in Miami. The Harm Came From Oxford.",
       "subtitle": "Civil liability in Doe v. Bonnell will land on Destiny. The catfisher who dropped the videos is in the UK on a burner account. The system is working.",
@@ -38,13 +45,6 @@
       "url": "https://drinkyouroj.substack.com/p/hdfts-green-means-go",
       "date": "2026-04-07T21:55:42+00:00",
       "cover_image": "https://substackcdn.com/image/fetch/$s_!vbRW!,f_auto,q_auto:good,fl_progressive:steep/https://substack-post-media.s3.amazonaws.com/public/images/4876da54-8c84-4648-be5c-0118e933887f_1376x768.png"
-    },
-    {
-      "title": "Obsidian Was Never the Problem. Karpathy's LLM Wiki Proves It.",
-      "subtitle": "Every PKM tool fails for the same reason: you became the maintenance worker. The LLM wiki finally fires you from that job.",
-      "url": "https://drinkyouroj.substack.com/p/obsidian-was-never-the-problem",
-      "date": "2026-04-06T20:49:44+00:00",
-      "cover_image": "https://substackcdn.com/image/fetch/$s_!OYwP!,f_auto,q_auto:good,fl_progressive:steep/https://substack-post-media.s3.amazonaws.com/public/images/53591b55-5b9d-4cc0-a7a3-5a0ee07bf6fc_1344x768.png"
     }
   ]
 }
