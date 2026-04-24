@@ -2,8 +2,15 @@
   "source": "https://api.rss2json.com/v1/api.json?rss_url=https%3A%2F%2Fdrinkyouroj.substack.com%2Ffeed",
   "feed_title": "The Civic Node",
   "feed_url": "https://drinkyouroj.substack.com/",
-  "updated_at": "2026-04-23T06:00:31.098824+00:00",
+  "updated_at": "2026-04-24T06:01:34.033896+00:00",
   "posts": [
+    {
+      "title": "Cheaper AI Won’t Use Less of Anything",
+      "subtitle": "A 160-year-old paradox explains why Google’s memory breakthrough crashed chip stocks — then made them rally a week later. It also determines whether your job survives.",
+      "url": "https://drinkyouroj.substack.com/p/cheaper-ai-wont-use-less-of-anything",
+      "date": "2026-04-23T21:17:53+00:00",
+      "cover_image": "https://substackcdn.com/image/fetch/$s_!g0mv!,f_auto,q_auto:good,fl_progressive:steep/https://substack-post-media.s3.amazonaws.com/public/images/c19fa071-087b-4d67-8838-25d52980c6ba_2048x1168.png"
+    },
     {
       "title": "The Process Is the Punishment",
       "subtitle": "Pxie filed fourteen months ago. The plaintiff now wants more time. In a civil case like this one, the trial is the least important thing that happens.",
@@ -38,13 +45,6 @@
       "url": "https://drinkyouroj.substack.com/p/the-71-billion-bluff",
       "date": "2026-04-12T19:17:37+00:00",
       "cover_image": "https://substackcdn.com/image/fetch/$s_!XCwm!,f_auto,q_auto:good,fl_progressive:steep/https://substack-post-media.s3.amazonaws.com/public/images/da31492e-6c81-48f3-ad5b-29f57fe49be5_2048x1168.png"
-    },
-    {
-      "title": "Green Means Go",
-      "subtitle": "Help Desk for the Singularity, Episode 05",
-      "url": "https://drinkyouroj.substack.com/p/hdfts-green-means-go",
-      "date": "2026-04-07T21:55:42+00:00",
-      "cover_image": "https://substackcdn.com/image/fetch/$s_!vbRW!,f_auto,q_auto:good,fl_progressive:steep/https://substack-post-media.s3.amazonaws.com/public/images/4876da54-8c84-4648-be5c-0118e933887f_1376x768.png"
     }
   ]
 }
