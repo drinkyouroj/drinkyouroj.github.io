@@ -2,8 +2,15 @@
   "source": "https://api.rss2json.com/v1/api.json?rss_url=https%3A%2F%2Fdrinkyouroj.substack.com%2Ffeed",
   "feed_title": "The Civic Node",
   "feed_url": "https://drinkyouroj.substack.com/",
-  "updated_at": "2026-04-26T06:00:50.113323+00:00",
+  "updated_at": "2026-04-27T06:14:06.685198+00:00",
   "posts": [
+    {
+      "title": "The System Is Functioning Correctly",
+      "subtitle": "Your insurance denial took 1.2 seconds. Epstein disclosure is a decade out. The Church cover-up outlasted two-thirds of its accused priests. Same machine.",
+      "url": "https://drinkyouroj.substack.com/p/the-system-is-functioning-correctly",
+      "date": "2026-04-26T15:23:48+00:00",
+      "cover_image": "https://substackcdn.com/image/fetch/$s_!FU97!,f_auto,q_auto:good,fl_progressive:steep/https://substack-post-media.s3.amazonaws.com/public/images/5de6eae6-7fdc-4b5e-9d9b-07712ae74c9f_2048x1168.png"
+    },
     {
       "title": "Cheaper AI Won’t Use Less of Anything",
       "subtitle": "A 160-year-old paradox explains why Google’s memory breakthrough crashed chip stocks — then made them rally a week later. It also determines whether your job survives.",
@@ -38,13 +45,6 @@
       "url": "https://drinkyouroj.substack.com/p/the-bluff-is-over-the-price-isnt",
       "date": "2026-04-13T21:25:41+00:00",
       "cover_image": "https://substackcdn.com/image/fetch/$s_!ociE!,f_auto,q_auto:good,fl_progressive:steep/https://substack-post-media.s3.amazonaws.com/public/images/214b7027-a6da-4496-a0b4-bb1f73417a76_2752x1536.png"
-    },
-    {
-      "title": "The $71 Billion Bluff",
-      "subtitle": "OpenAI's letter of intent was non-binding. The market panic it triggered wasn't. Inside the deal that broke DRAM pricing for three years.",
-      "url": "https://drinkyouroj.substack.com/p/the-71-billion-bluff",
-      "date": "2026-04-12T19:17:37+00:00",
-      "cover_image": "https://substackcdn.com/image/fetch/$s_!XCwm!,f_auto,q_auto:good,fl_progressive:steep/https://substack-post-media.s3.amazonaws.com/public/images/da31492e-6c81-48f3-ad5b-29f57fe49be5_2048x1168.png"
     }
   ]
 }
