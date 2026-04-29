@@ -2,8 +2,15 @@
   "source": "https://api.rss2json.com/v1/api.json?rss_url=https%3A%2F%2Fdrinkyouroj.substack.com%2Ffeed",
   "feed_title": "The Civic Node",
   "feed_url": "https://drinkyouroj.substack.com/",
-  "updated_at": "2026-04-28T06:16:25.207650+00:00",
+  "updated_at": "2026-04-29T06:12:42.298648+00:00",
   "posts": [
+    {
+      "title": "Independent Inside of Government",
+      "subtitle": "Kevin Warsh didn't reject Fed independence at his hearing. He redefined the word — and the Senate vote lands the same morning as the FOMC.",
+      "url": "https://drinkyouroj.substack.com/p/independent-inside-of-government",
+      "date": "2026-04-28T12:17:51+00:00",
+      "cover_image": "https://substackcdn.com/image/fetch/$s_!8j_C!,f_auto,q_auto:good,fl_progressive:steep/https://substack-post-media.s3.amazonaws.com/public/images/ec503790-4097-45e8-a75f-0f5177c950ae_2048x1168.png"
+    },
     {
       "title": "The System Is Functioning Correctly",
       "subtitle": "Your insurance denial took 1.2 seconds. Epstein disclosure is a decade out. The Church cover-up outlasted two-thirds of its accused priests. Same machine.",
@@ -38,13 +45,6 @@
       "url": "https://drinkyouroj.substack.com/p/the-cypherpunk-who-filed-an-s-1",
       "date": "2026-04-16T23:03:47+00:00",
       "cover_image": "https://substackcdn.com/image/fetch/$s_!kVri!,f_auto,q_auto:good,fl_progressive:steep/https://substack-post-media.s3.amazonaws.com/public/images/15bd6046-aef7-4f1e-bc24-5f5fb794f60b_2048x1168.png"
-    },
-    {
-      "title": "The Bluff Is Over. The Price Isn't.",
-      "subtitle": "Five independent forces are holding DDR5 at $400 — and not one of them is the demand that drove it there in the first place.",
-      "url": "https://drinkyouroj.substack.com/p/the-bluff-is-over-the-price-isnt",
-      "date": "2026-04-13T21:25:41+00:00",
-      "cover_image": "https://substackcdn.com/image/fetch/$s_!ociE!,f_auto,q_auto:good,fl_progressive:steep/https://substack-post-media.s3.amazonaws.com/public/images/214b7027-a6da-4496-a0b4-bb1f73417a76_2752x1536.png"
     }
   ]
 }
