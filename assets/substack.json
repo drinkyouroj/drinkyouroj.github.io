@@ -2,8 +2,15 @@
   "source": "https://api.rss2json.com/v1/api.json?rss_url=https%3A%2F%2Fdrinkyouroj.substack.com%2Ffeed",
   "feed_title": "The Civic Node",
   "feed_url": "https://drinkyouroj.substack.com/",
-  "updated_at": "2026-04-30T06:14:54.755591+00:00",
+  "updated_at": "2026-05-01T06:21:46.632316+00:00",
   "posts": [
+    {
+      "title": "Atlanta Passed a Sanctuary Resolution. The Vendor Contract Didn't.",
+      "subtitle": "APD's own open-records audit documents 15 immigration-tagged searches in 2025. The city passed two new anti-ICE resolutions last week. Neither one mentions Flock.",
+      "url": "https://drinkyouroj.substack.com/p/atlanta-passed-a-sanctuary-resolution",
+      "date": "2026-04-30T13:03:46+00:00",
+      "cover_image": "https://substackcdn.com/image/fetch/$s_!iwR3!,f_auto,q_auto:good,fl_progressive:steep/https://substack-post-media.s3.amazonaws.com/public/images/f4274a37-b287-4591-a702-ad092ef8b349_2688x1520.png"
+    },
     {
       "title": "Independent Inside of Government",
       "subtitle": "Kevin Warsh didn't reject Fed independence at his hearing. He redefined the word — and the Senate vote lands the same morning as the FOMC.",
@@ -38,13 +45,6 @@
       "url": "https://drinkyouroj.substack.com/p/the-defendant-is-in-miami-the-harm",
       "date": "2026-04-18T14:03:12+00:00",
       "cover_image": "https://substackcdn.com/image/fetch/$s_!VPGS!,f_auto,q_auto:good,fl_progressive:steep/https://substack-post-media.s3.amazonaws.com/public/images/977e8afb-49b9-4b5d-a789-c57ed3783c05_2048x1168.png"
-    },
-    {
-      "title": "The Cypherpunk Who Filed an S-1",
-      "subtitle": "Adam Back is taking a Bitcoin company public. If he's Satoshi, the SEC's disclosure rules are about to answer the question seventeen years of speculation couldn't.",
-      "url": "https://drinkyouroj.substack.com/p/the-cypherpunk-who-filed-an-s-1",
-      "date": "2026-04-16T23:03:47+00:00",
-      "cover_image": "https://substackcdn.com/image/fetch/$s_!kVri!,f_auto,q_auto:good,fl_progressive:steep/https://substack-post-media.s3.amazonaws.com/public/images/15bd6046-aef7-4f1e-bc24-5f5fb794f60b_2048x1168.png"
     }
   ]
 }
