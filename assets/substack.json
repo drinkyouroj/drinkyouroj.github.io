@@ -2,8 +2,15 @@
   "source": "https://api.rss2json.com/v1/api.json?rss_url=https%3A%2F%2Fdrinkyouroj.substack.com%2Ffeed",
   "feed_title": "The Civic Node",
   "feed_url": "https://drinkyouroj.substack.com/",
-  "updated_at": "2026-05-02T06:00:47.879620+00:00",
+  "updated_at": "2026-05-03T06:14:42.611632+00:00",
   "posts": [
+    {
+      "title": "3,000 Arrests, 335 Names, One Court Order",
+      "subtitle": "DHS claims 3,000+ Metro Surge arrests. Its own registry names 11% of them. No public record of the agents. A federal judge changed that on May 1.",
+      "url": "https://drinkyouroj.substack.com/p/3000-arrests-335-names-one-court-order",
+      "date": "2026-05-03T01:28:47+00:00",
+      "cover_image": "https://substackcdn.com/image/fetch/$s_!Fm8_!,f_auto,q_auto:good,fl_progressive:steep/https://substack-post-media.s3.amazonaws.com/public/images/6ec9812e-c6d6-4198-a4fc-3b2c55b8207a_1344x752.png"
+    },
     {
       "title": "Atlanta Passed a Sanctuary Resolution. The Vendor Contract Didn't.",
       "subtitle": "APD's own open-records audit documents 15 immigration-tagged searches in 2025. The city passed two new anti-ICE resolutions last week. Neither one mentions Flock.",
@@ -38,13 +45,6 @@
       "url": "https://drinkyouroj.substack.com/p/the-process-is-the-punishment",
       "date": "2026-04-21T13:15:45+00:00",
       "cover_image": "https://substackcdn.com/image/fetch/$s_!zLXV!,f_auto,q_auto:good,fl_progressive:steep/https://substack-post-media.s3.amazonaws.com/public/images/828307d7-db47-47c8-bff7-9dc90335cfbb_1376x768.png"
-    },
-    {
-      "title": "The Defendant Is in Miami. The Harm Came From Oxford.",
-      "subtitle": "Civil liability in Doe v. Bonnell will land on Destiny. The catfisher who dropped the videos is in the UK on a burner account. The system is working.",
-      "url": "https://drinkyouroj.substack.com/p/the-defendant-is-in-miami-the-harm",
-      "date": "2026-04-18T14:03:12+00:00",
-      "cover_image": "https://substackcdn.com/image/fetch/$s_!VPGS!,f_auto,q_auto:good,fl_progressive:steep/https://substack-post-media.s3.amazonaws.com/public/images/977e8afb-49b9-4b5d-a789-c57ed3783c05_2048x1168.png"
     }
   ]
 }
