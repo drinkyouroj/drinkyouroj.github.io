@@ -2,8 +2,15 @@
   "source": "https://api.rss2json.com/v1/api.json?rss_url=https%3A%2F%2Fdrinkyouroj.substack.com%2Ffeed",
   "feed_title": "The Civic Node",
   "feed_url": "https://drinkyouroj.substack.com/",
-  "updated_at": "2026-05-06T06:15:31.024552+00:00",
+  "updated_at": "2026-05-07T06:19:09.772911+00:00",
   "posts": [
+    {
+      "title": "Minnesota Isn't Here for the Injunction",
+      "subtitle": "My original read on the Menendez denial missed where the real action is. The case lives in evidence-gathering — a different game with a longer timeline.",
+      "url": "https://drinkyouroj.substack.com/p/minnesota-isnt-here-for-the-injunction",
+      "date": "2026-05-07T00:49:13+00:00",
+      "cover_image": "https://substackcdn.com/image/fetch/$s_!SwoD!,f_auto,q_auto:good,fl_progressive:steep/https://substack-post-media.s3.amazonaws.com/public/images/c41158cf-13f5-4ea9-ade9-ab4778f93eb3_1344x752.png"
+    },
     {
       "title": "3,000 Arrests, 335 Names, One Court Order",
       "subtitle": "DHS claims 3,000+ Metro Surge arrests. Its own registry names 11% of them. No public record of the agents. A federal judge changed that on May 1.",
@@ -38,13 +45,6 @@
       "url": "https://drinkyouroj.substack.com/p/cheaper-ai-wont-use-less-of-anything",
       "date": "2026-04-23T21:17:53+00:00",
       "cover_image": "https://substackcdn.com/image/fetch/$s_!g0mv!,f_auto,q_auto:good,fl_progressive:steep/https://substack-post-media.s3.amazonaws.com/public/images/c19fa071-087b-4d67-8838-25d52980c6ba_2048x1168.png"
-    },
-    {
-      "title": "The Process Is the Punishment",
-      "subtitle": "Pxie filed fourteen months ago. The plaintiff now wants more time. In a civil case like this one, the trial is the least important thing that happens.",
-      "url": "https://drinkyouroj.substack.com/p/the-process-is-the-punishment",
-      "date": "2026-04-21T13:15:45+00:00",
-      "cover_image": "https://substackcdn.com/image/fetch/$s_!zLXV!,f_auto,q_auto:good,fl_progressive:steep/https://substack-post-media.s3.amazonaws.com/public/images/828307d7-db47-47c8-bff7-9dc90335cfbb_1376x768.png"
     }
   ]
 }
