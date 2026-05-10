@@ -2,8 +2,15 @@
   "source": "https://api.rss2json.com/v1/api.json?rss_url=https%3A%2F%2Fdrinkyouroj.substack.com%2Ffeed",
   "feed_title": "The Civic Node",
   "feed_url": "https://drinkyouroj.substack.com/",
-  "updated_at": "2026-05-09T06:05:30.613487+00:00",
+  "updated_at": "2026-05-10T06:19:47.310085+00:00",
   "posts": [
+    {
+      "title": "3,000 Arrests. 335 Names. Zero Agents Identified.",
+      "subtitle": "The Civic Node Dispatch #001",
+      "url": "https://drinkyouroj.substack.com/p/3000-arrests-335-names-zero-agents-identified",
+      "date": "2026-05-09T23:57:43+00:00",
+      "cover_image": "https://api.substack.com/feed/podcast/196932467/3b10c78626465817595a4648fe8f5d41.mp3"
+    },
     {
       "title": "The Strait Is the Mandate",
       "subtitle": "A 21-mile waterway in the Persian Gulf holds the lever the Fed doesn't. American gasoline rose 37% in five weeks. The FOMC is downstream.",
@@ -38,13 +45,6 @@
       "url": "https://drinkyouroj.substack.com/p/independent-inside-of-government",
       "date": "2026-04-28T12:17:51+00:00",
       "cover_image": "https://substackcdn.com/image/fetch/$s_!8j_C!,f_auto,q_auto:good,fl_progressive:steep/https://substack-post-media.s3.amazonaws.com/public/images/ec503790-4097-45e8-a75f-0f5177c950ae_2048x1168.png"
-    },
-    {
-      "title": "The System Is Functioning Correctly",
-      "subtitle": "Your insurance denial took 1.2 seconds. Epstein disclosure is a decade out. The Church cover-up outlasted two-thirds of its accused priests. Same machine.",
-      "url": "https://drinkyouroj.substack.com/p/the-system-is-functioning-correctly",
-      "date": "2026-04-26T15:23:48+00:00",
-      "cover_image": "https://substackcdn.com/image/fetch/$s_!FU97!,f_auto,q_auto:good,fl_progressive:steep/https://substack-post-media.s3.amazonaws.com/public/images/5de6eae6-7fdc-4b5e-9d9b-07712ae74c9f_2048x1168.png"
     }
   ]
 }
