@@ -2,8 +2,15 @@
   "source": "https://api.rss2json.com/v1/api.json?rss_url=https%3A%2F%2Fdrinkyouroj.substack.com%2Ffeed",
   "feed_title": "The Civic Node",
   "feed_url": "https://drinkyouroj.substack.com/",
-  "updated_at": "2026-05-12T06:21:09.456084+00:00",
+  "updated_at": "2026-05-13T06:28:22.193883+00:00",
   "posts": [
+    {
+      "title": "The Fed Holds the Mandate. Iran Holds the Lever.",
+      "subtitle": "The Civic Node Dispatch #002",
+      "url": "https://drinkyouroj.substack.com/p/the-fed-holds-the-mandate-iran-holds-the-lever",
+      "date": "2026-05-13T04:33:19+00:00",
+      "cover_image": "https://api.substack.com/feed/podcast/197388306/653688f69da0ef781aae4190d70de9a7.mp3"
+    },
     {
       "title": "3,000 Arrests. 335 Names. Zero Agents Identified.",
       "subtitle": "The Civic Node Dispatch #001",
@@ -38,13 +45,6 @@
       "url": "https://drinkyouroj.substack.com/p/atlanta-passed-a-sanctuary-resolution",
       "date": "2026-04-30T13:03:46+00:00",
       "cover_image": "https://substackcdn.com/image/fetch/$s_!iwR3!,f_auto,q_auto:good,fl_progressive:steep/https://substack-post-media.s3.amazonaws.com/public/images/f4274a37-b287-4591-a702-ad092ef8b349_2688x1520.png"
-    },
-    {
-      "title": "Independent Inside of Government",
-      "subtitle": "Kevin Warsh didn't reject Fed independence at his hearing. He redefined the word — and the Senate vote lands the same morning as the FOMC.",
-      "url": "https://drinkyouroj.substack.com/p/independent-inside-of-government",
-      "date": "2026-04-28T12:17:51+00:00",
-      "cover_image": "https://substackcdn.com/image/fetch/$s_!8j_C!,f_auto,q_auto:good,fl_progressive:steep/https://substack-post-media.s3.amazonaws.com/public/images/ec503790-4097-45e8-a75f-0f5177c950ae_2048x1168.png"
     }
   ]
 }
