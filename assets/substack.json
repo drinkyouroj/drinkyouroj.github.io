@@ -2,8 +2,15 @@
   "source": "https://api.rss2json.com/v1/api.json?rss_url=https%3A%2F%2Fdrinkyouroj.substack.com%2Ffeed",
   "feed_title": "The Civic Node",
   "feed_url": "https://drinkyouroj.substack.com/",
-  "updated_at": "2026-05-15T06:30:16.902682+00:00",
+  "updated_at": "2026-05-16T06:11:33.716770+00:00",
   "posts": [
+    {
+      "title": "12 Gigawatts Were Announced. 4 Are Being Built.",
+      "subtitle": "Not chips. Transformers, batteries, circuit breakers — under 10% of the cost, 100% of the gating. The AI capex story is being told from the wrong layer.",
+      "url": "https://drinkyouroj.substack.com/p/12-gigawatts-were-announced-4-are-being-built",
+      "date": "2026-05-15T20:04:36+00:00",
+      "cover_image": "https://substackcdn.com/image/fetch/$s_!V4cg!,f_auto,q_auto:good,fl_progressive:steep/https://substack-post-media.s3.amazonaws.com/public/images/2b3cd700-d32c-42d4-9955-4b431b0b160b_1024x768.png"
+    },
     {
       "title": "I Had the Wrong Protagonist",
       "subtitle": "One Fed piece in two acts, both organized around the chair. The next piece is about what the chair can't reach.",
@@ -38,13 +45,6 @@
       "url": "https://drinkyouroj.substack.com/p/minnesota-isnt-here-for-the-injunction",
       "date": "2026-05-07T00:49:13+00:00",
       "cover_image": "https://substackcdn.com/image/fetch/$s_!SwoD!,f_auto,q_auto:good,fl_progressive:steep/https://substack-post-media.s3.amazonaws.com/public/images/c41158cf-13f5-4ea9-ade9-ab4778f93eb3_1344x752.png"
-    },
-    {
-      "title": "3,000 Arrests, 335 Names, One Court Order",
-      "subtitle": "DHS claims 3,000+ Metro Surge arrests. Its own registry names 11% of them. No public record of the agents. A federal judge changed that on May 1.",
-      "url": "https://drinkyouroj.substack.com/p/3000-arrests-335-names-one-court-order",
-      "date": "2026-05-03T01:28:47+00:00",
-      "cover_image": "https://substackcdn.com/image/fetch/$s_!Fm8_!,f_auto,q_auto:good,fl_progressive:steep/https://substack-post-media.s3.amazonaws.com/public/images/6ec9812e-c6d6-4198-a4fc-3b2c55b8207a_1344x752.png"
     }
   ]
 }
