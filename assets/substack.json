@@ -2,8 +2,15 @@
   "source": "https://api.rss2json.com/v1/api.json?rss_url=https%3A%2F%2Fdrinkyouroj.substack.com%2Ffeed",
   "feed_title": "The Civic Node",
   "feed_url": "https://drinkyouroj.substack.com/",
-  "updated_at": "2026-05-17T06:27:24.828578+00:00",
+  "updated_at": "2026-05-18T06:38:55.981240+00:00",
   "posts": [
+    {
+      "title": "Microsoft Didn't Buy Stargate for the Compute.",
+      "subtitle": "12 gigawatts were announced. 4 are being built. The bottleneck isn't compute — it's the 55-month queue for a grid connection.",
+      "url": "https://drinkyouroj.substack.com/p/microsoft-didnt-buy-stargate-for-the-compute",
+      "date": "2026-05-17T16:17:32+00:00",
+      "cover_image": "https://api.substack.com/feed/podcast/198136631/1b6d23ad93e0661d2139f4a4ada33eb6.mp3"
+    },
     {
       "title": "12 Gigawatts Were Announced. 4 Are Being Built.",
       "subtitle": "Not chips. Transformers, batteries, circuit breakers — under 10% of the cost, 100% of the gating. The AI capex story is being told from the wrong layer.",
@@ -38,13 +45,6 @@
       "url": "https://drinkyouroj.substack.com/p/the-strait-is-the-mandate",
       "date": "2026-05-09T01:35:56+00:00",
       "cover_image": "https://substackcdn.com/image/fetch/$s_!apa3!,f_auto,q_auto:good,fl_progressive:steep/https://substack-post-media.s3.amazonaws.com/public/images/acdf983e-1258-415d-8add-10a2a69d1efb_2688x1520.png"
-    },
-    {
-      "title": "Minnesota Isn't Here for the Injunction",
-      "subtitle": "My original read on the Menendez denial missed where the real action is. The case lives in evidence-gathering — a different game with a longer timeline.",
-      "url": "https://drinkyouroj.substack.com/p/minnesota-isnt-here-for-the-injunction",
-      "date": "2026-05-07T00:49:13+00:00",
-      "cover_image": "https://substackcdn.com/image/fetch/$s_!SwoD!,f_auto,q_auto:good,fl_progressive:steep/https://substack-post-media.s3.amazonaws.com/public/images/c41158cf-13f5-4ea9-ade9-ab4778f93eb3_1344x752.png"
     }
   ]
 }
