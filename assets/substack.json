@@ -2,8 +2,15 @@
   "source": "https://api.rss2json.com/v1/api.json?rss_url=https%3A%2F%2Fdrinkyouroj.substack.com%2Ffeed",
   "feed_title": "The Civic Node",
   "feed_url": "https://drinkyouroj.substack.com/",
-  "updated_at": "2026-05-22T06:34:50.981584+00:00",
+  "updated_at": "2026-05-23T06:19:40.885329+00:00",
   "posts": [
+    {
+      "title": "You Own the Hotspot. Nova Labs Owns What It Earns.",
+      "subtitle": "A vote sold as a 1-year sunset gave Nova Labs pricing authority over 385,000 hotspots. Its text auto-extends if nobody overrides. Nobody overrode it.",
+      "url": "https://drinkyouroj.substack.com/p/you-own-the-hotspot-nova-labs-owns-what-it-earns",
+      "date": "2026-05-22T22:30:57+00:00",
+      "cover_image": "https://api.substack.com/feed/podcast/198462693/d1a18793f1310ede34146799d6bb6789.mp3"
+    },
     {
       "title": "I Had the Wrong Bottom of the Stack",
       "subtitle": "The five-forces piece named the right cast in the wrong order. Grid capacity is the floor that sits underneath all five.",
@@ -38,13 +45,6 @@
       "url": "https://drinkyouroj.substack.com/p/the-fed-holds-the-mandate-iran-holds-the-lever",
       "date": "2026-05-13T04:33:19+00:00",
       "cover_image": "https://api.substack.com/feed/podcast/197388306/653688f69da0ef781aae4190d70de9a7.mp3"
-    },
-    {
-      "title": "3,000 Arrests. 335 Names. Zero Agents Identified.",
-      "subtitle": "The Civic Node Dispatch #001",
-      "url": "https://drinkyouroj.substack.com/p/3000-arrests-335-names-zero-agents-identified",
-      "date": "2026-05-09T23:57:43+00:00",
-      "cover_image": "https://api.substack.com/feed/podcast/196932467/3b10c78626465817595a4648fe8f5d41.mp3"
     }
   ]
 }
