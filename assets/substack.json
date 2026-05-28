@@ -2,8 +2,15 @@
   "source": "https://api.rss2json.com/v1/api.json?rss_url=https%3A%2F%2Fdrinkyouroj.substack.com%2Ffeed",
   "feed_title": "The Civic Node",
   "feed_url": "https://drinkyouroj.substack.com/",
-  "updated_at": "2026-05-27T06:44:17.465567+00:00",
+  "updated_at": "2026-05-28T06:38:20.879176+00:00",
   "posts": [
+    {
+      "title": "I Had the Wrong Number",
+      "subtitle": "The pass rate told me the proposal was uncontested. The proxy breakdown told me what the proposal was for.",
+      "url": "https://drinkyouroj.substack.com/p/i-had-the-wrong-number",
+      "date": "2026-05-27T16:05:10+00:00",
+      "cover_image": "https://substackcdn.com/image/fetch/$s_!1G7p!,f_auto,q_auto:good,fl_progressive:steep/https://substack-post-media.s3.amazonaws.com/public/images/4425b14b-fdc4-475c-a1fd-88d244a468ba_2688x1520.png"
+    },
     {
       "title": "You Own the Hotspot. Nova Labs Owns What It Earns.",
       "subtitle": "A vote sold as a 1-year sunset gave Nova Labs pricing authority over 385,000 hotspots. Its text auto-extends if nobody overrides. Nobody overrode it.",
@@ -38,13 +45,6 @@
       "url": "https://drinkyouroj.substack.com/p/i-had-the-wrong-protagonist",
       "date": "2026-05-14T00:29:07+00:00",
       "cover_image": "https://substackcdn.com/image/fetch/$s_!Ik1J!,f_auto,q_auto:good,fl_progressive:steep/https://substack-post-media.s3.amazonaws.com/public/images/81ed8c21-5ebf-4a12-b658-be167e622984_1344x752.png"
-    },
-    {
-      "title": "The Fed Holds the Mandate. Iran Holds the Lever.",
-      "subtitle": "The Civic Node Dispatch #002",
-      "url": "https://drinkyouroj.substack.com/p/the-fed-holds-the-mandate-iran-holds-the-lever",
-      "date": "2026-05-13T04:33:19+00:00",
-      "cover_image": "https://api.substack.com/feed/podcast/197388306/653688f69da0ef781aae4190d70de9a7.mp3"
     }
   ]
 }
