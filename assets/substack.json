@@ -2,8 +2,15 @@
   "source": "https://api.rss2json.com/v1/api.json?rss_url=https%3A%2F%2Fdrinkyouroj.substack.com%2Ffeed",
   "feed_title": "The Civic Node",
   "feed_url": "https://drinkyouroj.substack.com/",
-  "updated_at": "2026-05-29T06:40:00.018366+00:00",
+  "updated_at": "2026-05-30T06:27:41.767620+00:00",
   "posts": [
+    {
+      "title": "The Bill of Rights Ends at the Contractor's Door",
+      "subtitle": "Surveillance, speech, biometrics, health data — four domains where the government's constitutional limits come with a vendor workaround.",
+      "url": "https://drinkyouroj.substack.com/p/the-bill-of-rights-ends-at-the-contractors-door",
+      "date": "2026-05-29T22:05:01+00:00",
+      "cover_image": "https://api.substack.com/feed/podcast/199555666/474e39054ee61b128da4c0fe94e503af.mp3"
+    },
     {
       "title": "I Had the Wrong Number",
       "subtitle": "The pass rate told me the proposal was uncontested. The proxy breakdown told me what the proposal was for.",
@@ -38,13 +45,6 @@
       "url": "https://drinkyouroj.substack.com/p/12-gigawatts-were-announced-4-are-being-built",
       "date": "2026-05-15T20:04:36+00:00",
       "cover_image": "https://substackcdn.com/image/fetch/$s_!V4cg!,f_auto,q_auto:good,fl_progressive:steep/https://substack-post-media.s3.amazonaws.com/public/images/2b3cd700-d32c-42d4-9955-4b431b0b160b_1024x768.png"
-    },
-    {
-      "title": "I Had the Wrong Protagonist",
-      "subtitle": "One Fed piece in two acts, both organized around the chair. The next piece is about what the chair can't reach.",
-      "url": "https://drinkyouroj.substack.com/p/i-had-the-wrong-protagonist",
-      "date": "2026-05-14T00:29:07+00:00",
-      "cover_image": "https://substackcdn.com/image/fetch/$s_!Ik1J!,f_auto,q_auto:good,fl_progressive:steep/https://substack-post-media.s3.amazonaws.com/public/images/81ed8c21-5ebf-4a12-b658-be167e622984_1344x752.png"
     }
   ]
 }
