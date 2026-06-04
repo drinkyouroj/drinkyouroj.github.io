@@ -2,8 +2,15 @@
   "source": "https://api.rss2json.com/v1/api.json?rss_url=https%3A%2F%2Fdrinkyouroj.substack.com%2Ffeed",
   "feed_title": "The Civic Node",
   "feed_url": "https://drinkyouroj.substack.com/",
-  "updated_at": "2026-06-03T06:58:16.602260+00:00",
+  "updated_at": "2026-06-04T06:53:27.714142+00:00",
   "posts": [
+    {
+      "title": "I Almost Wrote ‘No Ruling’",
+      "subtitle": "I had a clean sentence saying the courts hadn’t ruled on age verification. They had ruled, a year earlier; they sided with the workaround the piece is about.",
+      "url": "https://drinkyouroj.substack.com/p/i-almost-wrote-no-ruling",
+      "date": "2026-06-03T13:05:16+00:00",
+      "cover_image": "https://substackcdn.com/image/fetch/$s_!-YFk!,f_auto,q_auto:good,fl_progressive:steep/https://substack-post-media.s3.amazonaws.com/public/images/72f47b50-3c9e-4ef7-af54-196530f47e2c_2688x1520.png"
+    },
     {
       "title": "The Bill of Rights Ends at the Contractor's Door",
       "subtitle": "Surveillance, speech, biometrics, health data — four domains where the government's constitutional limits come with a vendor workaround.",
@@ -38,13 +45,6 @@
       "url": "https://drinkyouroj.substack.com/p/microsoft-didnt-buy-stargate-for-the-compute",
       "date": "2026-05-17T16:17:32+00:00",
       "cover_image": "https://api.substack.com/feed/podcast/198136631/1b6d23ad93e0661d2139f4a4ada33eb6.mp3"
-    },
-    {
-      "title": "12 Gigawatts Were Announced. 4 Are Being Built.",
-      "subtitle": "Not chips. Transformers, batteries, circuit breakers — under 10% of the cost, 100% of the gating. The AI capex story is being told from the wrong layer.",
-      "url": "https://drinkyouroj.substack.com/p/12-gigawatts-were-announced-4-are-being-built",
-      "date": "2026-05-15T20:04:36+00:00",
-      "cover_image": "https://substackcdn.com/image/fetch/$s_!V4cg!,f_auto,q_auto:good,fl_progressive:steep/https://substack-post-media.s3.amazonaws.com/public/images/2b3cd700-d32c-42d4-9955-4b431b0b160b_1024x768.png"
     }
   ]
 }
