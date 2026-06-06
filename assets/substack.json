@@ -2,8 +2,15 @@
   "source": "https://api.rss2json.com/v1/api.json?rss_url=https%3A%2F%2Fdrinkyouroj.substack.com%2Ffeed",
   "feed_title": "The Civic Node",
   "feed_url": "https://drinkyouroj.substack.com/",
-  "updated_at": "2026-06-05T06:46:00.922006+00:00",
+  "updated_at": "2026-06-06T06:29:14.651896+00:00",
   "posts": [
+    {
+      "title": "Samsung's $400,000 Bonus, and the $4,000 One",
+      "subtitle": "Watch now | Inside one company, the AI windfall split 100 to 1. Outside it, the same boom lands on a power bill nobody voted on.",
+      "url": "https://drinkyouroj.substack.com/p/samsungs-400000-bonus-and-the-4000-one",
+      "date": "2026-06-05T21:58:53+00:00",
+      "cover_image": "https://api.substack.com/feed/podcast/200572964/2b729f3af6aeb365e7184c973a5d3dbb.mp3"
+    },
     {
       "title": "I Almost Wrote ‘No Ruling’",
       "subtitle": "I had a clean sentence saying the courts hadn’t ruled on age verification. They had ruled, a year earlier; they sided with the workaround the piece is about.",
@@ -38,13 +45,6 @@
       "url": "https://drinkyouroj.substack.com/p/i-had-the-wrong-bottom-of-the-stack",
       "date": "2026-05-20T12:04:51+00:00",
       "cover_image": "https://substackcdn.com/image/fetch/$s_!h3fr!,f_auto,q_auto:good,fl_progressive:steep/https://substack-post-media.s3.amazonaws.com/public/images/53698f22-bf84-4404-8f80-c999504fc8cb_1673x940.png"
-    },
-    {
-      "title": "Microsoft Didn't Buy Stargate for the Compute.",
-      "subtitle": "12 gigawatts were announced. 4 are being built. The bottleneck isn't compute — it's the 55-month queue for a grid connection.",
-      "url": "https://drinkyouroj.substack.com/p/microsoft-didnt-buy-stargate-for-the-compute",
-      "date": "2026-05-17T16:17:32+00:00",
-      "cover_image": "https://api.substack.com/feed/podcast/198136631/1b6d23ad93e0661d2139f4a4ada33eb6.mp3"
     }
   ]
 }
