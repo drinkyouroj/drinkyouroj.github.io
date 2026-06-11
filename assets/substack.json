@@ -2,8 +2,15 @@
   "source": "https://api.rss2json.com/v1/api.json?rss_url=https%3A%2F%2Fdrinkyouroj.substack.com%2Ffeed",
   "feed_title": "The Civic Node",
   "feed_url": "https://drinkyouroj.substack.com/",
-  "updated_at": "2026-06-10T06:46:12.615296+00:00",
+  "updated_at": "2026-06-11T06:57:37.765725+00:00",
   "posts": [
+    {
+      "title": "I Had the Wrong Thread",
+      "subtitle": "My first draft joined the bonus and the power bill with the same money. Following the dollars killed the line and left the truer thread: leverage.",
+      "url": "https://drinkyouroj.substack.com/p/i-had-the-wrong-thread",
+      "date": "2026-06-10T13:10:00+00:00",
+      "cover_image": "https://substackcdn.com/image/fetch/$s_!h-Wy!,f_auto,q_auto:good,fl_progressive:steep/https://substack-post-media.s3.amazonaws.com/public/images/f62a6d8e-599b-4cb7-a915-54b2884c2d14_1344x752.png"
+    },
     {
       "title": "Samsung's $400,000 Bonus, and the $4,000 One",
       "subtitle": "Watch now | Inside one company, the AI windfall split 100 to 1. Outside it, the same boom lands on a power bill nobody voted on.",
@@ -38,13 +45,6 @@
       "url": "https://drinkyouroj.substack.com/p/you-own-the-hotspot-nova-labs-owns-what-it-earns",
       "date": "2026-05-22T22:30:57+00:00",
       "cover_image": "https://api.substack.com/feed/podcast/198462693/d1a18793f1310ede34146799d6bb6789.mp3"
-    },
-    {
-      "title": "I Had the Wrong Bottom of the Stack",
-      "subtitle": "The five-forces piece named the right cast in the wrong order. Grid capacity is the floor that sits underneath all five.",
-      "url": "https://drinkyouroj.substack.com/p/i-had-the-wrong-bottom-of-the-stack",
-      "date": "2026-05-20T12:04:51+00:00",
-      "cover_image": "https://substackcdn.com/image/fetch/$s_!h3fr!,f_auto,q_auto:good,fl_progressive:steep/https://substack-post-media.s3.amazonaws.com/public/images/53698f22-bf84-4404-8f80-c999504fc8cb_1673x940.png"
     }
   ]
 }
