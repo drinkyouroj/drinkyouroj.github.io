@@ -2,8 +2,15 @@
   "source": "https://api.rss2json.com/v1/api.json?rss_url=https%3A%2F%2Fdrinkyouroj.substack.com%2Ffeed",
   "feed_title": "The Civic Node",
   "feed_url": "https://drinkyouroj.substack.com/",
-  "updated_at": "2026-06-12T06:53:46.530216+00:00",
+  "updated_at": "2026-06-13T06:39:50.765876+00:00",
   "posts": [
+    {
+      "title": "DHS Showed 9%. FOIA Showed Everyone.",
+      "subtitle": "Watch now | DHS publicized 335 names from 3,789 arrests. ICE's own FOIA data for the full operation shows 63% had no criminal record.",
+      "url": "https://drinkyouroj.substack.com/p/dhs-showed-9-foia-showed-everyone",
+      "date": "2026-06-12T21:59:27+00:00",
+      "cover_image": "https://api.substack.com/feed/podcast/201746072/958e1550c406c816ccf9ed68d3004f73.mp3"
+    },
     {
       "title": "I Had the Wrong Thread",
       "subtitle": "My first draft joined the bonus and the power bill with the same money. Following the dollars killed the line and left the truer thread: leverage.",
@@ -38,13 +45,6 @@
       "url": "https://drinkyouroj.substack.com/p/i-had-the-wrong-number",
       "date": "2026-05-27T16:05:10+00:00",
       "cover_image": "https://substackcdn.com/image/fetch/$s_!1G7p!,f_auto,q_auto:good,fl_progressive:steep/https://substack-post-media.s3.amazonaws.com/public/images/4425b14b-fdc4-475c-a1fd-88d244a468ba_2688x1520.png"
-    },
-    {
-      "title": "You Own the Hotspot. Nova Labs Owns What It Earns.",
-      "subtitle": "A vote sold as a 1-year sunset gave Nova Labs pricing authority over 385,000 hotspots. Its text auto-extends if nobody overrides. Nobody overrode it.",
-      "url": "https://drinkyouroj.substack.com/p/you-own-the-hotspot-nova-labs-owns-what-it-earns",
-      "date": "2026-05-22T22:30:57+00:00",
-      "cover_image": "https://api.substack.com/feed/podcast/198462693/d1a18793f1310ede34146799d6bb6789.mp3"
     }
   ]
 }
