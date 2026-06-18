@@ -2,8 +2,15 @@
   "source": "https://api.rss2json.com/v1/api.json?rss_url=https%3A%2F%2Fdrinkyouroj.substack.com%2Ffeed",
   "feed_title": "The Civic Node",
   "feed_url": "https://drinkyouroj.substack.com/",
-  "updated_at": "2026-06-17T07:00:53.196814+00:00",
+  "updated_at": "2026-06-18T06:58:16.391058+00:00",
   "posts": [
+    {
+      "title": "I Had the Wrong Denominator",
+      "subtitle": "My headline measured DHS's disclosure rate against DHS's claimed 3,000. The subhead had the FOIA number the whole time: 3,789.",
+      "url": "https://drinkyouroj.substack.com/p/i-had-the-wrong-denominator",
+      "date": "2026-06-17T13:04:01+00:00",
+      "cover_image": "https://substackcdn.com/image/fetch/$s_!5yeN!,f_auto,q_auto:good,fl_progressive:steep/https://substack-post-media.s3.amazonaws.com/public/images/e539922c-2ac1-4df5-bd4d-38273e5a24e4_1344x752.png"
+    },
     {
       "title": "DHS Showed 9%. FOIA Showed Everyone.",
       "subtitle": "Watch now | DHS publicized 335 names from 3,789 arrests. ICE's own FOIA data for the full operation shows 63% had no criminal record.",
@@ -38,13 +45,6 @@
       "url": "https://drinkyouroj.substack.com/p/the-bill-of-rights-ends-at-the-contractors-door",
       "date": "2026-05-29T22:05:01+00:00",
       "cover_image": "https://api.substack.com/feed/podcast/199555666/474e39054ee61b128da4c0fe94e503af.mp3"
-    },
-    {
-      "title": "I Had the Wrong Number",
-      "subtitle": "The pass rate told me the proposal was uncontested. The proxy breakdown told me what the proposal was for.",
-      "url": "https://drinkyouroj.substack.com/p/i-had-the-wrong-number",
-      "date": "2026-05-27T16:05:10+00:00",
-      "cover_image": "https://substackcdn.com/image/fetch/$s_!1G7p!,f_auto,q_auto:good,fl_progressive:steep/https://substack-post-media.s3.amazonaws.com/public/images/4425b14b-fdc4-475c-a1fd-88d244a468ba_2688x1520.png"
     }
   ]
 }
