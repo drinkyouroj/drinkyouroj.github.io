@@ -2,8 +2,15 @@
   "source": "https://api.rss2json.com/v1/api.json?rss_url=https%3A%2F%2Fdrinkyouroj.substack.com%2Ffeed",
   "feed_title": "The Civic Node",
   "feed_url": "https://drinkyouroj.substack.com/",
-  "updated_at": "2026-06-19T07:00:38.346729+00:00",
+  "updated_at": "2026-06-20T06:44:52.762279+00:00",
   "posts": [
+    {
+      "title": "The Accord That Wasn't Signed",
+      "subtitle": "In 1951 the Fed won its independence in public, on the record. Warsh is handing a piece of it back to the Treasury with no vote and nothing to FOIA.",
+      "url": "https://drinkyouroj.substack.com/p/the-accord-that-wasnt-signed",
+      "date": "2026-06-19T22:07:52+00:00",
+      "cover_image": "https://substackcdn.com/image/fetch/$s_!PXVW!,f_auto,q_auto:good,fl_progressive:steep/https://substack-post-media.s3.amazonaws.com/public/images/3f0527ec-18e9-447d-816b-5c6a35cc2da9_3072x2048.png"
+    },
     {
       "title": "I Had the Wrong Denominator",
       "subtitle": "My headline measured DHS's disclosure rate against DHS's claimed 3,000. The subhead had the FOIA number the whole time: 3,789.",
@@ -38,13 +45,6 @@
       "url": "https://drinkyouroj.substack.com/p/i-almost-wrote-no-ruling",
       "date": "2026-06-03T13:05:16+00:00",
       "cover_image": "https://substackcdn.com/image/fetch/$s_!-YFk!,f_auto,q_auto:good,fl_progressive:steep/https://substack-post-media.s3.amazonaws.com/public/images/72f47b50-3c9e-4ef7-af54-196530f47e2c_2688x1520.png"
-    },
-    {
-      "title": "The Bill of Rights Ends at the Contractor's Door",
-      "subtitle": "Surveillance, speech, biometrics, health data — four domains where the government's constitutional limits come with a vendor workaround.",
-      "url": "https://drinkyouroj.substack.com/p/the-bill-of-rights-ends-at-the-contractors-door",
-      "date": "2026-05-29T22:05:01+00:00",
-      "cover_image": "https://api.substack.com/feed/podcast/199555666/474e39054ee61b128da4c0fe94e503af.mp3"
     }
   ]
 }
