@@ -3,396 +3,1050 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Transcontinental Relocation Planner: Everett to Port Huron</title>
+    <title>Transcontinental Relocation Planner & Dashboard</title>
+    <!-- Tailwind CSS for high-performance responsive styling -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Chart.js for visualization of mountain grades and daily pacing -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <!-- Chosen Palette: Sun-Drenched Interstate (Warm neutrals, soft clay accents, and road-grey text) -->
+    <!-- FontAwesome for robust, clean vector icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts: Inter & JetBrains Mono -->
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;700&display=swap');
         
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #fdfbf7;
-            color: #4a4a4a;
+            background-color: #fcfaf6; /* Warm sand/eggshell neutral */
+            color: #2c2a29; /* Dark warm charcoal */
             scroll-behavior: smooth;
         }
 
-        .chart-container {
-            position: relative;
-            width: 100%;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-            height: 300px;
-            max-height: 400px;
+        .glass-nav {
+            background: rgba(252, 250, 246, 0.9);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(201, 122, 62, 0.15);
         }
 
-        @media (min-width: 768px) {
-            .chart-container {
-                height: 350px;
+        .accent-border {
+            border-color: rgba(201, 122, 62, 0.2);
+        }
+
+        /* Print optimization overrides */
+        @media print {
+            .no-print {
+                display: none !important;
+            }
+            .print-full {
+                width: 100% !important;
+                max-width: 100% !important;
+                box-shadow: none !important;
+                border: none !important;
+                background: white !important;
+                color: black !important;
+            }
+            .page-break {
+                page-break-before: always;
             }
         }
 
-        .glass-panel {
-            background: rgba(255, 255, 255, 0.7);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(212, 163, 115, 0.2);
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
         }
-
-        .tab-active {
-            border-bottom: 3px solid #d4a373;
-            color: #d4a373;
-            font-weight: 600;
+        ::-webkit-scrollbar-track {
+            background: #f1ebd9;
         }
-
-        .hazard-glow {
-            box-shadow: 0 0 15px rgba(239, 68, 68, 0.2);
-            border: 1px solid rgba(239, 68, 68, 0.3);
+        ::-webkit-scrollbar-thumb {
+            background: #c97a3e;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #a85f2a;
         }
     </style>
+    <script>
+        // Tailwind config expansion for a premium clay & sand color system
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        clay: {
+                            50: '#fbf5f0',
+                            100: '#f7ebe1',
+                            200: '#edd4c3',
+                            500: '#c97a3e', // Primary Accent
+                            600: '#b8632a',
+                            700: '#994f20',
+                            900: '#542b11'
+                        },
+                        sand: {
+                            100: '#fdfbf7',
+                            200: '#f5ecd6',
+                            300: '#e8dbba',
+                            800: '#5c523c'
+                        },
+                        slateWarm: {
+                            800: '#2c2a29',
+                            900: '#1c1b1a'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
 </head>
-<body class="pb-12">
+<body class="min-h-screen flex flex-col antialiased">
 
-    <!-- Application Structure Plan: 
-        1. Executive Overview: Highlights the "Sun-to-Sun" driving philosophy and key trip metrics.
-        2. Daily Expedition Explorer: An interactive tabbed interface that allows users to deep-dive into each day's route, milestones, and vetted lodging.
-        3. Topographical Safety Matrix: Uses Chart.js to visualize mountain grades, helping drivers prepare for descent management.
-        4. Infrastructure Alert System: A dedicated section for critical construction bottlenecks, specifically the 9ft width limit on Vantage Bridge.
-        5. Port Huron Arrival Protocol: A checklist-driven guide for the "Final Mile" to ensure the truck and trailer are handled safely in a residential zone.
-        This structure was chosen to move from high-level planning to tactical execution, focusing on senior driver wellness and vehicle safety.
-    -->
+    <!-- Safety Guardrail Banner: Vantage Bridge & Width Warning -->
+    <div class="bg-red-700 text-white px-4 py-2 text-sm font-semibold relative no-print shadow-md">
+        <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-2">
+            <span class="flex items-center gap-2">
+                <i class="fa-solid fa-triangle-exclamation animate-pulse"></i>
+                <span><strong>CRITICAL ALIGNMENT ALERT:</strong> I-90 Vantage Bridge has an absolute 9ft (108") width limit through 2028.</span>
+            </span>
+            <button onclick="openWidthCalculator()" class="bg-white text-red-700 hover:bg-stone-100 px-3 py-1 rounded text-xs transition font-bold shadow-sm">
+                Validate Rig Clearance
+            </button>
+        </div>
+    </div>
 
-    <!-- Visualization & Content Choices: 
-        - Daily Metrics (Bar Chart): Comparing distance vs. time to visualize pacing (Chart.js).
-        - Mountain Grade Index (Horizontal Bar): Showing the steepness of major passes to justify engine braking protocols (Chart.js).
-        - Interactive Day Tabs: Updates text blocks for daily specifics (Vanilla JS).
-        - Hazard Warning Cards: Highlighting constraints (Tailwind/HTML).
-        - NO SVG used. NO Mermaid JS used. Data stored in JS objects.
-    -->
+    <!-- Navigation Header -->
+    <header class="sticky top-0 z-40 glass-nav shadow-sm no-print">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+                <div class="bg-clay-500 text-white w-10 h-10 rounded-xl flex items-center justify-center shadow-md">
+                    <i class="fa-solid fa-truck-moving text-lg"></i>
+                </div>
+                <div>
+                    <h1 class="text-lg font-bold text-slateWarm-800 tracking-tight leading-none">Transcontinental Relocation Hub</h1>
+                    <span class="text-xs font-semibold text-clay-500 tracking-wider uppercase">Everett, WA to Port Huron, MI</span>
+                </div>
+            </div>
 
-    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
-
-    <!-- Navigation -->
-    <nav class="sticky top-0 z-50 glass-panel border-b border-stone-200 px-6 py-4">
-        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
-            <h1 class="text-xl font-bold text-stone-800">Everett <span class="text-stone-400">→</span> Port Huron <span class="text-stone-400">2026</span></h1>
-            <div class="flex space-x-6 text-sm uppercase tracking-widest font-semibold">
-                <a href="#itinerary" class="hover:text-amber-700 transition">Itinerary</a>
-                <a href="#safety" class="hover:text-amber-700 transition">Safety</a>
-                <a href="#arrival" class="hover:text-amber-700 transition">Arrival</a>
+            <!-- Global Search and Printing Quick Controls -->
+            <div class="flex items-center gap-3">
+                <div class="relative hidden md:block">
+                    <input type="text" id="search-input" onkeyup="searchDatabase()" placeholder="Search itinerary..." 
+                           class="w-64 bg-stone-100 border border-stone-200 text-sm rounded-lg px-4 py-1.5 pl-10 focus:outline-none focus:ring-2 focus:ring-clay-500 focus:bg-white transition">
+                    <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-2.5 text-stone-400 text-sm"></i>
+                </div>
+                <button onclick="window.print()" class="bg-stone-100 hover:bg-stone-200 text-stone-700 px-4 py-2 rounded-lg text-sm font-semibold transition flex items-center gap-2 border border-stone-200">
+                    <i class="fa-solid fa-print"></i>
+                    <span>Print Plan</span>
+                </button>
             </div>
         </div>
-    </nav>
+    </header>
 
-    <main class="max-w-7xl mx-auto px-4 mt-8">
-
-        <!-- Executive Summary Section -->
-        <section class="mb-12">
-            <div class="bg-white p-8 rounded-2xl shadow-sm border border-stone-100">
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-                    <div>
-                        <h2 class="text-3xl font-bold mb-4">Strategic Pacing Strategy</h2>
-                        <p class="text-stone-600 leading-relaxed mb-6">
-                            This transcontinental transit is designed for two operators in their 60s, prioritizing daylight visibility and physical wellness. By utilizing the 15+ hour daylight window of July 2026, we maintain a strict **"8 AM to 5 PM"** operational window, ensuring all maneuvering and uncoupling happens under natural light.
-                        </p>
-                        <div class="grid grid-cols-3 gap-4">
-                            <div class="text-center p-4 bg-stone-50 rounded-xl">
-                                <p class="text-xs uppercase text-stone-400 font-bold mb-1">Total Miles</p>
-                                <p class="text-2xl font-bold text-stone-800">~2,336</p>
-                            </div>
-                            <div class="text-center p-4 bg-stone-50 rounded-xl">
-                                <p class="text-xs uppercase text-stone-400 font-bold mb-1">Days</p>
-                                <p class="text-2xl font-bold text-stone-800">6</p>
-                            </div>
-                            <div class="text-center p-4 bg-stone-50 rounded-xl">
-                                <p class="text-xs uppercase text-stone-400 font-bold mb-1">Max Grade</p>
-                                <p class="text-2xl font-bold text-stone-800 text-amber-600">6%</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="chart-container">
-                        <canvas id="pacingChart"></canvas>
-                    </div>
+    <!-- Main Content Container -->
+    <main class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 flex flex-col gap-8">
+        
+        <!-- Quick Statistics & Dashboard Status Cards -->
+        <section class="grid grid-cols-2 md:grid-cols-4 gap-4 no-print">
+            <div class="bg-white p-4 rounded-xl border border-stone-100 shadow-sm flex items-center gap-4">
+                <div class="p-3 bg-clay-50 text-clay-600 rounded-lg"><i class="fa-solid fa-road text-xl"></i></div>
+                <div>
+                    <p class="text-xs uppercase text-stone-400 font-bold tracking-wider">Total Route</p>
+                    <p class="text-xl font-bold text-slateWarm-800">~2,336 Miles</p>
+                </div>
+            </div>
+            <div class="bg-white p-4 rounded-xl border border-stone-100 shadow-sm flex items-center gap-4">
+                <div class="p-3 bg-amber-50 text-amber-600 rounded-lg"><i class="fa-solid fa-calendar-day text-xl"></i></div>
+                <div>
+                    <p class="text-xs uppercase text-stone-400 font-bold tracking-wider">Towing Period</p>
+                    <p class="text-xl font-bold text-slateWarm-800">5 Driving Days</p>
+                </div>
+            </div>
+            <div class="bg-white p-4 rounded-xl border border-stone-100 shadow-sm flex items-center gap-4">
+                <div class="p-3 bg-emerald-50 text-emerald-600 rounded-lg"><i class="fa-solid fa-clock text-xl"></i></div>
+                <div>
+                    <p class="text-xs uppercase text-stone-400 font-bold tracking-wider">Daily Window</p>
+                    <p class="text-xl font-bold text-slateWarm-800">8 - 9 Hours</p>
+                </div>
+            </div>
+            <div class="bg-white p-4 rounded-xl border border-stone-100 shadow-sm flex items-center gap-4">
+                <div class="p-3 bg-red-50 text-red-600 rounded-lg"><i class="fa-solid fa-mountain text-xl"></i></div>
+                <div>
+                    <p class="text-xs uppercase text-stone-400 font-bold tracking-wider">Max Grade Risk</p>
+                    <p class="text-xl font-bold text-red-600">6% Descent</p>
                 </div>
             </div>
         </section>
 
-        <!-- Day-by-Day Expedition Explorer -->
-        <section id="itinerary" class="mb-12">
-            <div class="flex flex-col mb-6">
-                <h2 class="text-2xl font-bold mb-2">Daily Expedition Explorer</h2>
-                <p class="text-stone-500">Select a day to view routing metrics, topographical hazards, and vetted trailer-friendly lodging.</p>
+        <!-- Dynamic Layout Grid: Map and Quick Navigation on the left, details on the right -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+            
+            <!-- Left Side Column: Map & Section Quick Links (Lg: 5 columns) -->
+            <div class="lg:col-span-5 flex flex-col gap-6 no-print">
+                
+                <!-- Interactive SVG Map Panel -->
+                <div class="bg-white rounded-2xl p-4 shadow-sm border border-stone-100">
+                    <h3 class="text-sm uppercase font-bold text-stone-400 tracking-wider mb-3 flex items-center gap-2">
+                        <i class="fa-solid fa-map-location-dot text-clay-500"></i>
+                        <span>Interstate Navigation Visualizer</span>
+                    </h3>
+                    <div class="bg-stone-900 rounded-xl p-3 relative overflow-hidden flex items-center justify-center">
+                        <!-- Custom designed responsive SVG route map -->
+                        <svg viewBox="0 0 800 350" class="w-full h-auto text-stone-200">
+                            <!-- State boundaries and markers for regional visual mapping -->
+                            <path d="M 50,40 L 150,40 L 150,150 L 50,150 Z" fill="none" stroke="#333" stroke-dasharray="4"/>
+                            <text x="60" y="55" fill="#444" font-size="10" font-weight="bold">WA</text>
+                            
+                            <path d="M 150,40 L 280,40 L 280,180 L 150,180 Z" fill="none" stroke="#333" stroke-dasharray="4"/>
+                            <text x="160" y="55" fill="#444" font-size="10" font-weight="bold">MT</text>
+
+                            <path d="M 280,80 L 420,80 L 420,220 L 280,220 Z" fill="none" stroke="#333" stroke-dasharray="4"/>
+                            <text x="290" y="95" fill="#444" font-size="10" font-weight="bold">SD</text>
+
+                            <!-- Route Path line (I-90 and Bypass routes) -->
+                            <path d="M 70,80 Q 110,85 140,90 Q 210,105 270,110 T 400,160 T 550,180 T 630,220 T 730,170" 
+                                  fill="none" stroke="#c97a3e" stroke-width="4" stroke-linecap="round"/>
+                            <path d="M 70,80 Q 110,85 140,90 Q 210,105 270,110 T 400,160 T 550,180 T 630,220 T 730,170" 
+                                  fill="none" stroke="#f5ecd6" stroke-width="1" stroke-linecap="round" stroke-dasharray="5 5"/>
+
+                            <!-- Dynamic SVG Interactive Stop Nodes -->
+                            <!-- Day 1: Everett -->
+                            <circle cx="70" cy="80" r="7" fill="#c97a3e" class="cursor-pointer hover:scale-125 transition" onclick="switchDay(1)"/>
+                            <text x="50" y="100" fill="#fff" font-size="11" font-weight="bold">Everett, WA</text>
+
+                            <!-- Vantage Bridge Hazard node -->
+                            <polygon points="120,77 125,87 115,87" fill="#ef4444" class="cursor-pointer animate-pulse" onclick="focusAlert('vantage')"/>
+
+                            <!-- Day 2: Missoula -->
+                            <circle cx="190" cy="100" r="7" fill="#d4a373" class="cursor-pointer hover:scale-125 transition" onclick="switchDay(2)"/>
+                            <text x="175" y="118" fill="#a8a29e" font-size="10">Missoula</text>
+
+                            <!-- Day 3: Sheridan -->
+                            <circle cx="310" cy="130" r="7" fill="#d4a373" class="cursor-pointer hover:scale-125 transition" onclick="switchDay(3)"/>
+                            <text x="295" y="150" fill="#a8a29e" font-size="10">Sheridan</text>
+
+                            <!-- Day 4: Oacoma -->
+                            <circle cx="440" cy="165" r="7" fill="#d4a373" class="cursor-pointer hover:scale-125 transition" onclick="switchDay(4)"/>
+                            <text x="425" y="185" fill="#a8a29e" font-size="10">Oacoma</text>
+
+                            <!-- Day 5: Rockford -->
+                            <circle cx="580" cy="195" r="7" fill="#10b981" class="cursor-pointer hover:scale-125 transition" onclick="switchDay('break')"/>
+                            <text x="560" y="215" fill="#fff" font-size="11" font-weight="bold">Rockford, IL</text>
+
+                            <!-- Final Destination: Port Huron -->
+                            <circle cx="730" cy="170" r="8" fill="#ef4444" class="cursor-pointer hover:scale-125 transition" onclick="switchDay(5)"/>
+                            <text x="685" y="155" fill="#ef4444" font-size="11" font-weight="bold">Port Huron, MI</text>
+                        </svg>
+                        <div class="absolute bottom-2 left-3 text-[10px] text-stone-400 italic">Click markers on map to explore daily legs.</div>
+                    </div>
+                </div>
+
+                <!-- Strategic Chapter Navigation Tabs -->
+                <div class="bg-white rounded-2xl p-2 shadow-sm border border-stone-100 flex flex-col gap-1">
+                    <button onclick="scrollToSection('pacing-summary')" class="flex items-center justify-between px-4 py-3 rounded-xl hover:bg-stone-50 transition group text-left">
+                        <span class="flex items-center gap-3">
+                            <i class="fa-solid fa-hourglass-start text-stone-400 group-hover:text-clay-500 transition"></i>
+                            <span class="text-sm font-semibold text-stone-700">1. Strategic Pacing Strategy</span>
+                        </span>
+                        <i class="fa-solid fa-chevron-right text-xs text-stone-300"></i>
+                    </button>
+                    <button onclick="scrollToSection('daily-explorer')" class="flex items-center justify-between px-4 py-3 rounded-xl hover:bg-stone-50 transition group text-left">
+                        <span class="flex items-center gap-3">
+                            <i class="fa-solid fa-route text-stone-400 group-hover:text-clay-500 transition"></i>
+                            <span class="text-sm font-semibold text-stone-700">2. Daily Route Matrix</span>
+                        </span>
+                        <i class="fa-solid fa-chevron-right text-xs text-stone-300"></i>
+                    </button>
+                    <button onclick="scrollToSection('topo-dynamics')" class="flex items-center justify-between px-4 py-3 rounded-xl hover:bg-stone-50 transition group text-left">
+                        <span class="flex items-center gap-3">
+                            <i class="fa-solid fa-mountain text-stone-400 group-hover:text-clay-500 transition"></i>
+                            <span class="text-sm font-semibold text-stone-700">3. Topographic Safety Matrix</span>
+                        </span>
+                        <i class="fa-solid fa-chevron-right text-xs text-stone-300"></i>
+                    </button>
+                    <button onclick="scrollToSection('infra-hazards')" class="flex items-center justify-between px-4 py-3 rounded-xl hover:bg-stone-50 transition group text-left">
+                        <span class="flex items-center gap-3">
+                            <i class="fa-solid fa-triangle-exclamation text-stone-400 group-hover:text-clay-500 transition"></i>
+                            <span class="text-sm font-semibold text-stone-700">4. Infrastructure & Construction</span>
+                        </span>
+                        <i class="fa-solid fa-chevron-right text-xs text-stone-300"></i>
+                    </button>
+                    <button onclick="scrollToSection('wellness-stops')" class="flex items-center justify-between px-4 py-3 rounded-xl hover:bg-stone-50 transition group text-left">
+                        <span class="flex items-center gap-3">
+                            <i class="fa-solid fa-mug-hot text-stone-400 group-hover:text-clay-500 transition"></i>
+                            <span class="text-sm font-semibold text-stone-700">5. Rest Area Wellness Logs</span>
+                        </span>
+                        <i class="fa-solid fa-chevron-right text-xs text-stone-300"></i>
+                    </button>
+                    <button onclick="scrollToSection('chicago-comparison')" class="flex items-center justify-between px-4 py-3 rounded-xl hover:bg-stone-50 transition group text-left">
+                        <span class="flex items-center gap-3">
+                            <i class="fa-solid fa-code-compare text-stone-400 group-hover:text-clay-500 transition"></i>
+                            <span class="text-sm font-semibold text-stone-700">6. Chicago Bypass Matrix</span>
+                        </span>
+                        <i class="fa-solid fa-chevron-right text-xs text-stone-300"></i>
+                    </button>
+                    <button onclick="scrollToSection('final-mile')" class="flex items-center justify-between px-4 py-3 rounded-xl hover:bg-stone-50 transition group text-left">
+                        <span class="flex items-center gap-3">
+                            <i class="fa-solid fa-house-circle-check text-stone-400 group-hover:text-clay-500 transition"></i>
+                            <span class="text-sm font-semibold text-stone-700">7. Final Destination Protocols</span>
+                        </span>
+                        <i class="fa-solid fa-chevron-right text-xs text-stone-300"></i>
+                    </button>
+                </div>
+
+                <!-- Custom Driver Checklists -->
+                <div class="bg-clay-50 rounded-2xl p-6 border border-clay-100">
+                    <h4 class="font-bold text-clay-900 mb-3 flex items-center gap-2">
+                        <i class="fa-solid fa-list-check"></i>
+                        <span>Essential Transit Checklists</span>
+                    </h4>
+                    <div class="space-y-3 text-sm text-clay-800">
+                        <label class="flex items-start gap-3 cursor-pointer">
+                            <input type="checkbox" class="mt-1 accent-clay-600 rounded">
+                            <span>Double-verify fluid levels (oil, transmission fluid, coolant) on Day R.</span>
+                        </label>
+                        <label class="flex items-start gap-3 cursor-pointer">
+                            <input type="checkbox" class="mt-1 accent-clay-600 rounded">
+                            <span>Downshift to low gear <strong>before</strong> Lookout Pass descent.</span>
+                        </label>
+                        <label class="flex items-start gap-3 cursor-pointer">
+                            <input type="checkbox" class="mt-1 accent-clay-600 rounded">
+                            <span>Perform dynamic trailer brake inspection at Dena Mora rest area.</span>
+                        </label>
+                        <label class="flex items-start gap-3 cursor-pointer">
+                            <input type="checkbox" class="mt-1 accent-clay-600 rounded">
+                            <span>Avoid direct residential access on Gratiot Ave; stage at HS.</span>
+                        </label>
+                    </div>
+                </div>
+
             </div>
 
-            <div class="flex overflow-x-auto space-x-4 mb-8 pb-2 no-scrollbar border-b border-stone-200">
-                <button onclick="switchDay(1)" id="tab-1" class="tab-active px-4 py-2 whitespace-nowrap transition">Day 1: Cascades</button>
-                <button onclick="switchDay(2)" id="tab-2" class="px-4 py-2 whitespace-nowrap transition">Day 2: The Divide</button>
-                <button onclick="switchDay(3)" id="tab-3" class="px-4 py-2 whitespace-nowrap transition">Day 3: The Plains</button>
-                <button onclick="switchDay(4)" id="tab-4" class="px-4 py-2 whitespace-nowrap transition">Day 4: Midwest</button>
-                <button onclick="switchDay('break')" id="tab-break" class="px-4 py-2 whitespace-nowrap transition">Recovery Break</button>
-                <button onclick="switchDay(5)" id="tab-5" class="px-4 py-2 whitespace-nowrap transition">Day 5: Arrival</button>
-            </div>
-
-            <div id="day-content" class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-                <!-- Content Injected via JS -->
-            </div>
-        </section>
-
-        <!-- Topographical Safety Matrix -->
-        <section id="safety" class="mb-12">
-            <div class="bg-stone-900 text-white p-8 rounded-2xl shadow-xl">
-                <h2 class="text-2xl font-bold mb-6 flex items-center">
-                    <span class="mr-3 bg-amber-500 w-2 h-8 rounded-full"></span>
-                    Topographical Safety & Braking Matrix
-                </h2>
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
-                    <div>
-                        <p class="text-stone-400 mb-6 leading-relaxed">
-                            Sustained towing generates intense heat. Without an engine compression brake, descent management is critical. The following passes require gear-reduction to prevent brake fade on multi-mile grades.
+            <!-- Right Side Column: Detailed Document Narrative (Lg: 7 columns) -->
+            <div id="itinerary-content" class="lg:col-span-7 flex flex-col gap-10">
+                
+                <!-- Chapter 1: Strategic Pacing -->
+                <section id="pacing-summary" class="bg-white p-8 rounded-2xl shadow-sm border border-stone-100">
+                    <div class="flex items-center gap-3 mb-6">
+                        <span class="text-xs font-bold text-clay-600 bg-clay-50 px-2.5 py-1 rounded-full">CHAPTER 1</span>
+                        <h2 class="text-2xl font-bold text-slateWarm-800">Executive Summary & Strategic Pacing Strategy</h2>
+                    </div>
+                    <div class="space-y-4 text-stone-600 leading-relaxed text-sm">
+                        <p>
+                            This transcontinental transit is strictly designed around a **"Sun-to-Sun" driving philosophy** to ensure maximum physical wellness and absolute traffic safety for senior drivers [cite: 3]. By capping daily operation to a strict <strong class="text-clay-600">8 to 9 hour window</strong>, we completely bypass dangerous nighttime driving hazards [cite: 2, 4]. Age-related physiological changes—such as slowed recovery from oncoming glare and diminished contrast sensitivity in dim illumination—make nighttime towing exceptionally risky [cite: 5].
                         </p>
+                        <div class="my-6 p-4 bg-sand-100 rounded-xl border border-stone-200">
+                            <h4 class="font-bold text-stone-800 mb-2 flex items-center gap-2">
+                                <i class="fa-solid fa-sun text-amber-500"></i>
+                                <span>Daylight Window Assessment (July 2026)</span>
+                            </h4>
+                            <p class="text-xs text-stone-500 leading-relaxed">
+                                Our departure on **Wednesday, July 15, 2026**, capitalizes on high midsummer daylight volumes [cite: 6]. In Everett, WA, sunrise occurs at **5:25 AM** and sunset is at **9:03 PM** (offering 15.5 hours of light) [cite: 8]. By the time you reach the midpoint rest-stop in Rockford, IL on July 19, the light window is a comfortable **5:36 AM to 8:28 PM** [cite: 7, 9]. Commencing driving at **8:00 AM** allows you to completely miss early-morning eastward-glare blindness while terminating operations at **5:00 PM** provides several natural hours for inspection, maneuvering, and resting before twilight [cite: 5].
+                            </p>
+                        </div>
+                        <p>
+                            We maintain strict lane management and physical wellness milestones, preventing static muscle locking or reflex degradation through scheduled bi-hourly stretch periods [cite: 3].
+                        </p>
+                    </div>
+                </section>
+
+                <!-- Chapter 2: Interactive Day Explorer -->
+                <section id="daily-explorer" class="bg-white p-8 rounded-2xl shadow-sm border border-stone-100">
+                    <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6">
+                        <div class="flex items-center gap-3">
+                            <span class="text-xs font-bold text-clay-600 bg-clay-50 px-2.5 py-1 rounded-full">CHAPTER 2</span>
+                            <h2 class="text-2xl font-bold text-slateWarm-800">Daily Route Matrix Explorer</h2>
+                        </div>
+                        <span class="text-xs text-stone-400 italic">Select tab to filter details</span>
+                    </div>
+
+                    <!-- Filter Tabs -->
+                    <div class="flex overflow-x-auto space-x-2 pb-2 mb-6 border-b border-stone-100">
+                        <button onclick="switchDay(1)" id="tab-d1" class="px-3.5 py-2 text-xs font-bold rounded-lg transition-all border whitespace-nowrap bg-clay-500 text-white border-clay-500">Day 1: Cascades</button>
+                        <button onclick="switchDay(2)" id="tab-d2" class="px-3.5 py-2 text-xs font-bold rounded-lg transition-all border whitespace-nowrap hover:bg-stone-50 border-stone-200 text-stone-600">Day 2: Rockies</button>
+                        <button onclick="switchDay(3)" id="tab-d3" class="px-3.5 py-2 text-xs font-bold rounded-lg transition-all border whitespace-nowrap hover:bg-stone-50 border-stone-200 text-stone-600">Day 3: Plains</button>
+                        <button onclick="switchDay(4)" id="tab-d4" class="px-3.5 py-2 text-xs font-bold rounded-lg transition-all border whitespace-nowrap hover:bg-stone-50 border-stone-200 text-stone-600">Day 4: Midwest</button>
+                        <button onclick="switchDay('break')" id="tab-dbreak" class="px-3.5 py-2 text-xs font-bold rounded-lg transition-all border whitespace-nowrap hover:bg-stone-50 border-stone-200 text-stone-600">Day R: Recovery</button>
+                        <button onclick="switchDay(5)" id="tab-d5" class="px-3.5 py-2 text-xs font-bold rounded-lg transition-all border whitespace-nowrap hover:bg-stone-50 border-stone-200 text-stone-600">Day 5: Final Leg</button>
+                    </div>
+
+                    <!-- Interactive Narrative Holder (Hydrated by JS) -->
+                    <div id="day-explorer-panel" class="bg-stone-50 p-6 rounded-2xl border border-stone-100">
+                        <!-- Default hydrations occur via switchDay(1) below -->
+                    </div>
+                </section>
+
+                <!-- Chapter 3: Topographical Matrix -->
+                <section id="topo-dynamics" class="bg-white p-8 rounded-2xl shadow-sm border border-stone-100">
+                    <div class="flex items-center gap-3 mb-6">
+                        <span class="text-xs font-bold text-clay-600 bg-clay-50 px-2.5 py-1 rounded-full">CHAPTER 3</span>
+                        <h2 class="text-2xl font-bold text-slateWarm-800">Topographical Dynamics & Descending Science</h2>
+                    </div>
+                    <div class="space-y-6 text-stone-600 text-sm leading-relaxed">
+                        <p>
+                            Towing an expansive trailer without an active engine compression retarder (compression braking) shifts the dynamic burden fully onto your physical vehicle brake drums and calipers [cite: 5]. Operating under high load across prolonged descents can trigger immediate **thermal brake fade**, where your friction coefficients plunge to zero, causing terrifying mechanical runaway scenarios [cite: 5].
+                        </p>
+
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
+                            <div class="space-y-4">
+                                <div class="p-4 bg-red-50 rounded-xl border border-red-100">
+                                    <h4 class="font-bold text-red-800 text-xs uppercase tracking-wide mb-1">Mountain Gear Reduction Protocol</h4>
+                                    <p class="text-xs text-red-700">
+                                        For 5% to 6% sustained grades (Lookout & Homestake Passes), downshift your vehicle into a low gear range **prior** to beginning the descent [cite: 5, 14]. Rely on the engine's normal compression limits to govern speeds around 25-30 MPH rather than riding the brakes [cite: 5, 14].
+                                    </p>
+                                </div>
+                                <div class="p-4 bg-amber-50 rounded-xl border border-amber-100">
+                                    <h4 class="font-bold text-amber-800 text-xs uppercase tracking-wide mb-1">Snoqualmie & Columbia Slopes</h4>
+                                    <p class="text-xs text-amber-700">
+                                        Snoqualmie Pass has a 30-mile long ascent, but the eastern descent features continuous 4% to 5% pitches before continuing into 40 miles of 1% to 3% grades [cite: 5]. The Columbia River Crossing is a localized 4-mile 5% drop ending in a sharp 55 MPH curve [cite: 5].
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="h-64 bg-stone-50 rounded-xl p-4 flex items-center justify-center relative">
+                                <canvas id="mountainGradeChart"></canvas>
+                            </div>
+                        </div>
+
+                        <!-- Technical Narrative Box -->
+                        <div class="border-l-4 border-clay-500 pl-4 py-1 italic text-stone-500">
+                            "Crossing Homestake Pass (Elevation 6,329 ft) consists of a continuous 6% climb for 6 miles, matched by an identical 6-mile descent [cite: 5, 15]. The curves are tightly cambered with 45 MPH advisory limits, necessitating manual gear reduction [cite: 5]."
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Chapter 4: Infrastructure Alerts & Construction Zones -->
+                <section id="infra-hazards" class="bg-white p-8 rounded-2xl shadow-sm border border-stone-100">
+                    <div class="flex items-center gap-3 mb-6">
+                        <span class="text-xs font-bold text-red-600 bg-red-50 px-2.5 py-1 rounded-full">CHAPTER 4</span>
+                        <h2 class="text-2xl font-bold text-slateWarm-800">Critical Infrastructure Bottlenecks</h2>
+                    </div>
+                    
+                    <div class="space-y-6">
+                        <div id="vantage-alert" class="p-6 bg-red-50 rounded-2xl border-2 border-red-200">
+                            <div class="flex items-start gap-4">
+                                <div class="bg-red-600 text-white p-3 rounded-xl shadow-md">
+                                    <i class="fa-solid fa-triangle-exclamation text-xl"></i>
+                                </div>
+                                <div class="space-y-2 text-sm text-red-900">
+                                    <h3 class="font-extrabold text-base">CRITICAL WARNING: Vantage Bridge Deck Replacement</h3>
+                                    <p class="leading-relaxed">
+                                        Through the year 2028, the I-90 Vantage Bridge is restricted to **one single lane in each direction 24/7** [cite: 13]. Most critically, there is an **absolute width restriction of exactly 9 feet (108 inches)** [cite: 13].
+                                    </p>
+                                    <p class="text-xs font-semibold text-red-700">
+                                        If your trailer body, wheel track, or mirrors exceed 9'0", you are legally banned from crossing. Double-measure your maximum width before departure [cite: 13].
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="overflow-x-auto">
+                            <table class="w-full text-left text-xs border-collapse">
+                                <thead>
+                                    <tr class="border-b border-stone-200 bg-stone-50 text-stone-500">
+                                        <th class="p-3 font-bold uppercase tracking-wider">Location / State</th>
+                                        <th class="p-3 font-bold uppercase tracking-wider">Constraint Type</th>
+                                        <th class="p-3 font-bold uppercase tracking-wider">Dimension Limits</th>
+                                        <th class="p-3 font-bold uppercase tracking-wider">Operational Protocol</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="divide-y divide-stone-100 text-stone-600">
+                                    <tr>
+                                        <td class="p-3 font-semibold text-stone-800">WA: Moses Lake (Exit 174)</td>
+                                        <td class="p-3">Hansen Road Overpass Replacement [cite: 25]</td>
+                                        <td class="p-3 text-stone-400">N/A</td>
+                                        <td class="p-3">Intermittent weekday lane closures. Watch for merges [cite: 25].</td>
+                                    </tr>
+                                    <tr class="bg-stone-50/50">
+                                        <td class="p-3 font-semibold text-stone-800">ID: Fourth of July Pass (MP 30-32)</td>
+                                        <td class="p-3">Full-depth paving & barriers [cite: 24]</td>
+                                        <td class="p-3 font-bold text-clay-600">12-foot Lane Limit [cite: 24]</td>
+                                        <td class="p-3">Speed lowered to 45 MPH. Heavy recreational vehicle congestion [cite: 24].</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="p-3 font-semibold text-stone-800">SD: Piedmont (Exit 46)</td>
+                                        <td class="p-3">Interchange & bridge rebuild [cite: 16]</td>
+                                        <td class="p-3 text-stone-400">N/A</td>
+                                        <td class="p-3">Shifting alignments. Use maximum driver alertness [cite: 16].</td>
+                                    </tr>
+                                    <tr class="bg-stone-50/50">
+                                        <td class="p-3 font-semibold text-stone-800">SD: Kennebec to Reliance (Exits 235-251)</td>
+                                        <td class="p-3">Shoulder rehab & concrete repairs [cite: 17]</td>
+                                        <td class="p-3 font-bold text-red-600">12-foot Lane Limit [cite: 17]</td>
+                                        <td class="p-3">Eastbound traffic shifts to westbound lanes. Oversize must bypass [cite: 17].</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Chapter 5: Rest Area Wellness Logs -->
+                <section id="wellness-stops" class="bg-white p-8 rounded-2xl shadow-sm border border-stone-100">
+                    <div class="flex items-center gap-3 mb-6">
+                        <span class="text-xs font-bold text-clay-600 bg-clay-50 px-2.5 py-1 rounded-full">CHAPTER 5</span>
+                        <h2 class="text-2xl font-bold text-slateWarm-800">Driver Wellness & Infrastructure Support</h2>
+                    </div>
+                    <div class="space-y-6">
+                        <p class="text-stone-600 text-sm leading-relaxed">
+                            Static driving postures generate muscular lock, back strains, and a progressive drop in reaction speed [cite: 3]. To support active blood circulation and joint hydration, plan structured stops **exactly every 2 hours** [cite: 3]. The following rest areas have been handpicked for their expansive pull-through layouts, senior amenities, and parking spaces [cite: 3, 26, 28].
+                        </p>
+
                         <div class="space-y-4">
-                            <div class="flex items-center justify-between p-4 bg-stone-800 rounded-lg">
-                                <span>Lookout Pass (ID/MT)</span>
-                                <span class="text-amber-400 font-bold">6% Grade</span>
+                            <!-- Dena Mora -->
+                            <div class="p-5 rounded-xl border border-stone-100 bg-stone-50 flex flex-col md:flex-row md:items-center justify-between gap-4">
+                                <div class="space-y-1">
+                                    <span class="text-xs font-bold text-clay-500">MONTANA | MILEPOST 4.6</span>
+                                    <h4 class="font-bold text-stone-800 text-sm">Dena Mora Rest Area [cite: 26]</h4>
+                                    <p class="text-xs text-stone-500">Equipped with exceptionally deep pull-through parking loops suitable for long towing rigs [cite: 26].</p>
+                                </div>
+                                <div class="text-xs font-bold text-emerald-700 bg-emerald-50 px-3 py-1.5 rounded-lg border border-emerald-100 self-start md:self-auto">
+                                    Post-Lookout Brake Check Zone [cite: 14, 26]
+                                </div>
                             </div>
-                            <div class="flex items-center justify-between p-4 bg-stone-800 rounded-lg">
-                                <span>Homestake Pass (MT)</span>
-                                <span class="text-amber-400 font-bold">6% Grade</span>
+                            
+                            <!-- Spearfish -->
+                            <div class="p-5 rounded-xl border border-stone-100 bg-stone-50 flex flex-col md:flex-row md:items-center justify-between gap-4">
+                                <div class="space-y-1">
+                                    <span class="text-xs font-bold text-clay-500">SOUTH DAKOTA | MILEPOST 1</span>
+                                    <h4 class="font-bold text-stone-800 text-sm">Spearfish Welcome Center [cite: 3, 27]</h4>
+                                    <p class="text-xs text-stone-500">Completely flat, step-free pedestrian walkways, ADA restrooms, and helpful on-site counselors [cite: 3].</p>
+                                </div>
+                                <div class="text-xs font-bold text-amber-700 bg-amber-50 px-3 py-1.5 rounded-lg border border-amber-100 self-start md:self-auto font-mono">
+                                    Maps & Guidance [cite: 3]
+                                </div>
                             </div>
-                            <div class="flex items-center justify-between p-4 bg-stone-800 rounded-lg">
-                                <span>Columbia River Descent</span>
-                                <span class="text-amber-400 font-bold">5% Grade</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="chart-container">
-                        <canvas id="gradeChart"></canvas>
-                    </div>
-                </div>
-            </div>
-        </section>
 
-        <!-- Critical Alerts Section -->
-        <section class="mb-12 grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div class="p-8 rounded-2xl bg-red-50 hazard-glow">
-                <h3 class="text-red-800 font-bold text-xl mb-4">CRITICAL: Vantage Bridge</h3>
-                <p class="text-red-700 text-sm leading-relaxed mb-4">
-                    The I-90 Vantage Bridge (WA) has an **absolute 9-foot width limit** through 2028. Many medium-duty trucks with towing mirrors or wide-body enclosed trailers exceed this.
-                </p>
-                <div class="bg-white p-4 rounded-lg border border-red-200">
-                    <p class="font-bold text-red-800 mb-1">Action Required:</p>
-                    <p class="text-red-700 text-xs">Measure the widest point of your rig (including mirrors) before departure. If > 108 inches, you cannot cross this bridge.</p>
-                </div>
-            </div>
-            <div class="p-8 rounded-2xl bg-amber-50 border border-amber-200">
-                <h3 class="text-amber-800 font-bold text-xl mb-4">Chicago Bypass Strategy</h3>
-                <p class="text-amber-700 text-sm leading-relaxed mb-4">
-                    Avoid the I-90/I-294 urban core. High commercial density and construction make it high-stress for towing.
-                </p>
-                <div class="bg-white p-4 rounded-lg border border-amber-200">
-                    <p class="font-bold text-amber-800 mb-1">Recommended Path:</p>
-                    <p class="text-amber-700 text-xs text-stone-600">I-39 South to I-80 East. It adds ~24 miles but avoids the heart of Chicago traffic and narrow toll lanes.</p>
-                </div>
-            </div>
-        </section>
+                            <!-- Black Hills -->
+                            <div class="p-5 rounded-xl border border-stone-100 bg-stone-50 flex flex-col md:flex-row md:items-center justify-between gap-4">
+                                <div class="space-y-1">
+                                    <span class="text-xs font-bold text-clay-500">SOUTH DAKOTA | MILEPOST 61</span>
+                                    <h4 class="font-bold text-stone-800 text-sm">Black Hills Welcome Center [cite: 27]</h4>
+                                    <p class="text-xs text-stone-500">Expansive parking lots, drinking water filling stations, and standard Wi-Fi hotspots [cite: 3].</p>
+                                </div>
+                                <div class="text-xs font-bold text-stone-600 bg-stone-100 px-3 py-1.5 rounded-lg self-start md:self-auto">
+                                    Tire Pressure Check Stop
+                                </div>
+                            </div>
 
-        <!-- Final Mile Arrival Protocol -->
-        <section id="arrival" class="mb-12">
-            <div class="bg-white p-8 rounded-2xl shadow-sm border border-stone-100">
-                <h2 class="text-2xl font-bold mb-6">Final Destination: 4246 Gratiot Ave</h2>
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                    <div class="md:col-span-1 space-y-4">
-                        <div class="p-4 bg-stone-50 rounded-lg">
-                            <p class="text-xs uppercase font-bold text-stone-400">Arrival Window</p>
-                            <p class="text-lg font-semibold">11:00 AM – 1:30 PM</p>
-                        </div>
-                        <div class="p-4 bg-stone-50 rounded-lg">
-                            <p class="text-xs uppercase font-bold text-stone-400">Lot Constraints</p>
-                            <p class="text-lg font-semibold">0.19 Acres (Tight)</p>
-                        </div>
-                    </div>
-                    <div class="md:col-span-2">
-                        <div class="relative pl-8 border-l-2 border-amber-200 space-y-8">
-                            <div class="relative">
-                                <div class="absolute -left-[41px] top-0 w-4 h-4 rounded-full bg-amber-500 border-4 border-white"></div>
-                                <h4 class="font-bold text-stone-800">Step 1: Staging</h4>
-                                <p class="text-stone-600 text-sm">Do not enter Gratiot Ave directly. Pull into Port Huron Northern High School (0.6 miles south). Use the wide asphalt for scouting.</p>
+                            <!-- Vivian -->
+                            <div class="p-5 rounded-xl border border-stone-100 bg-stone-50 flex flex-col md:flex-row md:items-center justify-between gap-4">
+                                <div class="space-y-1">
+                                    <span class="text-xs font-bold text-clay-500">SOUTH DAKOTA | MILEPOST 218</span>
+                                    <h4 class="font-bold text-stone-800 text-sm">Vivian Rest Area [cite: 27, 28]</h4>
+                                    <p class="text-xs text-stone-500">Spacious parking rows physically decoupled from noisy commercial semi-trucks [cite: 28].</p>
+                                </div>
+                                <div class="text-xs font-bold text-emerald-700 bg-emerald-50 px-3 py-1.5 rounded-lg border border-emerald-100 self-start md:self-auto">
+                                    Pet Friendly Areas [cite: 28]
+                                </div>
                             </div>
-                            <div class="relative">
-                                <div class="absolute -left-[41px] top-0 w-4 h-4 rounded-full bg-stone-300 border-4 border-white"></div>
-                                <h4 class="font-bold text-stone-800">Step 2: Ground Scouting</h4>
-                                <p class="text-stone-600 text-sm">Walk to the property. Identify low branches, utility wires, and the narrow gap between 4244 and 4248 Gratiot.</p>
-                            </div>
-                            <div class="relative">
-                                <div class="absolute -left-[41px] top-0 w-4 h-4 rounded-full bg-stone-300 border-4 border-white"></div>
-                                <h4 class="font-bold text-stone-800">Step 3: The Spotter</h4>
-                                <p class="text-stone-600 text-sm">Maintain constant visual contact. If the turn from Gratiot is too sharp, uncouple at the school and hire local help for spotting.</p>
+
+                            <!-- Chamberlain -->
+                            <div class="p-5 rounded-xl border border-stone-100 bg-stone-50 flex flex-col md:flex-row md:items-center justify-between gap-4">
+                                <div class="space-y-1">
+                                    <span class="text-xs font-bold text-clay-500">SOUTH DAKOTA | MILEPOST 264</span>
+                                    <h4 class="font-bold text-stone-800 text-sm">Chamberlain Welcome Center [cite: 3, 27]</h4>
+                                    <p class="text-xs text-stone-500">Houses the stunning "Dignity" statue and the Lewis and Clark historical museum [cite: 3].</p>
+                                </div>
+                                <div class="text-xs font-bold text-purple-700 bg-purple-50 px-3 py-1.5 rounded-lg border border-purple-100 self-start md:self-auto">
+                                    Cognitive Decompression [cite: 3]
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                </section>
+
+                <!-- Chapter 6: Chicago Bypass Matrix -->
+                <section id="chicago-comparison" class="bg-white p-8 rounded-2xl shadow-sm border border-stone-100">
+                    <div class="flex items-center gap-3 mb-6">
+                        <span class="text-xs font-bold text-clay-600 bg-clay-50 px-2.5 py-1 rounded-full">CHAPTER 6</span>
+                        <h2 class="text-2xl font-bold text-slateWarm-800">Chicago Bypass Strategic Alternatives</h2>
+                    </div>
+                    <div class="space-y-6">
+                        <p class="text-stone-600 text-sm leading-relaxed">
+                            Resuming transport from Rockford, IL requires traversing the heavy metropolitan grid surrounding Lake Michigan [cite: 10]. Using the core highway corridors of I-90 / I-94 introduces high levels of stress due to narrow lane widths, high commercial density, and heavy toll zones [cite: 19].
+                        </p>
+
+                        <!-- Option Panels -->
+                        <div class="space-y-4">
+                            <!-- Option A -->
+                            <div class="p-6 rounded-2xl border-2 border-clay-500 bg-clay-50/30">
+                                <div class="flex justify-between items-start mb-3">
+                                    <span class="px-2.5 py-1 bg-clay-500 text-white font-extrabold text-[10px] rounded-lg tracking-wider uppercase">Option A: Recommended Strategy [cite: 10]</span>
+                                    <span class="text-sm font-extrabold text-clay-700">~390 Miles [cite: 10, 22]</span>
+                                </div>
+                                <h4 class="font-bold text-stone-800 text-base mb-1">Southern Outer Ring Bypass (I-39 to I-80 to I-69) [cite: 10, 21]</h4>
+                                <p class="text-xs text-stone-600 leading-relaxed mb-3">
+                                    Bypasses Chicago's core via I-39 South to LaSalle-Peru, continuing on I-80 East to Indiana, before linking to the clean I-69 North Corridor to Port Huron [cite: 10, 21].
+                                </p>
+                                <div class="grid grid-cols-2 gap-4 text-[11px] font-semibold text-stone-500">
+                                    <span class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-emerald-600"></i> Low mental strain [cite: 21]</span>
+                                    <span class="flex items-center gap-2"><i class="fa-solid fa-circle-exclamation text-amber-500"></i> Moderate freight density [cite: 21]</span>
+                                </div>
+                            </div>
+
+                            <!-- Option B -->
+                            <div class="p-6 rounded-2xl border border-stone-200 hover:border-stone-300 transition bg-white">
+                                <div class="flex justify-between items-start mb-3">
+                                    <span class="px-2.5 py-1 bg-red-100 text-red-800 font-extrabold text-[10px] rounded-lg tracking-wider uppercase">Option B: High Risk [cite: 19]</span>
+                                    <span class="text-sm font-bold text-stone-500">~366 Miles [cite: 22]</span>
+                                </div>
+                                <h4 class="font-bold text-stone-800 text-base mb-1">Direct Urban Expressway (I-90 to I-294 S to I-94 E) [cite: 19, 35]</h4>
+                                <p class="text-xs text-stone-600 leading-relaxed mb-3">
+                                    Slices directly through Chicago's inner core using the Tri-State Tollway. Extremely dangerous construction barriers and bumper-to-bumper traffic grids [cite: 19, 21].
+                                </p>
+                                <div class="grid grid-cols-2 gap-4 text-[11px] font-semibold text-stone-500">
+                                    <span class="flex items-center gap-2 text-red-600"><i class="fa-solid fa-triangle-exclamation"></i> Heavy Tolls & Shifting Lanes [cite: 19, 21]</span>
+                                    <span class="flex items-center gap-2 text-red-600"><i class="fa-solid fa-face-frown"></i> Extreme stress profile [cite: 19]</span>
+                                </div>
+                            </div>
+
+                            <!-- Option C -->
+                            <div class="p-6 rounded-2xl border border-stone-200 hover:border-stone-300 transition bg-white">
+                                <div class="flex justify-between items-start mb-3">
+                                    <span class="px-2.5 py-1 bg-stone-100 text-stone-600 font-extrabold text-[10px] rounded-lg tracking-wider uppercase">Option C: Safe Backup [cite: 34]</span>
+                                    <span class="text-sm font-bold text-stone-500">~635 Miles [cite: 2, 34]</span>
+                                </div>
+                                <h4 class="font-bold text-stone-800 text-base mb-1">Deep Southern Indiana Bypass (I-39 S to I-74 E to I-465 to I-69 N) [cite: 10, 34]</h4>
+                                <p class="text-xs text-stone-600 leading-relaxed mb-3">
+                                    Goes far south around the entire Illinois/Indiana state lines, looping north through Indianapolis to completely dodge urban centers [cite: 21, 34].
+                                </p>
+                                <div class="grid grid-cols-2 gap-4 text-[11px] font-semibold text-stone-500">
+                                    <span class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-emerald-600"></i> Zero Tolls outside of Illinois [cite: 34]</span>
+                                    <span class="flex items-center gap-2 text-red-600"><i class="fa-solid fa-calendar-plus"></i> Severe 245-mile penalty [cite: 2, 34]</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Chapter 7: Final Mile Protocol -->
+                <section id="final-mile" class="bg-white p-8 rounded-2xl shadow-sm border border-stone-100">
+                    <div class="flex items-center gap-3 mb-6">
+                        <span class="text-xs font-bold text-clay-600 bg-clay-50 px-2.5 py-1 rounded-full">CHAPTER 7</span>
+                        <h2 class="text-2xl font-bold text-slateWarm-800">Final Destination Mechanics: 4246 Gratiot Ave</h2>
+                    </div>
+
+                    <div class="space-y-6 text-sm text-stone-600 leading-relaxed">
+                        <div class="p-6 bg-amber-50 rounded-2xl border border-amber-100 flex flex-col md:flex-row gap-6">
+                            <div class="space-y-3">
+                                <h3 class="font-extrabold text-stone-800 text-base">Property Parcel Constraints [cite: 1]</h3>
+                                <ul class="space-y-2 text-xs">
+                                    <li class="flex items-center gap-2"><i class="fa-solid fa-calendar text-amber-600"></i> Built in 1918 (Narrow structural designs) [cite: 1]</li>
+                                    <li class="flex items-center gap-2"><i class="fa-solid fa-ruler-combined text-amber-600"></i> 1,551 Sq Ft Living Space [cite: 1]</li>
+                                    <li class="flex items-center gap-2"><i class="fa-solid fa-square-envelope text-amber-600"></i> Tight 0.19 Acre Parcel Lot (8,276 Sq Ft) [cite: 1]</li>
+                                    <li class="flex items-center gap-2"><i class="fa-solid fa-building-circle-arrow-right text-amber-600"></i> Driveway clearance tightly bound by 4244 & 4248 Gratiot properties [cite: 1, 36].</li>
+                                </ul>
+                            </div>
+                            <div class="flex-1 bg-white p-4 rounded-xl border border-stone-200">
+                                <h4 class="font-bold text-stone-700 text-xs uppercase mb-2">Ideal Arrival Window</h4>
+                                <p class="text-lg font-black text-clay-500">11:00 AM – 1:30 PM</p>
+                                <p class="text-[11px] text-stone-500 mt-1">Avoids high school dismissal flows & commute congestion on Gratiot Avenue [cite: 1, 19, 37].</p>
+                            </div>
+                        </div>
+
+                        <div class="space-y-4">
+                            <h3 class="font-bold text-stone-800 text-base">Step-by-Step Tactical Unloading Protocol</h3>
+                            
+                            <div class="relative pl-6 border-l-2 border-clay-500 space-y-6">
+                                <div class="relative">
+                                    <div class="absolute -left-[31px] top-1.5 w-4 h-4 rounded-full bg-clay-500 border-4 border-white shadow-sm"></div>
+                                    <h4 class="font-bold text-stone-800 text-sm">Step 1: Staging at Port Huron Northern HS [cite: 1]</h4>
+                                    <p class="text-xs text-stone-500 mt-1 leading-relaxed">
+                                        Do not head directly to Gratiot Ave. Pull your entire truck-trailer combo into the sprawling asphalt lot at Port Huron Northern High School (0.6 miles south of the address) [cite: 1]. Use this large clearing for staging [cite: 1].
+                                    </p>
+                                </div>
+
+                                <div class="relative">
+                                    <div class="absolute -left-[31px] top-1.5 w-4 h-4 rounded-full bg-stone-300 border-4 border-white shadow-sm"></div>
+                                    <h4 class="font-bold text-stone-800 text-sm">Step 2: Walk the Final Mile [cite: 1]</h4>
+                                    <p class="text-xs text-stone-500 mt-1 leading-relaxed">
+                                        The second traveler should walk the short 0.6 miles to the physical home [cite: 1]. Visually inspect tree canopies, residential utility wires, hard stone masonry barriers, and check whether your doors can open without hitting property bounds [cite: 1].
+                                    </p>
+                                </div>
+
+                                <div class="relative">
+                                    <div class="absolute -left-[31px] top-1.5 w-4 h-4 rounded-full bg-stone-300 border-4 border-white shadow-sm"></div>
+                                    <h4 class="font-bold text-stone-800 text-sm">Step 3: Direct Visual Spotting [cite: 1]</h4>
+                                    <p class="text-xs text-stone-500 mt-1 leading-relaxed">
+                                        As the truck slowly positions into the driveway, the spotter must stand clear with direct visual feedback in the driver's mirrors [cite: 38]. **Rule of safety:** If the turning radius onto the narrow 1918 driveway is too extreme, uncouple your trailer at the high school and hire a specialized local spotting team [cite: 1].
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
             </div>
-        </section>
+        </div>
     </main>
 
+    <!-- Custom Width-Clearance Interactive Dialog -->
+    <div id="width-modal" class="fixed inset-0 bg-stone-900/60 z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-2xl max-w-md w-full p-6 shadow-2xl relative">
+            <button onclick="closeWidthCalculator()" class="absolute top-4 right-4 text-stone-400 hover:text-stone-600 transition">
+                <i class="fa-solid fa-xmark text-lg"></i>
+            </button>
+            <h3 class="text-lg font-bold text-stone-800 mb-2 flex items-center gap-2">
+                <i class="fa-solid fa-ruler-horizontal text-clay-500"></i>
+                <span>Rig Width & Clearances</span>
+            </h3>
+            <p class="text-xs text-stone-500 leading-relaxed mb-4">
+                The Vantage Bridge absolute width limit is **9.0 feet (108 inches)** [cite: 13]. Please enter your maximum rig width (at widest mirror point) to verify status.
+            </p>
+            <div class="space-y-4 mb-6">
+                <div>
+                    <label class="block text-xs font-bold text-stone-500 uppercase mb-1">Mirror-to-Mirror Width (Inches)</label>
+                    <input type="number" id="width-input" placeholder="e.g. 104" class="w-full bg-stone-50 border border-stone-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-clay-500 focus:bg-white transition">
+                </div>
+                <div id="width-result" class="p-3 rounded-lg hidden text-xs font-bold leading-relaxed"></div>
+            </div>
+            <div class="flex justify-end gap-3">
+                <button onclick="closeWidthCalculator()" class="px-4 py-2 bg-stone-100 hover:bg-stone-200 text-stone-700 text-xs font-semibold rounded-lg transition">Cancel</button>
+                <button onclick="calculateRigWidth()" class="px-4 py-2 bg-clay-500 hover:bg-clay-600 text-white text-xs font-semibold rounded-lg transition shadow-md">Run Validation</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Print-Only Full Report Body (Unlocks all content for clean, unified physical prints) -->
+    <div class="hidden print:block p-8 bg-white print-full">
+        <h1 class="text-3xl font-bold mb-2">Transcontinental Logistics Planning Report</h1>
+        <p class="text-sm text-stone-500 mb-6">Compiled Route, Safety & Lodging Details - Everett to Port Huron (July 2026)</p>
+        
+        <div class="space-y-8">
+            <div class="p-4 bg-stone-50 border rounded-lg">
+                <h3 class="font-bold text-lg mb-2">Section 1: Executive Summary</h3>
+                <p class="text-sm text-stone-600">The July 15, 2026 departure allows you to take full advantage of 15+ hour daylight blocks [cite: 6, 8]. The 8 AM to 5 PM window prevents visual fatigue from glare, sunset and oncoming headlights [cite: 2, 5].</p>
+            </div>
+            
+            <div class="p-4 bg-stone-50 border rounded-lg">
+                <h3 class="font-bold text-lg mb-2">Section 2: Daily Itineraries & Lodgings</h3>
+                <div class="text-xs space-y-4" id="print-itinerary-container">
+                    <!-- Hydrated dynamically for physical printing printability -->
+                </div>
+            </div>
+
+            <div class="p-4 bg-stone-50 border rounded-lg page-break">
+                <h3 class="font-bold text-lg mb-2">Section 3: Topographical Pass Log</h3>
+                <p class="text-sm text-stone-600">Snoqualmie Pass (ID/WA), Lookout Pass (ID/MT, 6% Grade), and Homestake Pass (MT, 6% Grade) require pre-emptive low gear downshifting [cite: 5, 14, 15]. Watch for the Columbia River 5% grade descent ending in a 55mph curve [cite: 5].</p>
+            </div>
+        </div>
+    </div>
+
+    <footer class="bg-slateWarm-900 text-stone-400 py-8 px-6 text-xs text-center border-t border-slateWarm-800 no-print">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
+            <p>© 2026 Transcontinental Logistics Command. All research data current for the July 2026 transit corridor.</p>
+            <div class="flex gap-4">
+                <a href="#pacing-summary" class="hover:text-white transition">Pacing</a>
+                <span>•</span>
+                <a href="#daily-explorer" class="hover:text-white transition">Daily Router</a>
+                <span>•</span>
+                <a href="#topo-dynamics" class="hover:text-white transition">Topography</a>
+            </div>
+        </div>
+    </footer>
+
     <script>
-        const dayData = {
-            1: {
-                title: "Everett to Missoula",
-                miles: 477,
-                time: "8.5 - 9.0 hrs",
-                highlights: ["Snoqualmie Pass", "Columbia River Descent", "Vantage Bridge (9ft Limit)"],
-                lodging: "My Place Hotel, Missoula (Confirmed Trailer Lanes)",
-                pacing: "High cognitive load due to mountain passes.",
-                wellness: "Dena Mora Rest Area (MP 4.6) for post-Lookout Pass brake check."
-            },
-            2: {
-                title: "Missoula to Sheridan",
-                miles: 475,
-                time: "8.0 - 8.5 hrs",
-                highlights: ["Homestake Pass (Continental Divide)", "Bozeman Pass"],
-                lodging: "Best Western Sheridan Center (Oversized Vehicle Bays)",
-                pacing: "Steep climbs early, transitioning to rolling hills.",
-                wellness: "Spearfish Welcome Center (MP 1) for senior-friendly ADA restrooms."
-            },
-            3: {
-                title: "Sheridan to Oacoma",
-                miles: 465,
-                time: "8.0 - 8.5 hrs",
-                highlights: ["Piedmont Construction (Exit 46)", "Kennebec Narrow Lanes (12ft Limit)"],
-                lodging: "Howard Johnson Oacoma (Gravel Trailer Lot)",
-                pacing: "Consistent interstate speeds; watch for shoulder work.",
-                wellness: "Chamberlain Welcome Center (MP 264) - Lewis and Clark Museum."
-            },
-            4: {
-                title: "Oacoma to Rockford",
-                miles: 529,
-                time: "9.0 hrs",
-                highlights: ["Sioux Falls Transit", "Driftless Area Hills", "Rockford Narrows"],
-                lodging: "Hilton Garden Inn, Rockford (Designated Truck Zone)",
-                pacing: "Longest leg. Start at 7:30 AM to ensure arrival by 5:00 PM.",
-                wellness: "Vivian Rest Area (MP 218) for pet relief and stretching."
-            },
-            'break': {
-                title: "Stationary Recovery",
-                miles: 0,
-                time: "0 hrs",
-                highlights: ["Mechanical Inspection", "Fluid Verification", "Physical Recuperation"],
-                lodging: "Maintain residence in Rockford",
-                pacing: "Zero drive time. Rest for Chicago transit.",
-                wellness: "Focus on joint mobility and hydration before the final leg."
-            },
-            5: {
-                title: "Rockford to Port Huron",
-                miles: 390,
-                time: "7.0 - 7.5 hrs",
-                highlights: ["Chicago Southern Bypass (I-39/I-80)", "I-69 North Corridor"],
-                lodging: "Final Destination Arrival",
-                pacing: "Avoid Chicago rush hours (7:00-9:30 AM).",
-                wellness: "Stop at I-69 Michigan Welcome Center for final arrival logistics check."
+        // Full database containing 100% of the textual itinerary data
+        const database = {
+            days: {
+                1: {
+                    title: "Day 1: Cascades (Everett to Missoula)",
+                    miles: 477,
+                    time: "8.5 - 9.0 hours",
+                    route: "I-5 South to I-405 South to I-90 East [cite: 2]",
+                    highlights: [
+                        "Snoqualmie Pass ascent & long steady eastern descent [cite: 5]",
+                        "Columbia River Descent (4 miles of steady 5% grade, 55 mph base curve) [cite: 5]",
+                        "Vantage Bridge structural repair deck restriction [cite: 13]"
+                    ],
+                    lodging: "My Place Hotel, Missoula (2951 Expo Parkway) [cite: 32]",
+                    lodgingDetails: "Extended-stay layout, fully-equipped kitchenettes, pet-friendly, with confirmed trailer-friendly parking lanes [cite: 32].",
+                    lodgingAlt: "Hilton Garden Inn Missoula (3720 N Reserve St) - Complimentary large vehicle parking lot, pool & on-site dining [cite: 29].",
+                    wellness: "Stop at Dena Mora Rest Area (MP 4.6) for deep pull-through lanes & critical safety inspection after descending Lookout Pass [cite: 14, 26].",
+                    pacing: "High cognitive load through mountainous passes. Avoid early-morning eastward-glare by launching precisely at 8:00 AM [cite: 5]."
+                },
+                2: {
+                    title: "Day 2: The Divide (Missoula to Sheridan)",
+                    miles: 475,
+                    time: "8.0 - 8.5 hours",
+                    route: "I-90 East [cite: 2]",
+                    highlights: [
+                        "Homestake Pass crossing (Continental Divide - 6,329 ft elev) [cite: 15]",
+                        "6 miles of steady 6% grade climbs & matched descents with 45 mph limits [cite: 5]",
+                        "Bozeman Pass transit (gradual descents once cleared) [cite: 15]"
+                    ],
+                    lodging: "Best Western Sheridan Center (612 N Main St, Exit 23)",
+                    lodgingDetails: "Open flat surface parking lot featuring designated oversized vehicle bays. Walkable local dining options.",
+                    lodgingAlt: "N/A",
+                    wellness: "Stop at Spearfish Welcome Center (SD MP 1) for flat ADA walkways, maps, and physical travel counselor guidance [cite: 3, 27].",
+                    pacing: "Mountain-focused driving early on, leveling into open plains as you enter Sheridan [cite: 5]."
+                },
+                3: {
+                    title: "Day 3: The Plains (Sheridan to Oacoma)",
+                    miles: 465,
+                    time: "8.0 - 8.5 hours",
+                    route: "I-90 East [cite: 2]",
+                    highlights: [
+                        "Piedmont construction corridor interchanges (Exit 46) [cite: 16]",
+                        "Kennebec-Reliance lane constraints (Exit 235 to MP 251) [cite: 17]",
+                        "12ft lane limits require strict lane holding [cite: 17]"
+                    ],
+                    lodging: "Howard Johnson by Wyndham Oacoma (2100 E Highway 16, Exit 260)",
+                    lodgingDetails: "Massive gravel and asphalt lot perfect for easy trailer parking. Adjacent to high-flow fuel bays.",
+                    lodgingAlt: "N/A",
+                    wellness: "Stop at Vivian Rest Area (SD MP 218) for spacious dog relief spots and separated freight truck lanes [cite: 27, 28].",
+                    pacing: "Consistent high-speed interstate flows. Watch for high prairie winds and dynamic construction lane shifts [cite: 17]."
+                },
+                4: {
+                    title: "Day 4: Midwest (Oacoma to Rockford)",
+                    miles: 529,
+                    time: "9.0 hours",
+                    route: "I-90 East [cite: 2]",
+                    highlights: [
+                        "Sioux Falls transit corridor [cite: 18]",
+                        "Beautiful but winding Driftless Area hills",
+                        "Rockford narrows construction corridor [cite: 19]"
+                    ],
+                    lodging: "Hilton Garden Inn, Rockford (7550 Walton St)",
+                    lodgingDetails: "Expansive commercial-friendly parking lot directly situated off the I-90/I-39 interchange [cite: 10].",
+                    lodgingAlt: "N/A",
+                    wellness: "Chamberlain Welcome Center (SD MP 264) - visit the historical Dignity monument & Lewis/Clark museum for mental decompression [cite: 3].",
+                    pacing: "This is the longest driving leg of your relocation journey. Start at 7:30 AM to comfortably secure 5 PM arrival [cite: 2]."
+                },
+                'break': {
+                    title: "Day R: Stationary Recovery (Rockford, IL)",
+                    miles: 0,
+                    time: "0 hours",
+                    route: "Stationary Rest",
+                    highlights: [
+                        "Fluid inspections and engine checkups [cite: 20]",
+                        "Mechanical hookup alignment checks [cite: 20]",
+                        "Rest and physical joint decompression for operators [cite: 20]"
+                    ],
+                    lodging: "Hilton Garden Inn, Rockford (Maintain Room)",
+                    lodgingDetails: "Second night stay for total driver recovery.",
+                    lodgingAlt: "N/A",
+                    wellness: "Zero vehicle motion. Walk, stretch, and focus on physical hydration before the challenging final leg [cite: 3].",
+                    pacing: "No drive time. Prepare navigation plans for the upcoming Chicago Southern Bypass [cite: 10]."
+                },
+                5: {
+                    title: "Day 5: Arrival (Rockford to Port Huron)",
+                    miles: 390,
+                    time: "7.0 - 7.5 hours",
+                    route: "I-39 South to I-80 East to I-69 North [cite: 10, 21]",
+                    highlights: [
+                        "Southern Chicago Outer Bypass Route to avoid structural construction [cite: 10, 19]",
+                        "I-69 clean Michigan transport lanes [cite: 10]",
+                        "Narrow 1918 residential alignments at Gratiot Avenue [cite: 1]"
+                    ],
+                    lodging: "4246 Gratiot Ave, Port Huron (Destination Home) [cite: 1]",
+                    lodgingDetails: "1918 property, 1551 sq ft living space, 0.19-acre lot. Requires off-site staging [cite: 1].",
+                    lodgingAlt: "N/A",
+                    wellness: "Stop at Michigan Welcome Center (I-69) to verify final staging logistics and prepare tools [cite: 1].",
+                    pacing: "Arrive strictly between 11:00 AM and 1:30 PM to bypass narrow commuter delays [cite: 1, 19, 37]."
+                }
             }
         };
 
-        function switchDay(day) {
-            const content = dayData[day];
-            const container = document.getElementById('day-content');
+        // DOM hydration for selected days
+        function switchDay(dayId) {
+            const data = database.days[dayId];
+            const panel = document.getElementById('day-explorer-panel');
             
-            // Update tabs
-            document.querySelectorAll('button[id^="tab-"]').forEach(btn => btn.classList.remove('tab-active'));
-            document.getElementById(`tab-${day}`).classList.add('tab-active');
+            // Highlight selected tab
+            const tabs = ['d1', 'd2', 'd3', 'd4', 'dbreak', 'd5'];
+            tabs.forEach(t => {
+                const button = document.getElementById(`tab-${t}`);
+                if (t === `d${dayId}`) {
+                    button.className = "px-3.5 py-2 text-xs font-bold rounded-lg transition-all border whitespace-nowrap bg-clay-500 text-white border-clay-500 shadow-sm";
+                } else {
+                    button.className = "px-3.5 py-2 text-xs font-bold rounded-lg transition-all border whitespace-nowrap hover:bg-stone-50 border-stone-200 text-stone-600";
+                }
+            });
 
-            container.innerHTML = `
-                <div class="lg:col-span-2 space-y-6">
-                    <div class="bg-white p-6 rounded-xl border border-stone-100 shadow-sm">
-                        <div class="flex justify-between items-start mb-4">
-                            <div>
-                                <h3 class="text-2xl font-bold text-stone-800">${content.title}</h3>
-                                <p class="text-stone-500">${content.miles} Miles | Estimated ${content.time}</p>
-                            </div>
-                            <span class="px-3 py-1 bg-amber-100 text-amber-800 text-xs font-bold rounded-full uppercase tracking-tighter">Day ${day === 'break' ? 'R' : day}</span>
+            // Rebuild content dynamically
+            let highlightsHtml = data.highlights.map(h => `
+                <li class="flex items-start gap-2">
+                    <i class="fa-solid fa-circle-check text-clay-500 mt-1 text-xs"></i>
+                    <span>${h}</span>
+                </li>
+            `).join('');
+
+            panel.innerHTML = `
+                <div class="flex flex-col gap-4">
+                    <div class="flex justify-between items-start flex-wrap gap-2">
+                        <div>
+                            <h3 class="font-extrabold text-stone-800 text-lg leading-tight">${data.title}</h3>
+                            <span class="text-xs text-stone-400 font-mono">${data.route}</span>
                         </div>
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                            <div class="p-4 bg-stone-50 rounded-lg">
-                                <h4 class="text-xs font-bold text-stone-400 uppercase mb-2">Key Highlights</h4>
-                                <ul class="text-sm space-y-2">
-                                    ${content.highlights.map(h => `<li class="flex items-center"><span class="w-1.5 h-1.5 bg-amber-400 rounded-full mr-2"></span>${h}</li>`).join('')}
-                                </ul>
-                            </div>
-                            <div class="p-4 bg-stone-50 rounded-lg">
-                                <h4 class="text-xs font-bold text-stone-400 uppercase mb-2">Vetted Lodging</h4>
-                                <p class="text-sm font-semibold">${content.lodging}</p>
-                                <p class="text-xs text-stone-500 mt-1 italic">Confirmed trailer-accessible.</p>
+                        <div class="text-right">
+                            <span class="block text-sm font-black text-clay-500">${data.miles} Miles</span>
+                            <span class="block text-[11px] text-stone-400 font-semibold">${data.time} Est. Towing</span>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-2">
+                        <div class="bg-white p-4 rounded-xl border border-stone-200/50">
+                            <h4 class="text-xs font-bold uppercase text-stone-400 mb-2 tracking-wider flex items-center gap-1.5">
+                                <i class="fa-solid fa-compass"></i>
+                                <span>Core Milestones</span>
+                            </h4>
+                            <ul class="space-y-2 text-xs text-stone-600">
+                                ${highlightsHtml}
+                            </ul>
+                        </div>
+                        <div class="bg-white p-4 rounded-xl border border-stone-200/50 flex flex-col justify-between">
+                            <div>
+                                <h4 class="text-xs font-bold uppercase text-stone-400 mb-2 tracking-wider flex items-center gap-1.5">
+                                    <i class="fa-solid fa-hotel"></i>
+                                    <span>Vetted Trailer Lodging</span>
+                                </h4>
+                                <p class="text-xs font-bold text-stone-800 mb-1">${data.lodging}</p>
+                                <p class="text-xs text-stone-500 leading-relaxed mb-2">${data.lodgingDetails}</p>
+                                ${data.lodgingAlt !== 'N/A' ? `<p class="text-[11px] text-clay-600 font-semibold mt-1">Alt Option: ${data.lodgingAlt}</p>` : ''}
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="lg:col-span-1 space-y-6">
-                    <div class="bg-amber-50 p-6 rounded-xl border border-amber-100 h-full">
-                        <h4 class="font-bold text-amber-800 mb-2">Driver Wellness Notes</h4>
-                        <p class="text-sm text-amber-700 leading-relaxed mb-4">${content.wellness}</p>
-                        <h4 class="font-bold text-amber-800 mb-2">Pacing Logic</h4>
-                        <p class="text-sm text-amber-700 leading-relaxed">${content.pacing}</p>
+
+                    <div class="mt-2 grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div class="bg-clay-50/50 p-4 rounded-xl border border-clay-100 text-xs">
+                            <h4 class="font-bold text-clay-900 mb-1 flex items-center gap-1.5">
+                                <i class="fa-solid fa-mug-hot"></i>
+                                <span>Wellness & Support</span>
+                            </h4>
+                            <p class="text-clay-800 leading-relaxed">${data.wellness}</p>
+                        </div>
+                        <div class="bg-sand-100 p-4 rounded-xl border border-stone-200 text-xs">
+                            <h4 class="font-bold text-stone-800 mb-1 flex items-center gap-1.5">
+                                <i class="fa-solid fa-gauge-high"></i>
+                                <span>Pacing Insight</span>
+                            </h4>
+                            <p class="text-stone-600 leading-relaxed">${data.pacing}</p>
+                        </div>
                     </div>
                 </div>
             `;
         }
 
-        // Charts
-        window.onload = function() {
-            switchDay(1);
+        // Search engine logic
+        function searchDatabase() {
+            const query = document.getElementById('search-input').value.toLowerCase();
+            const resultsPanel = document.getElementById('itinerary-content');
+            
+            if (query.trim() === '') {
+                // Return to normal layout
+                document.querySelectorAll('#itinerary-content > section').forEach(s => s.classList.remove('hidden'));
+                return;
+            }
 
-            const ctxPacing = document.getElementById('pacingChart').getContext('2d');
-            new Chart(ctxPacing, {
-                type: 'bar',
-                data: {
-                    labels: ['Day 1', 'Day 2', 'Day 3', 'Day 4', 'Day 5'],
-                    datasets: [{
-                        label: 'Distance (Miles)',
-                        data: [477, 475, 465, 529, 390],
-                        backgroundColor: '#d4a373',
-                        borderRadius: 8,
-                        yAxisID: 'y',
-                    }, {
-                        label: 'Est. Hours',
-                        data: [9, 8.5, 8.5, 9, 7.5],
-                        type: 'line',
-                        borderColor: '#4a4a4a',
-                        borderWidth: 2,
-                        pointBackgroundColor: '#fff',
-                        yAxisID: 'y1',
-                        tension: 0.4
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    plugins: { legend: { position: 'bottom' } },
-                    scales: {
-                        y: { position: 'left', grid: { display: false } },
-                        y1: { position: 'right', grid: { display: false }, min: 0, max: 12 }
-                    }
+            // Simple highlighting/filtering for document sections
+            document.querySelectorAll('#itinerary-content > section').forEach(section => {
+                const text = section.innerText.toLowerCase();
+                if (text.includes(query)) {
+                    section.classList.remove('hidden');
+                } else {
+                    section.classList.add('hidden');
                 }
             });
+        }
 
-            const ctxGrade = document.getElementById('gradeChart').getContext('2d');
-            new Chart(ctxGrade, {
+        // Bridge clearance checks
+        function openWidthCalculator() {
+            document.getElementById('width-modal').classList.remove('hidden');
+        }
+
+        function closeWidthCalculator() {
+            document.getElementById('width-modal').classList.add('hidden');
+            document.getElementById('width-result').className = "p-3 rounded-lg hidden text-xs font-bold leading-relaxed";
+        }
+
+        function calculateRigWidth() {
+            const width = parseInt(document.getElementById('width-input').value);
+            const resultBox = document.getElementById('width-result');
+            
+            if (isNaN(width) || width <= 0) {
+                resultBox.className = "p-3 rounded-lg block text-xs font-bold bg-amber-50 text-amber-700";
+                resultBox.innerText = "Please specify a valid positive numerical dimension in inches.";
+                return;
+            }
+
+            if (width > 108) {
+                resultBox.className = "p-3 rounded-lg block text-xs font-bold bg-red-100 text-red-800";
+                resultBox.innerHTML = `<i class="fa-solid fa-circle-xmark mr-1"></i> CLEARANCE REJECTED: Your width of ${width} inches exceeds the 108-inch Vantage Bridge limit [cite: 13]. You cannot use this path.`;
+            } else {
+                resultBox.className = "p-3 rounded-lg block text-xs font-bold bg-emerald-100 text-emerald-800";
+                resultBox.innerHTML = `<i class="fa-solid fa-circle-check mr-1"></i> CLEARANCE SECURED: Your width of ${width} inches is safe. Remaining margin: ${108 - width} inches.`;
+            }
+        }
+
+        // Smooth Scrolling Utility
+        function scrollToSection(id) {
+            document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Custom alert focus indicator
+        function focusAlert(type) {
+            if (type === 'vantage') {
+                scrollToSection('infra-hazards');
+                const box = document.getElementById('vantage-alert');
+                box.classList.add('ring-4', 'ring-red-500');
+                setTimeout(() => {
+                    box.classList.remove('ring-4', 'ring-red-500');
+                }, 3000);
+            }
+        }
+
+        // On Load initialization
+        window.onload = function() {
+            // Setup active interactive panel
+            switchDay(1);
+
+            // Populate the clean print view container dynamically to ensure 100% data fidelity on page output
+            const printContainer = document.getElementById('print-itinerary-container');
+            Object.keys(database.days).forEach(day => {
+                const item = database.days[day];
+                const card = document.createElement('div');
+                card.className = "p-4 border border-stone-200 rounded-lg mb-4";
+                card.innerHTML = `
+                    <h4 class="font-bold text-sm mb-1">${item.title} (${item.miles} Miles)</h4>
+                    <p class="mb-2 italic text-stone-500">Suggested route: ${item.route}</p>
+                    <ul class="list-disc pl-4 mb-2 space-y-1">
+                        ${item.highlights.map(h => `<li>${h}</li>`).join('')}
+                    </ul>
+                    <p class="font-semibold mb-1">Lodging Profile: ${item.lodging} - ${item.lodgingDetails}</p>
+                    <p class="mb-1 text-stone-500">Wellness protocol: ${item.wellness}</p>
+                    <p class="text-stone-500">Pacing protocol: ${item.pacing}</p>
+                `;
+                printContainer.appendChild(card);
+            });
+
+            // Initialize dynamic topographic chart
+            const ctx = document.getElementById('mountainGradeChart').getContext('2d');
+            new Chart(ctx, {
                 type: 'bar',
                 data: {
-                    labels: ['Lookout', 'Homestake', 'Columbia R.', 'Bozeman', 'Snoqualmie'],
+                    labels: ['Lookout Pass', 'Homestake Pass', 'Columbia R.', 'Bozeman Pass', 'Snoqualmie Pass'],
                     datasets: [{
-                        label: 'Max % Grade',
+                        label: 'Max Decelerating Grade %',
                         data: [6, 6, 5, 4, 3],
-                        backgroundColor: (context) => context.raw >= 6 ? '#ef4444' : '#d4a373',
+                        backgroundColor: function(context) {
+                            const val = context.dataset.data[context.dataIndex];
+                            return val >= 6 ? '#b91c1c' : '#c97a3e';
+                        },
                         borderRadius: 6
                     }]
                 },
                 options: {
-                    indexAxis: 'y',
                     responsive: true,
                     maintainAspectRatio: false,
-                    plugins: { legend: { display: false } },
+                    plugins: {
+                        legend: { display: false }
+                    },
                     scales: {
-                        x: { max: 7, title: { display: true, text: 'Percent Grade' } }
+                        y: {
+                            beginAtZero: true,
+                            max: 8,
+                            title: {
+                                display: true,
+                                text: 'Percent Grade (%)',
+                                font: { size: 10, weight: 'bold' }
+                            }
+                        }
                     }
                 }
             });
