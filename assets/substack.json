@@ -2,21 +2,21 @@
   "source": "https://api.rss2json.com/v1/api.json?rss_url=https%3A%2F%2Fdrinkyouroj.substack.com%2Ffeed",
   "feed_title": "The Civic Node",
   "feed_url": "https://drinkyouroj.substack.com/",
-  "updated_at": "2026-11-03T12:50:58.146872+00:00",
+  "updated_at": "2026-11-04T13:02:52.927320+00:00",
   "posts": [
     {
       "title": "The Accord That Wasn't Signed",
       "subtitle": "In 1951 the Fed won its independence in public, on the record. Warsh is handing a piece of it back to the Treasury with no vote and nothing to FOIA.",
       "url": "https://drinkyouroj.substack.com/p/the-accord-that-wasnt-signed",
       "date": "2026-06-19T22:07:52+00:00",
-      "cover_image": "https://substackcdn.com/image/fetch/$s_!PXVW!,f_auto,q_auto:good,fl_progressive:steep/https://substack-post-media.s3.amazonaws.com/public/images/3f0527ec-18e9-447d-816b-5c6a35cc2da9_3072x2048.png"
+      "cover_image": "https://substackcdn.com/image/fetch/$s_!PXVW!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F3f0527ec-18e9-447d-816b-5c6a35cc2da9_3072x2048.png"
     },
     {
       "title": "I Had the Wrong Denominator",
       "subtitle": "My headline measured DHS's disclosure rate against DHS's claimed 3,000. The subhead had the FOIA number the whole time: 3,789.",
       "url": "https://drinkyouroj.substack.com/p/i-had-the-wrong-denominator",
       "date": "2026-06-17T13:04:01+00:00",
-      "cover_image": "https://substackcdn.com/image/fetch/$s_!5yeN!,f_auto,q_auto:good,fl_progressive:steep/https://substack-post-media.s3.amazonaws.com/public/images/e539922c-2ac1-4df5-bd4d-38273e5a24e4_1344x752.png"
+      "cover_image": "https://substackcdn.com/image/fetch/$s_!5yeN!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fe539922c-2ac1-4df5-bd4d-38273e5a24e4_1344x752.png"
     },
     {
       "title": "DHS Showed 9%. FOIA Showed Everyone.",
@@ -30,7 +30,7 @@
       "subtitle": "My first draft joined the bonus and the power bill with the same money. Following the dollars killed the line and left the truer thread: leverage.",
       "url": "https://drinkyouroj.substack.com/p/i-had-the-wrong-thread",
       "date": "2026-06-10T13:10:00+00:00",
-      "cover_image": "https://substackcdn.com/image/fetch/$s_!h-Wy!,f_auto,q_auto:good,fl_progressive:steep/https://substack-post-media.s3.amazonaws.com/public/images/f62a6d8e-599b-4cb7-a915-54b2884c2d14_1344x752.png"
+      "cover_image": "https://substackcdn.com/image/fetch/$s_!h-Wy!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Ff62a6d8e-599b-4cb7-a915-54b2884c2d14_1344x752.png"
     },
     {
       "title": "Samsung's $400,000 Bonus, and the $4,000 One",
@@ -44,7 +44,7 @@
       "subtitle": "I had a clean sentence saying the courts hadn’t ruled on age verification. They had ruled, a year earlier; they sided with the workaround the piece is about.",
       "url": "https://drinkyouroj.substack.com/p/i-almost-wrote-no-ruling",
       "date": "2026-06-03T13:05:16+00:00",
-      "cover_image": "https://substackcdn.com/image/fetch/$s_!-YFk!,f_auto,q_auto:good,fl_progressive:steep/https://substack-post-media.s3.amazonaws.com/public/images/72f47b50-3c9e-4ef7-af54-196530f47e2c_2688x1520.png"
+      "cover_image": "https://substackcdn.com/image/fetch/$s_!-YFk!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F72f47b50-3c9e-4ef7-af54-196530f47e2c_2688x1520.png"
     }
   ]
 }
